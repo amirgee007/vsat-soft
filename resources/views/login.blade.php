@@ -33,24 +33,36 @@
 
 <body class="login-img3-body">
 
-
 <div class="container">
 
-    <form class="login-form" action="index.html">
+    <form class="login-form" method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+
         <div class="text-center">
             <img class="v-align" src="img/tracelogo.png" alt="TraceLogo" />
         </div>
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div id="login">
-                <div class="input-group">
+                <div class="input-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <span class="input-group-addon"><i class="icon_profile"></i></span>
-                    <input type="text" class="form-control" placeholder="Username" autofocus>
+                    <input type="email" name="email" class="form-control" placeholder="Username/Email" autofocus value="{{ old('email') }}" required>
                 </div>
-                <div class="input-group">
+                @if ($errors->has('email'))
+                    <span class="help-block" style="color: orange">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+                <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
                 </div>
+                @if ($errors->has('password'))
+                    <span class="help-block" style="color: orange">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Remember me
                     <span id="ForgetPass" class="pull-right"> <a href="#"> Forgot Password?</a></span>

@@ -43,7 +43,7 @@
 <section id="container" class="">
 
     <div id="notific">
-        @include('notifications')
+        @include('admin.notifications')
     </div>
     <!--header start-->
     @include('admin.layouts._header')
