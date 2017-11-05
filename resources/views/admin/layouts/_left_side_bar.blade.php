@@ -4,7 +4,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
             <li class="active">
-                <a class="" href="index.html">
+                <a class="" href="{{route('index.dashboard')}}">
                     <i class="icon_house_alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -16,14 +16,14 @@
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="regions.html">Regions</a></li>
-                    <li><a class="" href="countries.html">Countries</a></li>
-                    <li><a class="" href="cities.html">Cities</a></li>
+                    <li><a class="" href="{{route('location.regions.index')}}">Regions</a></li>
+                    <li><a class="" href="{{route('location.countries.index')}}">Countries</a></li>
+                    <li><a class="" href="{{route('location.cities.index')}}">Cities</a></li>
                 </ul>
             </li>
 
             <li>
-                <a class="" href="profile.html">
+                <a class="" href="{{route('profile.show')}}">
                     <i class="icon_profile"></i>
                     <span>My Profile</span>
                 </a>
@@ -35,25 +35,25 @@
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="clients.html">Clients</a></li>
-                    <li><a class="" href="support_staff.html">Support Staff</a></li>
-                    <li><a class="" href="users.html">Users</a></li>
+                    <li><a class="" href="{{route('people.clients.index')}}">Clients</a></li>
+                    <li><a class="" href="{{route('people.supportStaff.index')}}">Support Staff</a></li>
+                    <li><a class="" href="{{route('people.users.index')}}">Users</a></li>
                 </ul>
             </li>
             <li>
-                <a class="" href="branches.html">
+                <a class="" href="{{route('branch.index')}}">
                     <i class="icon_flowchart_alt"></i>
                     <span>Branches</span>
                 </a>
             </li>
             <li>
-                <a class="" href="sites.html">
+                <a class="" href="{{route('site.index')}}">
                     <i class="icon_pin"></i>
                     <span>Sites</span>
                 </a>
             </li>
             <li>
-                <a class="" href="#">
+                <a class="" href="{{route('ticket.index')}}">
                     <i class="icon_tags"></i>
                     <span>Ticketing</span>
                 </a>
@@ -112,6 +112,17 @@
                 </a>
             </li>
 
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="fa fa-file"></i>
+                    <span>Settings</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+                <ul class="sub">
+                    <li><a class="" target="_blank" href="{{url('/routes')}}">All Routes</a></li>
+                    <li><a class="" target="_blank" href="{{url('/log-viewer/logs/')}}">Site Logs</a></li>
+                </ul>
+            </li>
         </ul>
         <!-- sidebar menu end-->
     </div>

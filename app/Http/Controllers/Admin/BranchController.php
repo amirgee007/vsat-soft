@@ -11,6 +11,7 @@ class BranchController extends Controller
 
     public function index()
     {
+        $branches = '';
         return view('admin.branch.index' , compact('branches'));
     }
 
