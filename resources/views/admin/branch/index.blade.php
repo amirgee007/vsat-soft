@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <a class="btn btn-primary btn-lg" href="add_branch.html" title="Add Branch">Add New Branch</a>
+                        <a class="btn btn-primary btn-lg" href="{{route('branch.create')}}" title="Add Branch">Add New Branch</a>
                     </div>
                     <section class="panel">
                         <header class="panel-heading">

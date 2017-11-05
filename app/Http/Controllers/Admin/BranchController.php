@@ -15,4 +15,10 @@ class BranchController extends Controller
         return view('admin.branch.index' , compact('branches'));
     }
 
+    public function create()
+    {
+        $branches = '';
+        return view('admin.branch.create' , compact('branches'));
+    }
+
 }

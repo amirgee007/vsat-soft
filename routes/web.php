@@ -104,6 +104,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
             'uses' => 'BranchController@index'
         ]);
 
+        Route::get('/create', [
+            'as' => 'branch.create',
+            'uses' => 'BranchController@create'
+        ]);
+
     });
 
     # Sites Management
