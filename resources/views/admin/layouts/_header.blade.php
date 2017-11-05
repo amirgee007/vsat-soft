@@ -5,7 +5,7 @@
     </div>
 
     <!--logo start-->
-    <a href="index.html" class="logo">
+    <a href="{{route('index.dashboard')}}" class="logo">
         <img src="img/tracelogo.png" alt="TraceSystems" style="max-height: 35px; height: auto; width: auto" /></a>
     <!--logo end-->
 
@@ -25,10 +25,10 @@
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
                     <li class="eborder-top">
-                        <a href="profile.html"><i class="icon_profile"></i>My Profile</a>
+                        <a href="{{route('profile.show')}}"><i class="icon_profile"></i>My Profile</a>
                     </li>
                     <li>
-                        <a href="login.html"><i class="icon_key_alt"></i>Log Out</a>
+                        <a href="{{route('logout')}}"><i class="icon_key_alt"></i>Log Out</a>
                     </li>
                 </ul>
             </li>

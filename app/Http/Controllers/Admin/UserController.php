@@ -19,6 +19,13 @@ class UserController extends Controller
         $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
     }
 
+
+    public function profile(){
+
+        return view('admin.profile.show');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +33,11 @@ class UserController extends Controller
      */
     public function index() {
         //Get all users and pass it to the view
-        $users = User::all();
-        return view('users.index')->with('users', $users);
+//        $users = User::all();
+//        return view('users.index')->with('users', $users);
+
+        return view('admin.users.index');
+
     }
 
     /**

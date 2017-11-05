@@ -15,7 +15,7 @@ class AdminController extends Controller
     }
 
     public function showLoginForm( ){
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('index.dashboard');
     }
 
     public function logout(Request $request){

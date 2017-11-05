@@ -8,9 +8,6 @@
 
 @section('content')
 
-    <!--main content start-->
-
-    <!--main content end-->
 
 @stop
 
