@@ -34,6 +34,12 @@
 {{--make all above links same as below--}}
     <link rel="stylesheet" href="{{ asset('assets/css/pages/advbuttons.css') }}" />
 
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
+
     @yield('header_styles')
 
 </head>
