@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActiveCitiesTable extends Migration
+class CreateVendorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,17 @@ class CreateActiveCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('active_cities', function (Blueprint $table) {
+        Schema::create('vendor', function (Blueprint $table) {
 			$table->increments('id');
-            $table->string('city_name');
-			$table->int('active_city_id');
+            $table->string('name');
+            $table->string('country');
+            $table->string('city');
+            $table->string('street');
+            $table->string('po_box');
+            $table->string('email');
+            $table->string('contact_number');
             $table->timestamps();
-			});	
+			});
     }
 
     /**
@@ -28,6 +33,6 @@ class CreateActiveCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('active_cities');
+        Schema::dropIfExists('vendor');
     }
 }
