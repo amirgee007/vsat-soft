@@ -13,7 +13,7 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="icon_flowchart_alt"></i> Branch Management</h3>
+                    <h3 class="page-header"><i class="icon_flowchart_alt"></i> Branch Management [{{@count($branches)}}]</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
                         <li><i class="icon_flowchart_alt"></i>Branch Management</li>
@@ -27,11 +27,16 @@
                     <div class="page-header">
                         <a class="btn btn-primary btn-lg" href="{{route('branch.create')}}" title="Add Branch">Add New Branch</a>
                     </div>
+                    @if(session()->has('new_branch'))
+                        <div class="alert alert-info">
+                            {{ session()->get('new_branch') }}
+                        </div>
+                    @endif
                     <section class="panel">
                         <header class="panel-heading">
                             Branches
                         </header>
-
+                        @if (count($branches) > 0)
                         <table class="table table-striped table-advance table-hover">
                             <thead>
                             <tr>
@@ -46,16 +51,23 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($branches AS $branch)
                             <tr>
-                                <td class="text-center">1</td>
-                                <td><a href="view_branch.html">ICS UAE</a></td>
-                                <td><a href="view_branch.html">25-01-2017</a></td>
-                                <td><a href="view_branch.html">Dubai</a></td>
-                                <td><a href="view_branch.html">info@ics-technologies-mea.com</a></td>
-                                <td><a href="view_branch.html">(+971) (4) 111 2211</a></td>
+                                <td class="text-center"> {{ $loop->iteration }} </td>
+                                <td><a href="view_branch.html">{{ $branch['name'] }}</a></td>
+                                <td><a href="view_branch.html">{{ date("F jS, Y", strtotime($branch['created_at'])) }}</a></td>
+                                <td><a href="view_branch.html">{{ $branch['city'] }}</a></td>
+                                <td><a href="view_branch.html">{{ $branch['email'] }}</a></td>
+                                <td><a href="view_branch.html">{{ $branch['office_tel'] }}</a></td>
                                 <td>
                                     <div class="btn-group col-sm-10 col-xs-12">
-                                        <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Active</a>
+                                        <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">
+                                        @if( $branch['status'] == 'Enable')
+                                            Active
+                                        @else
+                                            Deactive
+                                        @endif
+                                        </a>
                                     </div>
                                 </td>
                                 <td>
@@ -65,27 +77,14 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>ICS Jordan</td>
-                                <td>12-02-2017</td>
-                                <td>Amman</td>
-                                <td>info@ics-technologies-mea.com</td>
-                                <td>(+963) (2) 551 1111</td>
-                                <td>
-                                    <div class="btn-group col-sm-10 col-xs-12">
-                                        <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Active</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="#"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-6 col-xs-6 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
+                        @else
+                            <div class="alert alert-info">
+                                <b>No, Branches Found.</b>
+                            </div>
+                        @endif
                     </section>
                 </div>
             </div>

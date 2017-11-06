@@ -16,7 +16,7 @@ class CreateActiveCitiesTable extends Migration
         Schema::create('active_cities', function (Blueprint $table) {
 			$table->increments('id');
             $table->string('city_name');
-			$table->int('active_city_id');
+			$table->integer('active_city_id');
             $table->timestamps();
 			});	
     }

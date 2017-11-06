@@ -28,8 +28,8 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Branch</h1>
-                            <form class="form-horizontal" role="form">
-
+                            <form class="form-horizontal" role="form" action="{{ route('branch.create') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="B-number">Branch ID Number</label>
                                     <div class="col-sm-10">
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="B-name">Branch Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="B-name" placeholder="Branch Name">
+                                        <input type="text" class="form-control" id="B-name" placeholder="Branch Name" name="b_name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -47,59 +47,61 @@
                                     <div class="col-sm-10">
                                         <label class="col-sm-2 col-xs-3 control-label">Country</label>
                                         <div class="col-sm-4 col-xs-3">
-                                            <select class="form-control m-bot15 country">
+                                            <select class="form-control m-bot15 country" name="country">
                                             </select>
                                         </div>
                                         <label class="col-sm-2 col-xs-3 control-label">City</label>
                                         <div class="col-sm-4 col-xs-3">
-                                            <select class="form-control m-bot15 city">
+                                            <select class="form-control m-bot15 city" name="city">
+                                                <option value="" selected hidden>Select City</option>
+                                                <option value="1">Test City</option>
                                             </select>
                                         </div>
                                         <label class="col-sm-2 control-label">Street</label>
                                         <span class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="Street">
+                                                <input type="text" class="form-control" placeholder="Street" name="street">
                                             </span>
                                         <label class="col-sm-2 control-label">Area</label>
                                         <span class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Area">
+                                                <input type="text" class="form-control" placeholder="Area" name="area">
                                             </span>
 
                                         <label class="col-sm-2 control-label">State</label>
                                         <span class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="State">
+                                                <input type="text" class="form-control" placeholder="State" name="state">
                                             </span>
                                         <label class="col-sm-2 control-label">Zip Code</label>
                                         <span class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Zip Code">
+                                                <input type="text" class="form-control" placeholder="Zip Code" name="zip_code">
                                             </span>
 
                                         <label class="col-sm-2 control-label">P.O.Box</label>
                                         <span class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="P.O.Box">
+                                                <input type="text" class="form-control" placeholder="P.O.Box" name="p_o_box">
                                             </span>
                                         <label class="col-sm-2 control-label">Office Tel</label>
                                         <span class="col-sm-4">
-                                                <input type="tel" class="form-control" placeholder="Office Tel">
+                                                <input type="tel" class="form-control" placeholder="Office Tel" name="office_tel">
                                             </span>
                                         <label class="col-sm-2 control-label">Fax No</label>
                                         <span class="col-sm-4">
-                                                <input type="tel" class="form-control" placeholder="Fax No">
+                                                <input type="tel" class="form-control" placeholder="Fax No" name="fax_no">
                                             </span>
                                         <label class="col-sm-2 control-label">Email</label>
                                         <span class="col-sm-4">
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="email" class="form-control" placeholder="Email" name="e_mail">
                                             </span>
                                         <label class="col-sm-2 control-label">Website</label>
                                         <span class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Website">
+                                                <input type="text" class="form-control" placeholder="Website" name="website">
                                             </span>
                                         <label class="col-sm-2 control-label">Working Days</label>
                                         <span class="col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Working Days">
+                                                <input type="text" class="form-control" placeholder="Working Days" name="working_days">
                                             </span>
                                         <label class="col-sm-2 control-label">Working Times</label>
                                         <span class="col-sm-4">
-                                                <input type="tel" class="form-control" placeholder="Working Times">
+                                                <input type="tel" class="form-control" placeholder="Working Times" name="working_times">
                                             </span>
                                     </div>
                                 </div>
@@ -108,14 +110,14 @@
                                     <label class="col-lg-2 control-label">Branch Logo</label>
                                     <div class="col-lg-offset-2 col-lg-10">
                                         <img src="img/noimage.gif" alt="" />
-                                        <input class="btn btn-default" type="file" name="Select image">
+                                        <input class="btn btn-default" type="file" name="b_logo" >
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Status</label>
                                     <div class="col-lg-10">
-                                        <select class="form-control m-bot15">
+                                        <select class="form-control m-bot15" name="b_status">
                                             <option>Enable</option>
                                             <option>Disable</option>
                                         </select>
@@ -133,7 +135,7 @@
 
                                             <label class="col-lg-2 col-xs-3 control-label">Add Support Staff</label>
                                             <div class="col-lg-8 col-xs-7">
-                                                <select class="form-control m-bot15">
+                                                <select class="form-control m-bot15" name="support_staff[]">
                                                     <option>Mahmood</option>
                                                     <option>Mohammad</option>
                                                 </select>

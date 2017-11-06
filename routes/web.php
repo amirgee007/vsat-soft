@@ -109,6 +109,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
             'uses' => 'BranchController@create'
         ]);
 
+        Route::post('/create', [
+            'as' => 'branch.new_branch',
+            'uses' => 'BranchController@new_branch'
+        ]);
+
     });
 
     # Sites Management

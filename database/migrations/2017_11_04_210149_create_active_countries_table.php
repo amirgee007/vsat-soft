@@ -16,7 +16,7 @@ class CreateActiveCountriesTable extends Migration
 			Schema::create('active_countries', function (Blueprint $table) {
 			$table->increments('id');
             $table->string('country_name');
-			$table->int('active_region_id');
+			$table->integer('active_region_id');
             $table->timestamps();
 			});	
     }

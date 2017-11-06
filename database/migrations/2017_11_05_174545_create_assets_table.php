@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\Blueprinteger;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateAssetsTable extends Migration
@@ -15,7 +15,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
 			$table->increments('part_id');
-            $table->int('part_code');
+            $table->integer('part_code');
             $table->string('serial_number');
             $table->string('barcode');
             $table->string('part_name');
@@ -26,11 +26,11 @@ class CreateAssetsTable extends Migration
             $table->string('warranty_status2');
             $table->boolean('extended_warranty');
             $table->datetime('extended_warranty_date');
-            $table->int('cost_price');
-            $table->int('selling_price');
-            $table->int('supplier_id');
-            $table->int('vendor_id');
-            $table->int('site_id');
+            $table->integer('cost_price');
+            $table->integer('selling_price');
+            $table->integer('supplier_id');
+            $table->integer('vendor_id');
+            $table->integer('site_id');
             $table->timestamps();
 			});
     }
