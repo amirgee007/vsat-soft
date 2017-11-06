@@ -15,6 +15,10 @@ class CreateMaintananceLogsTable extends Migration
     {
         Schema::create('maintenance_logs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('branch_id');
+            $table->integer('user_id');
+            $table->integer('site_id');
+            $table->integer('part_id');
             $table->integer('job_number')->index();
             $table->dateTime('repair_start_date');
             $table->dateTime('repair_finish_date');
@@ -29,12 +33,15 @@ class CreateMaintananceLogsTable extends Migration
             $table->string('eng_symptom_detail3');
             $table->string('eng_solution_detail3');
             $table->string('repair_mode');
+            $table->string('engineer_comment');
+
+            //pivot tables
             $table->string('assets_removed');
             $table->string('assets_added');
-            $table->string('engineer_comment');
+            $table->string('related_branches');
+            $table->string('related_staff');
             $table->string('status');
-            $table->string('related_branch_id');
-            $table->string('related_staff_id');
+
             $table->timestamps();
         });
     }

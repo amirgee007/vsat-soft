@@ -53,7 +53,6 @@ class CreateClientsTable extends Migration
             $table->string('finance_2nd_position');
             $table->string('finance_2nd_cell');
             $table->string('finance_2nd_email');
-            $table->string('finance_2nd_name');
             $table->string('management_1st_name');
             $table->string('management_1st_position');
             $table->string('management_1st_cell');
@@ -71,8 +70,9 @@ class CreateClientsTable extends Migration
             $table->string('confirm_by_designation');
             $table->string('confirm_by_signature');
             $table->string('confirm_by_status');
-            $table->string('related_user_id');
 
+            //pivot_table
+            $table->string('related_users');
 
             $table->timestamps();
 			});

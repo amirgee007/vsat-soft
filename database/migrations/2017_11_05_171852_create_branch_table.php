@@ -13,7 +13,7 @@ class CreateBranchTable extends Migration
      */
     public function up()
     {
-        Schema::create('branch', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
 			$table->increments('id');
             $table->integer('id_number');
             $table->string('name');
@@ -32,6 +32,7 @@ class CreateBranchTable extends Migration
             $table->string('working_times');
             $table->string('branch_logo');
             $table->string('status');
+            //pivot tables
             $table->string('related_staff');
             $table->timestamps();
 			});
@@ -44,6 +45,6 @@ class CreateBranchTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branch');
+        Schema::dropIfExists('branches');
     }
 }

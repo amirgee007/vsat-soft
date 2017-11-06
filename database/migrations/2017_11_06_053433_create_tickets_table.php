@@ -13,8 +13,8 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->increments('ticket_id');
             $table->integer('number');
             $table->string('description');
             $table->datetime('start_date');

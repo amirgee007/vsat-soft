@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprinteger;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateAssetsTable extends Migration
@@ -14,7 +14,8 @@ class CreateAssetsTable extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-			$table->increments('part_id');
+			$table->increments('asset_id');
+			$table->integer('part_id');
             $table->integer('part_code');
             $table->string('serial_number');
             $table->string('barcode');

@@ -13,13 +13,11 @@ class CreateSupportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket', function (Blueprint $table) {
+        Schema::create('supports', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('number');
-            $table->string('description');
-            $table->datetime('start_date');
-            $table->datetime('end_date');
-            $table->string('assign_to');
+            $table->integer('site_id');
+            $table->integer('branch_id');
+            $table->integer('ticket_id');
             $table->timestamps();
         });
     }
