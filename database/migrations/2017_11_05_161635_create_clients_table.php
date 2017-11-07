@@ -14,7 +14,7 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-			$table->increments('id');
+			$table->increments('client_id');
             $table->string('org_name');
             $table->string('street');
             $table->string('area');
@@ -71,9 +71,7 @@ class CreateClientsTable extends Migration
             $table->string('confirm_by_signature');
             $table->string('confirm_by_status');
 
-            //pivot_table
-            $table->string('related_users');
-
+            //pivotTable client_user
             $table->timestamps();
 			});
     }

@@ -14,7 +14,7 @@ class CreateBranchTable extends Migration
     public function up()
     {
         Schema::create('branches', function (Blueprint $table) {
-			$table->increments('id');
+			$table->increments('branch_id');
             $table->integer('id_number');
             $table->string('name');
             $table->string('street');
@@ -32,8 +32,8 @@ class CreateBranchTable extends Migration
             $table->string('working_times');
             $table->string('branch_logo');
             $table->string('status');
-            //pivot tables
-            $table->string('related_staff');
+
+            //pivot tables branch_user
             $table->timestamps();
 			});
     }

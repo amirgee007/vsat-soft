@@ -13,12 +13,12 @@ class CreateActiveCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('active_cities', function (Blueprint $table) {
-			$table->increments('id');
-            $table->string('city_name');
-			$table->integer('active_city_id');
-            $table->timestamps();
-			});	
+//        Schema::create('active_cities', function (Blueprint $table) {
+//			$table->increments('id');
+//            $table->string('city_name');
+//			$table->integer('active_city_id');
+//            $table->timestamps();
+//			});
     }
 
     /**
@@ -26,8 +26,9 @@ class CreateActiveCitiesTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
-        Schema::dropIfExists('active_cities');
+//        Schema::dropIfExists('active_cities');
     }
 }

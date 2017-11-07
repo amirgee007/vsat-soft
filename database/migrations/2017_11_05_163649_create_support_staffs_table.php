@@ -14,7 +14,7 @@ class CreateSupportStaffsTable extends Migration
     public function up()
     {
         Schema::create('support_staffs', function (Blueprint $table) {
-			$table->increments('id');
+			$table->increments('support_staff_id');
             $table->string('staff_id');
             $table->string('cell_number');
             $table->string('first_name');
@@ -65,11 +65,9 @@ class CreateSupportStaffsTable extends Migration
             $table->dateTime('visa_expiry_date');
             $table->string('visa_staff_photo');
             $table->string('visa_status');
-            $table->string('related_user_id');
-            
 
-			
-			});
+            //pivot Table support_staff_user
+        });
     }
 
     /**

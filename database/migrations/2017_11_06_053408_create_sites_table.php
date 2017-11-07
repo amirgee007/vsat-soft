@@ -58,8 +58,6 @@ class CreateSitesTable extends Migration
             $table->string('pole_size');
             $table->string('pole_outside_diameter');
             $table->string('status');
-            $table->integer('assets_id');
-            $table->integer('branch_id');
             $table->timestamps();
         });
     }

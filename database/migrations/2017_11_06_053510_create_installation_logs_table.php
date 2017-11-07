@@ -14,7 +14,7 @@ class CreateInstallationLogsTable extends Migration
     public function up()
     {
         Schema::create('installation_logs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('installation_log_id');
             $table->integer('branch_id');
             $table->integer('user_id');
             $table->integer('site_id');
@@ -28,9 +28,9 @@ class CreateInstallationLogsTable extends Migration
             $table->string('city');
             $table->string('engineer_comments');
 //pivot tables 3
-            $table->integer('assets');
-            $table->integer('related_branches');
-            $table->integer('related_staffs');
+//            $table->integer('assets');
+//            $table->integer('related_branches');
+//            $table->integer('related_staffs');
 
             $table->timestamps();
         });

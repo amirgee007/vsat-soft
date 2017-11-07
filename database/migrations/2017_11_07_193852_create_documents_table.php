@@ -4,21 +4,26 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupportsTable extends Migration
+class CreateDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
+
+
     public function up()
     {
-        Schema::create('supports', function (Blueprint $table) {
-            $table->increments('support_id');
-            $table->integer('site_id');
-            $table->integer('branch_id');
-            $table->integer('ticket_id');
-            $table->timestamps();
+        Schema::create('documents', function (Blueprint $table) {
+
+            $table->increments('document_id');
+            $table->string('file_name');
+            $table->string('file_upload_name');
+            $table->string('type');
+
+//        doc_type(general,special)
+
         });
     }
 
@@ -29,6 +34,9 @@ class CreateSupportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supports');
+        Schema::dropIfExists('documents');
     }
 }
+
+
+

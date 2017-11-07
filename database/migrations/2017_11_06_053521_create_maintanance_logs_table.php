@@ -14,7 +14,7 @@ class CreateMaintananceLogsTable extends Migration
     public function up()
     {
         Schema::create('maintenance_logs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('maintenance_log_id');
             $table->integer('branch_id');
             $table->integer('user_id');
             $table->integer('site_id');
@@ -34,14 +34,7 @@ class CreateMaintananceLogsTable extends Migration
             $table->string('eng_solution_detail3');
             $table->string('repair_mode');
             $table->string('engineer_comment');
-
-            //pivot tables
-            $table->string('assets_removed');
-            $table->string('assets_added');
-            $table->string('related_branches');
-            $table->string('related_staff');
             $table->string('status');
-
             $table->timestamps();
         });
     }

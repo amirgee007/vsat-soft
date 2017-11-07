@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupportsTable extends Migration
+class CreateClientUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateSupportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('supports', function (Blueprint $table) {
-            $table->increments('support_id');
-            $table->integer('site_id');
-            $table->integer('branch_id');
-            $table->integer('ticket_id');
-            $table->timestamps();
+        Schema::create('client_user', function (Blueprint $table) {
+
+            $table->integer('client_id');
+            $table->integer('user_id');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateSupportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supports');
+        Schema::dropIfExists('client_user');
     }
 }

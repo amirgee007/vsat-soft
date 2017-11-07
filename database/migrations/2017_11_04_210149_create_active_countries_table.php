@@ -13,12 +13,12 @@ class CreateActiveCountriesTable extends Migration
      */
     public function up()
     {
-			Schema::create('active_countries', function (Blueprint $table) {
-			$table->increments('id');
-            $table->string('country_name');
-			$table->integer('active_region_id');
-            $table->timestamps();
-			});	
+//			Schema::create('active_countries', function (Blueprint $table) {
+//			$table->increments('id');
+//            $table->string('country_name');
+//			$table->integer('active_region_id');
+//            $table->timestamps();
+//			});
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateActiveCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('active_countries');
+//        Schema::dropIfExists('active_countries');
     }
 }
