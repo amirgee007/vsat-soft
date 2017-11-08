@@ -35,7 +35,7 @@
 
     <h1><center>401<br>
             ACCESS DENIED</center></h1>
-    <a href="index.html">Return Home</a>
+    <a href="{{route('index.dashboard')}}">Return Home</a>
 </div>
 <div class="credits">
     <!--

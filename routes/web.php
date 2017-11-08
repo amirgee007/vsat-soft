@@ -101,6 +101,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
             'uses' => 'UserController@index'
         ]);
 
+        Route::post('/profile-update', [
+            'as' => 'user.profile-update',
+            'uses' => 'UserController@profileUpdate'
+        ]);
+
 
 
     });

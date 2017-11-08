@@ -47,9 +47,6 @@
 <!-- container section start -->
 <section id="container" class="">
 
-    <div id="notific">
-        @include('admin.notifications')
-    </div>
     <!--header start-->
     @include('admin.layouts._header')
     <!--header end-->

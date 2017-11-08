@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="fa fa-vcard"></i> Profile</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                        <li><i class="fa fa-home"></i><a href="{{route('index.dashboard')}}">Home</a></li>
                         <li><i class="fa fa-vcard"></i>Profile</li>
                     </ol>
                 </div>
@@ -26,9 +26,9 @@
                     <div class="profile-widget profile-widget-info">
                         <div class="panel-body">
                             <div class="col-lg-2 col-sm-2">
-                                <h4>Jenifer Smith</h4>
+                                <h4>{{$user->first_name.' ' .$user->last_name}}</h4>
                                 <div class="follow-ava">
-                                    <img src="img/profile-widget-avatar.jpg" alt="">
+                                    <img src="{{asset('img/profile-widget-avatar.jpg')}}" alt="">
                                 </div>
                                 <h6>Administrator</h6>
                             </div>
@@ -36,29 +36,21 @@
                                 <table class="row">
                                     <tr>
                                         <td><i class="fa fa-mortar-board"><span> Profession</span></i></td>
-                                        <td>: Designer</td>
+                                        <td>: {{$user->profession}}</td>
                                     </tr>
                                     <tr>
                                         <td><i class="icon_mail"></i><span> Email</span></td>
-                                        <td>: jenifer@mailname.com</td>
+                                        <td>: {{$user->email}}</td>
                                     </tr>
                                     <tr>
                                         <td><i class="icon_mobile"></i><span>  Cell</span></td>
-                                        <td>: (+971) (50) 456 6789</td>
+                                        <td>: {{$user->cell_num}}</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <i class="icon_clock"></i><span> Local Time</span>
                                         </td>
-                                        <td>
-                                            <marquee behavior="scroll" loop="-1" scrollamount="5" width="90%">
-                                                <i>
-                                                    <strong>
-                                                        <span id="time"></span>
-                                                    </strong>
-                                                </i>
-                                            </marquee>
-                                        </td>
+                                        <td>: {{\Carbon\Carbon::now()->toDayDateTimeString()}}</td>
                                     </tr>
                                 </table>
                                 <br />
@@ -81,8 +73,8 @@
                                         Profile
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a data-toggle="tab" href="#edit-profile">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#edit-profile" >
                                         <i class="icon-envelope"></i>
                                         Edit Profile
                                     </a>
@@ -93,34 +85,34 @@
                             <div class="tab-content">
 
                                 <!-- profile -->
-                                <div id="profile" class="tab-pane active">
+                                <div id="profile" class="tab-pane ">
                                     <section class="panel">
                                         <div class="panel-body bio-graph-info">
                                             <h1>Profile</h1>
                                             <div class="row">
                                                 <div class="bio-row">
-                                                    <p><span>First Name </span>: Jenifer </p>
+                                                    <p><span>First Name </span>: {{$user->first_name}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Last Name </span>: Smith</p>
+                                                    <p><span>Last Name </span>: {{$user->last_name}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Birthday</span>: 27 August 1987</p>
+                                                    <p><span>Birthday</span>: {{$user->date_of_birth}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Country </span>: United Arab Emirates</p>
+                                                    <p><span>Country </span>: {{$user->country}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Profession </span>: Designer</p>
+                                                    <p><span>Profession </span>: {{$user->profession}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Email </span>:jenifer@mailname.com</p>
+                                                    <p><span>Email </span>:{{$user->email}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Cell </span>: (+971) (50) 456 6789</p>
+                                                    <p><span>Cell </span>: {{$user->cell_num}}</p>
                                                 </div>
                                                 <div class="bio-row">
-                                                    <p><span>Phone </span>:  (+971) (4) 554 412</p>
+                                                    <p><span>Phone </span>:  {{$user->phone_num}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -131,64 +123,67 @@
                                     </section>
                                 </div>
                                 <!-- edit-profile -->
-                                <div id="edit-profile" class="tab-pane">
+                                <div id="edit-profile" class="tab-pane active">
                                     <section class="panel">
                                         <div class="panel-body bio-graph-info">
                                             <h1> Edit Profile</h1>
-                                            <form class="form-horizontal" role="form">
+                                            <form action="{{route('user.profile-update')}}" class="form-horizontal" role="form" method="post" >
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="user_id" value="{{$user->id}}">
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">First Name</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="f-name" placeholder="First Name">
+                                                        <input type="text" name="first_name" value="{{$user->first_name}}" class="form-control" id="f-name" placeholder="First Name">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Last Name</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="l-name" placeholder="Last Name">
+                                                        <input type="text" name="last_name" value="{{$user->last_name}}" class="form-control" id="l-name" placeholder="Last Name">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Country</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="c-name" placeholder="Country">
+                                                        <input type="text" name="country" value="{{$user->country}}" class="form-control" id="c-name" placeholder="Country">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Birthday</label>
                                                     <div class="col-lg-6">
-                                                        <input type="date" class="form-control" id="b-day" placeholder="Birthday">
+                                                        <input type="date" name="date_of_birth" value="{{\Carbon\Carbon::parse($user->date_of_birth)->format('Y-m-d')}}" class="form-control" id="b-day" placeholder="Birthday">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Profession</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="occupation" placeholder="Profession">
+                                                        <input type="text" name="profession" value="{{$user->profession}}" class="form-control" id="occupation" placeholder="Profession">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Email</label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                                        <input type="email" name="email" value="{{$user->email}}" class="form-control" id="email" placeholder="Email">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Cell</label>
                                                     <div class="col-lg-6">
-                                                        <input type="number" class="form-control" id="cell" placeholder="Cell">
+                                                        <input type="number" name="cell_num" value="{{$user->cell_num}}" class="form-control" id="cell" placeholder="Cell">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Phone</label>
                                                     <div class="col-lg-6">
-                                                        <input type="number" class="form-control" id="phone" placeholder="Phone">
+                                                        <input type="number" name="phone_num" value="{{$user->phone_num}}" class="form-control" id="phone" placeholder="Phone">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Profile Image</label>
                                                     <div class="col-lg-offset-2 col-lg-10">
-                                                        <img  src="img/noimage.gif" alt=""/>
-                                                        <input class="btn btn-default" type="file" name="Select image">
+                                                        <img  src="{{asset('img/noimage.gif')}}" alt=""/>
+                                                        <input class="btn btn-default" type="file" name="profile_pic">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -198,10 +193,20 @@
                                                     </div>
                                                 </div>
                                             </form>
+
                                         </div>
                                     </section>
                                 </div>
                             </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                     </section>
                 </div>

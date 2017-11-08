@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProfileFormPost;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 //Importing laravel-permission models
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -22,8 +25,27 @@ class UserController extends Controller
 
     public function profile(){
 
-        return view('admin.profile.show');
+        $user = Auth::user();
+        return view('admin.profile.show' , compact('user'));
 
+    }
+
+
+
+    public function profileUpdate(ProfileFormPost $request){
+
+        $data = $request->except('_token' ,'profile_pic');
+        $user = User::find($request->user_id);
+
+        $is_updated = ($user->update($data));
+
+        if($is_updated)
+            session()->flash('app_message', 'Profile info has been successfully updated');
+        else
+            session()->flash('app_error', 'Profile info has not been successfully updated');
+
+        //todo: image code 
+        return back();
     }
 
     /**
