@@ -28,4 +28,7 @@ class LocationController extends Controller
         return view('admin.location.index-cities' , compact('cities'));
     }
 
+
+
+
 }
