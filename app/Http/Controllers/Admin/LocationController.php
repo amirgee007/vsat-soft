@@ -20,7 +20,7 @@ class LocationController extends Controller
     public function indexCountries()
     {
 
-        $countries= Country::all();
+        $countries= Country::paginate(15);;
 
         return view('admin.location.index-countries' , compact('countries'));
     }
@@ -29,6 +29,15 @@ class LocationController extends Controller
     {
         $cities = '';
         return view('admin.location.index-cities' , compact('cities'));
+    }
+
+    public function updateStatus(Request $request){
+
+        $country = Country::where('country_id', $request->country_id)->first();
+        $country->is_active = $request->is_active;
+        $country->save();
+
+        return $country;
     }
 
 

@@ -39,17 +39,17 @@
                            <tbody>
                            @foreach($countries as $country)
                                <tr>
-
                                    <td class="text-left">{{$country->country_id}}</td>
                                    <td class="text-left">{{$country->full_name}}</td>
                                    <td>
-                                       <input type="checkbox" class="" />
+                                       <input type="checkbox" class="status" data-id="{{$country->country_id}}" {{$country->is_active ? 'checked' : ''}}/>
                                    </td>
                                </tr>
                            @endforeach
                            </tbody>
                         </table>
                     </section>
+                    <div class="pull-right"> {{ $countries->links() }}</div>
                 </div>
             </div>
 
@@ -68,7 +68,34 @@
 
         $(function () {
 
-            //all jquery code here
+            $('.status').on('change' , function () {
+                status_checkbox = $(this);
+                country_id = status_checkbox.attr('data-id');
+                ischecked= status_checkbox.is(':checked');
+                if (ischecked){
+                    ischecked = 1
+                }else {
+                    ischecked = 0
+                }
+                var data = {'is_active':ischecked , 'country_id' : country_id};
+
+                console.log(data);
+                var action = '{{route('post.country.status')}}';
+                $.ajax({
+                    url: action,
+                    data: data,
+                    headers: { 'X-XSRF-TOKEN' : '{{\Illuminate\Support\Facades\Crypt::encrypt(csrf_token())}}' },
+                    error: function() {
+
+                    },
+                    success: function() {
+                        toastr.success("Active status changed successfully.", "Country Status");
+                    },
+                    type: 'POST'
+                });
+
+            });
+
         });
 
     </script>

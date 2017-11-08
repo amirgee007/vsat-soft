@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('css/style-responsive.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/xcharts.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.10.4.min.css') }}" />
+    <link href="{{ asset('assets/toastr/css/toastr.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/toastr.css') }}" rel="stylesheet" type="text/css"/>
 
     <script>
         window.Laravel = {!! json_encode([
@@ -104,6 +106,9 @@
 <script src="{{ asset('js/sparklines.js') }}"></script>
 <script src="{{ asset('js/charts.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('assets/toastr/js/toastr.min.js') }}"></script>
+<script src="{{ asset('assets/toastr/js/pages/ui-toastr.js') }}"></script>
+
 @yield('footer_scripts')
 
 <script type="text/javascript">
@@ -113,10 +118,13 @@
             { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     });
 
+//    http://codeseven.github.io/toastr/demo.html
+
     toastr.options = {
         "closeButton": true,
         "debug": false,
-        "positionClass": "toast-top-right",
+        "positionClass": "toast-bottom-right",
+        "progressBar": true,
         "onclick": null,
         "showDuration": "1000",
         "hideDuration": "1000",
