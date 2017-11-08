@@ -32,14 +32,8 @@ class CreateBranchTable extends Migration
             $table->string('working_times');
             $table->string('branch_logo');
             $table->string('status');
-<<<<<<< HEAD
             $table->integer('added_by');
             $table->enum('is_active', ['0', '1'])->default('1');
-=======
-            $table->integer('added_by_user_id');
-
->>>>>>> 376278dab1b6590355803e2ab8fb60c650a29900
-
             //pivot tables branch_user
             $table->timestamps();
 			});
