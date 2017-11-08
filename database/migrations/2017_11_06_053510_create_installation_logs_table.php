@@ -19,7 +19,6 @@ class CreateInstallationLogsTable extends Migration
             $table->integer('user_id');
             $table->integer('site_id');
             $table->integer('part_id');
-
             $table->string('job_number');
             $table->datetime('install_start_date');
             $table->datetime('install_finish_date');
@@ -27,7 +26,7 @@ class CreateInstallationLogsTable extends Migration
             $table->string('country');
             $table->string('city');
             $table->string('engineer_comments');
-            $table->integer('added_by_user_id')->nullable();
+            $table->integer('added_by_user_id');
 
 //pivot tables 3
 //            $table->integer('assets');

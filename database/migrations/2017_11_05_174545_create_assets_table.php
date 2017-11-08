@@ -32,7 +32,7 @@ class CreateAssetsTable extends Migration
             $table->integer('supplier_id');
             $table->integer('vendor_id');
             $table->integer('site_id');
-            $table->integer('added_by_user_id')->nullable();
+            $table->integer('added_by_user_id');
             $table->timestamps();
 			});
     }

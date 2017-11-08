@@ -32,7 +32,7 @@ class CreateBranchTable extends Migration
             $table->string('working_times');
             $table->string('branch_logo');
             $table->string('status');
-            $table->integer('added_by_user_id')->nullable();
+            $table->integer('added_by_user_id');
 
 
             //pivot tables branch_user

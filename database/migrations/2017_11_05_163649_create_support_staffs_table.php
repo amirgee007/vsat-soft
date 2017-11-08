@@ -65,7 +65,7 @@ class CreateSupportStaffsTable extends Migration
             $table->dateTime('visa_expiry_date');
             $table->string('visa_staff_photo');
             $table->string('visa_status');
-            $table->integer('added_by_user_id')->nullable();
+            $table->integer('added_by_user_id');
 
             //pivot Table support_staff_user
         });
