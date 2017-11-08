@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="icon_flowchart_alt"></i> Branch Management [{{@count($branches)}}]</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                        <li><i class="fa fa-home"></i><a href="{{route('index.dashboard')}}">Home</a></li>
                         <li><i class="icon_flowchart_alt"></i>Branch Management</li>
                     </ol>
                 </div>
@@ -31,7 +31,12 @@
                         <div class="alert alert-info">
                             {{ session()->get('new_branch') }}
                         </div>
+                    @elseif(session()->has('find'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('find') }}
+                        </div>
                     @endif
+
                     <section class="panel">
                         <header class="panel-heading">
                             Branches
@@ -72,8 +77,13 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="edit_branch.html"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-6 col-xs-6 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
+                                        <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('branch.edit', ['id' => $branch['id']])}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-danger col-sm-6 col-xs-6 text-center"
+                                           href="{{route('branch.delete', ['id' => $branch['id']])}}">
+                                            <i class="fa fa-close"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

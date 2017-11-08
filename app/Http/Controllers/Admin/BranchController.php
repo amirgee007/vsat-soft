@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Branch;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -19,44 +19,75 @@ class BranchController extends Controller
 
     public function create()
     {
-        $branches = '';
+        $branches = 'B-1000';
         return view('admin.branch.create' , compact('branches'));
     }
 
     public  function new_branch(Request $request)
     {
-        $input = (object)$request->all();
+        $input = $request->all();
         $fileName = null;
-        if ($request->hasFile('b_logo')) {
-            if($request->file('b_logo')->isValid()) {
-                $file = $request->file('b_logo');
-                $fileName = $input->b_name.'-'.time() . '.' . $file->getClientOriginalExtension();
-                $request->file('b_logo')->move("uploads/branches", $fileName);
+        if ($request->hasFile('branch_logo')) {
+            if($request->file('branch_logo')->isValid()) {
+                $file = $request->file('branch_logo');
+                $fileName = str_slug($input['name']).'-'.time() . '.' . $file->getClientOriginalExtension();
+                $request->file('branch_logo')->move("uploads/branches", $fileName);
             }
         }
-        $branch = new Branch();
-        $branch->id_number =1;
-        $branch->name =$input->b_name;
-        $branch->email =$input->e_mail;
-        $branch->street =$input->street;
-        $branch->area =$input->area;
-        $branch->city =$input->city;
-        $branch->state =$input->state;
-        $branch->zip_code =$input->zip_code;
-        $branch->country =$input->country;
-        $branch->po_box =$input->p_o_box;
-        $branch->office_tel =$input->office_tel;
-        $branch->fax_no =$input->fax_no;
-        $branch->working_days =$input->working_days;
-        $branch->working_times =$input->working_times;
-        $branch->website =$input->website;
-        $branch->branch_logo =$fileName;
-        $branch->status =$input->b_status;
-        $branch->related_staff = implode(',', $input->support_staff);
-        if ($branch->save())
+        $input['branch_logo'] = $fileName;
+        $input['id_number'] = '1000';
+        $input['related_staff'] = implode(',', $input['related_staff']);
+
+        if (Branch::create($input))
         {
             return redirect('/branch')->with('new_branch', 'New Branch Has Been Added Successfully!');
         }
     }
 
+    public function edit($id)
+    {
+        $branch = Branch::find($id);
+        if ($branch){
+            return view('admin.branch.edit' , compact('branch'));
+        } else {
+            return redirect()->route('branch.index')->with('find', 'No, Branch Found!');
+        }
+    }
+
+    public function  update($id, Request $request)
+    {
+        $branch = Branch::find($id);
+        if ($branch){
+            $fileName = $branch->branch_logo;
+            $input = $request->all();
+            $input['related_staff'] = implode(',', $input['related_staff']);
+            if ($request->hasFile('branch_logo')) {
+                if ($request->file('branch_logo')->isValid()) {
+                    $file = $request->file('branch_logo');
+                    $fileName = $input['name'] . '-' . time() . '.' . $file->getClientOriginalExtension();
+                    $request->file('branch_logo')->move("uploads/branches", $fileName);
+                }
+            }
+            $input['branch_logo'] = str_slug($fileName);
+            unset($input['_token']);
+            $update = Branch::where('id', $id)->update($input);
+            if ($update) {
+                return redirect()->route('branch.index')->with('new_branch', 'Branch Updated Successfully!');
+            }
+
+        } else {
+            return redirect()->route('branch.index')->with('find', 'No, Branch Found!');
+        }
+    }
+
+    public function delete($id)
+    {
+        $branch = Branch::find($id);
+        if ($branch) {
+            $branch->delete();
+            return redirect()->back()->with('new_branch', 'Branch Deleted Successfully!');
+        } else {
+            return redirect()->route('branch.index')->with('find', 'No, Branch Found!');
+        }
+    }
 }

@@ -114,6 +114,20 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
             'uses' => 'BranchController@new_branch'
         ]);
 
+        Route::get('/edit/{id}', [
+            'as' => 'branch.edit',
+            'uses' => 'BranchController@edit'
+        ])->where('id', '[0-9]+');
+
+        Route::post('/update/{id}', [
+            'as' => 'branch.update',
+            'uses' => 'BranchController@update'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/delete/{id}', [
+            'as' => 'branch.delete',
+            'uses' => 'BranchController@delete'
+        ])->where('id', '[0-9]+');
     });
 
     # Sites Management

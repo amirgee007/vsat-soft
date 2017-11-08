@@ -104,8 +104,7 @@
 <script src="{{ asset('js/sparklines.js') }}"></script>
 <script src="{{ asset('js/charts.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-
-
+@yield('footer_scripts')
 
 <script type="text/javascript">
 

@@ -120,21 +120,6 @@ $('.adduser').on('click', function () {
 });
 
 //add Staff
-$('.addstaff').click(function (e) { e.preventDefault() });
-
-$('.addstaff').on('click', function () {
-    var user = $('<label class="col-lg-2 col-xs-3 control-label" style="clear:both;">Add Support Staff</label><div class="col-lg-8 col-xs-7"><select class="form-control m-bot15"><option>Mahmood</option><option>Mohammad</option></select></div><span class="col-sm-2 col-xs-2"><a class="btn btn-danger removestaff" href="#"><i class="fa fa-minus-square"></i></a></span>');
-    $(this).closest('section').find('.panel-body').append(user);
-
-    $('.removestaff').click(function (e) { e.preventDefault() });
-    $('.removestaff').on('click', function () {
-        $(this).closest('.panel-body').find('.col-lg-8').last().remove();
-        $(this).closest('.panel-body').find('.col-lg-2').last().remove();
-        $(this).closest('.panel-body').find('.col-sm-2').last().remove();
-    });
-
-});
-
 //add Assets & Branches
 
 
