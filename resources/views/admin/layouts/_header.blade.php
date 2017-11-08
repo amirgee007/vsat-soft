@@ -6,7 +6,7 @@
 
     <!--logo start-->
     <a href="{{route('index.dashboard')}}" class="logo">
-        <img src="img/tracelogo.png" alt="TraceSystems" style="max-height: 35px; height: auto; width: auto" /></a>
+        <img src="{{asset('img/tracelogo.png')}}" alt="TraceSystems" style="max-height: 35px; height: auto; width: auto" /></a>
     <!--logo end-->
 
     <div class="top-nav notification-row">
@@ -17,7 +17,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" src="{{asset('img/avatar1_small.jpg')}}">
                             </span>
                     <span class="username">Jenifer Smith</span>
                     <b class="caret"></b>

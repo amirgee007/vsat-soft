@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/fullcalendar/fullcalendar/fullcalendar.css') }}" />
     <!-- easy pie chart-->
-    <link rel="stylesheet" href="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" />
+    {{--<link rel="stylesheet" href="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" />--}}
     <!-- owl carousel -->
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/jquery-jvectormap-1.2.2.css') }}" />
@@ -77,7 +77,7 @@
 <!-- charts scripts -->
 <script src="{{ asset('assets/jquery-knob/js/jquery.knob.js') }}"></script>
 <script src="{{ asset('js/jquery.sparkline.js') }}"></script>
-<script src="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>
+{{--<script src="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js') }}"></script>--}}
 <script src="{{ asset('js/owl.carousel.js') }}"></script>
 <!-- jQuery full calendar -->
 <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
@@ -94,7 +94,7 @@
 <script src="{{ asset('js/scripts.js') }}"></script>
 <!-- custom script for this page-->
 <script src="{{ asset('js/sparkline-chart.js') }}"></script>
-<script src="{{ asset('js/easy-pie-chart.js') }}"></script>
+{{--<script src="{{ asset('js/easy-pie-chart.js') }}"></script>--}}
 <script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('js/jquery-jvectormap-world-mill-en.js') }}"></script>
 <script src="{{ asset('js/jquery-jvectormap-canada.js') }}"></script>
@@ -167,21 +167,22 @@
     });
 
     //carousel
-    $(document).ready(function () {
-        $("#owl-slider").owlCarousel({
-            navigation: true,
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            singleItem: true
 
-        });
-    });
+//    $(document).ready(function () {
+//        $("#owl-slider").owlCarousel({
+//            navigation: true,
+//            slideSpeed: 300,
+//            paginationSpeed: 400,
+//            singleItem: true
+//
+//        });
+//    });
 
     //custom select box
 
-    $(function () {
-        $('select.styled').customSelect();
-    });
+//    $(function () {
+//        $('select.styled').customSelect();
+//    });
 
     // Show Hide Map
     $(document).ready(function myfunction() {
@@ -195,20 +196,20 @@
 
         /* ---------- Map ---------- */
 
-        $('#map').vectorMap({
-            map: 'world_mill_en',
-            series: {
-                regions: [{
-                    values: gdpData,
-                    scale: ['#C8EEFF', '#0071A4'],
-                    normalizeFunction: 'polynomial'
-                }]
-            },
-            backgroundColor: '#2b2b2b',
-            onRegionTipShow: function (e, el, code) {
-                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-            }
-        });
+//        $('#map').vectorMap({
+//            map: 'world_mill_en',
+//            series: {
+//                regions: [{
+//                    values: gdpData,
+//                    scale: ['#C8EEFF', '#0071A4'],
+//                    normalizeFunction: 'polynomial'
+//                }]
+//            },
+//            backgroundColor: '#2b2b2b',
+//            onRegionTipShow: function (e, el, code) {
+//                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+//            }
+//        });
 
 
         $('#option1 li a').on('click', function (e) {

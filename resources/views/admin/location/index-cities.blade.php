@@ -69,17 +69,12 @@
 
 @section('footer_scripts')
 
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
-
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-    <!-- jquery knob -->
-    <script src="assets/jquery-knob/js/jquery.knob.js"></script>
-    <!--custome script for all page-->
-    <script src="js/scripts.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.nicescroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/jquery-knob/js/jquery.knob.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
 
     <script>
 
@@ -112,8 +107,6 @@
                 });
 
             });
-
-
 
 
             //knob
