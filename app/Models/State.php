@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    protected $table = '';
+    protected $table = 'states';
     protected $guarded = [];
     protected $primaryKey= 'id';
+
+    public function country() {
+        return $this->hasOne( Country::class , 'country_id' , 'country_id');
+    }
 }

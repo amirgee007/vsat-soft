@@ -60,9 +60,13 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
 
         Route::post('/countries/update-status', [
             'as' => 'post.country.status',
-            'uses' => 'LocationController@updateStatus'
+            'uses' => 'LocationController@updateCountryStatus'
         ]);
 
+        Route::post('/cities/update-status', [
+            'as' => 'post.city.status',
+            'uses' => 'LocationController@updateCityStatus'
+        ]);
 
 
 

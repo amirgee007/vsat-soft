@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\City;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,18 +21,19 @@ class LocationController extends Controller
     public function indexCountries()
     {
 
-        $countries= Country::paginate(15);;
+        $countries= Country::paginate(20);
 
         return view('admin.location.index-countries' , compact('countries'));
     }
 
     public function indexCities()
     {
-        $cities = '';
+        $cities= City::paginate(20);
+
         return view('admin.location.index-cities' , compact('cities'));
     }
 
-    public function updateStatus(Request $request){
+    public function updateCountryStatus(Request $request){
 
         $country = Country::where('country_id', $request->country_id)->first();
         $country->is_active = $request->is_active;
@@ -39,6 +41,16 @@ class LocationController extends Controller
 
         return $country;
     }
+
+    public function updateCityStatus(Request $request){
+
+        $city = City::where('city_id', $request->city_id)->first();
+        $city->is_active = $request->is_active;
+        $city->save();
+
+        return $city;
+    }
+
 
 
 
