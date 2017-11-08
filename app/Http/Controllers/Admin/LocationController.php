@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +19,9 @@ class LocationController extends Controller
 
     public function indexCountries()
     {
-        $countries= '';
+
+        $countries= Country::all();
+
         return view('admin.location.index-countries' , compact('countries'));
     }
 

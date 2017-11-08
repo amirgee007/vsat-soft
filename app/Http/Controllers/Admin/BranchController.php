@@ -13,7 +13,7 @@ class BranchController extends Controller
 
     public function index()
     {
-        $branches = new Branch();
+
         $branches = Branch::where('added_by', Auth::user()->id)->get();
         return view('admin.branch.index' , compact('branches'));
     }
@@ -42,6 +42,7 @@ class BranchController extends Controller
         $input['id_number'] = Branch::max('branch_id')+1;
         //$input['related_staff'] = implode(',', $input['related_staff']);
         unset($input['related_staff']);
+
         if (Branch::create($input))
         {
             return redirect('/branch')->with('new_branch', 'New Branch Has Been Added Successfully!');

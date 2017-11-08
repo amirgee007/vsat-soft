@@ -35,7 +35,7 @@ class CreateMaintananceLogsTable extends Migration
             $table->string('repair_mode');
             $table->string('engineer_comment');
             $table->string('status');
-            $table->integer('added_by_user_id');
+            $table->integer('added_by');
             $table->timestamps();
         });
     }

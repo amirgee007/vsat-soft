@@ -26,7 +26,7 @@ class CreateInstallationLogsTable extends Migration
             $table->string('country');
             $table->string('city');
             $table->string('engineer_comments');
-            $table->integer('added_by_user_id');
+            $table->integer('added_by');
 
 //pivot tables 3
 //            $table->integer('assets');

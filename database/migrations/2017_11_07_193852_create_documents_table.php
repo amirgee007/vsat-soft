@@ -21,7 +21,7 @@ class CreateDocumentsTable extends Migration
             $table->string('file_name');
             $table->string('file_upload_name');
             $table->string('type');
-            $table->integer('added_by_user_id');
+            $table->integer('added_by');
 
 //        doc_type(general,special)
 

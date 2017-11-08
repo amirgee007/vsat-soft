@@ -70,7 +70,7 @@ class CreateClientsTable extends Migration
             $table->string('confirm_by_designation');
             $table->string('confirm_by_signature');
             $table->string('confirm_by_status');
-            $table->integer('added_by_user_id');
+            $table->integer('added_by');
 
             //pivotTable client_user
             $table->timestamps();

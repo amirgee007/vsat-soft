@@ -58,7 +58,7 @@ class CreateSitesTable extends Migration
             $table->string('pole_size');
             $table->string('pole_outside_diameter');
             $table->string('status');
-            $table->integer('added_by_user_id');
+            $table->integer('added_by');
             $table->timestamps();
         });
     }
