@@ -20,7 +20,7 @@ class CreateTicketsTable extends Migration
             $table->datetime('start_date');
             $table->datetime('end_date');
             $table->string('assign_to');
-            $table->integer('added_by_user_id')->nullable();;
+            $table->integer('added_by_user_id');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateSupportsTable extends Migration
             $table->integer('site_id');
             $table->integer('branch_id');
             $table->integer('ticket_id');
-            $table->integer('added_by_user_id')->nullable();;
+            $table->integer('added_by_user_id');
             $table->timestamps();
         });
     }

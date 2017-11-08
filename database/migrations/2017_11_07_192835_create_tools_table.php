@@ -18,6 +18,7 @@ class CreateToolsTable extends Migration
             $table->increments('tool_id');
             $table->integer('description');
             $table->integer('image');
+            $table->integer('added_by_user_id');
         });
     }
 
