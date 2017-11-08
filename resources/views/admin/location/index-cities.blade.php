@@ -69,12 +69,12 @@
 
 @section('footer_scripts')
 
-    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery.nicescroll.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/jquery-knob/js/jquery.knob.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
+{{--    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('js/jquery.nicescroll.js') }}"></script>--}}
+{{--    <script type="text/javascript" src="{{ asset('assets/jquery-knob/js/jquery.knob.js') }}"></script>--}}
+    {{--<script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>--}}
 
     <script>
 
