@@ -77,11 +77,11 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('branch.edit', ['id' => $branch['id']])}}">
+                                        <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('branch.edit', ['id' => $branch['branch_id']])}}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a class="btn btn-danger col-sm-6 col-xs-6 text-center"
-                                           href="{{route('branch.delete', ['id' => $branch['id']])}}">
+                                           href="{{route('branch.delete', ['id' => $branch['branch_id']])}}">
                                             <i class="fa fa-close"></i>
                                         </a>
                                     </div>

@@ -3,7 +3,7 @@
     <label class="col-sm-2 control-label" for="B-number">Branch ID Number</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" id="B-number" disabled
-               value="{{ (@$branch) ? $branch->id_number : $branches }}">
+               value="{{ (@$branch) ? $branch->id_number : 'B-'.$data['branch_no'] }}">
     </div>
 </div>
 <div class="form-group">
