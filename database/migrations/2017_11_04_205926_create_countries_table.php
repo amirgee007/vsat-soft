@@ -18,7 +18,7 @@ class CreateCountriesTable extends Migration
             $table->increments('country_id');
             $table->string('name');
 			$table->integer('region_id')->nullable();
-			$table->boolean('is_active');
+			$table->boolean('is_active')->default(0);
             $table->timestamps();
 		});
 	}

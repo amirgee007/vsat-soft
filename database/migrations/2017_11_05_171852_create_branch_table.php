@@ -32,6 +32,8 @@ class CreateBranchTable extends Migration
             $table->string('working_times');
             $table->string('branch_logo');
             $table->string('status');
+            $table->integer('added_by_user_id')->nullable();
+
 
             //pivot tables branch_user
             $table->timestamps();

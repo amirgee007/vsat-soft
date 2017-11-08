@@ -22,6 +22,8 @@ class CreateVendorTable extends Migration
             $table->string('po_box');
             $table->string('email');
             $table->string('contact_number');
+            $table->integer('added_by_user_id')->nullable();
+
             $table->timestamps();
 			});
     }
