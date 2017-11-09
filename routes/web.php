@@ -34,7 +34,7 @@ Auth::routes();
 
 
 //////// Main Logged In User routes /////////
-Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
+Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
 
     Route::get('/dashboard', array(
         'as' => 'index.dashboard',
@@ -66,6 +66,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth.basic'] , function(){
         Route::post('/cities/update-status', [
             'as' => 'post.city.status',
             'uses' => 'LocationController@updateCityStatus'
+        ]);
+
+        Route::post('/regions/update-status', [
+            'as' => 'post.region.status',
+            'uses' => 'LocationController@updateRegionStatus'
         ]);
 
 

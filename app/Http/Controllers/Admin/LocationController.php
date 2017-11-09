@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +14,7 @@ class LocationController extends Controller
 
     public function indexRegions()
     {
-        $regions = '';
+        $regions = Region::paginate(20);
         return view('admin.location.index-regions' , compact('regions'));
     }
 
@@ -51,8 +52,13 @@ class LocationController extends Controller
         return $city;
     }
 
+    public function updateRegionStatus(Request $request){
 
+        $region = Region::where('region_id', $request->region_id)->first();
+        $region->is_active = $request->is_active;
+        $region->save();
 
-
+        return $region;
+    }
 
 }

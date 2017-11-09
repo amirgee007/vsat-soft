@@ -17,10 +17,14 @@ use Session;
 
 class UserController extends Controller
 {
-
-    public function __construct() {
-        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
+
+//    public function __construct() {
+//        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+//    }
 
 
     public function profile(){
@@ -37,6 +41,17 @@ class UserController extends Controller
         $data = $request->except('_token' ,'profile_pic');
         $user = User::find($request->user_id);
 
+
+        if ($file = $request->file('profile_pic')) {
+            $fileName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension() ? : 'png';
+            $folderName = '/uploads/users/';
+            $destinationPath = public_path() . $folderName;
+            $safeName = str_random(10) . '.' . $extension;
+            $file->move($destinationPath, $safeName);
+            $data['profile_pic'] = $safeName;
+        }
+
         $is_updated = ($user->update($data));
 
         if($is_updated)
@@ -44,29 +59,17 @@ class UserController extends Controller
         else
             session()->flash('app_error', 'Profile info has not been successfully updated');
 
-        //todo: image code 
+
         return back();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index() {
-        //Get all users and pass it to the view
-//        $users = User::all();
-//        return view('users.index')->with('users', $users);
 
         return view('admin.users.index');
-
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create() {
         //Get all roles and pass it to the view
         $roles = Role::get();

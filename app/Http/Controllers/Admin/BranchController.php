@@ -14,7 +14,8 @@ class BranchController extends Controller
     public function index()
     {
 
-        $branches = Branch::where('added_by', Auth::user()->id)->get();
+        $user_id = Auth::user()->id;
+        $branches = Branch::where('added_by', $user_id)->get();
         return view('admin.branch.index' , compact('branches'));
     }
 
