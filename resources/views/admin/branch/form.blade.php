@@ -18,7 +18,10 @@
     <div class="col-sm-10">
         <label class="col-sm-2 col-xs-3 control-label">Country</label>
         <div class="col-sm-4 col-xs-3">
-            <select class="form-control m-bot15 country" name="country">
+            <select class="form-control m-bot15" name="country" id="countries">
+                @foreach($data['countries'] AS $country)
+                    <option value="{{ $country->country_id }}"> {{ $country->full_name }}</option>
+                @endforeach
             </select>
         </div>
         <label class="col-sm-2 col-xs-3 control-label">City</label>
@@ -118,12 +121,14 @@
         <button type="button" class="btn btn-danger">Cancel</button>
     </div>
 </div>
+
 @section('footer_scripts')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
     <!--todo: remove CDNs-->
     <script>
+        // global app configuration object
         $(function () {
             $('#support_staff').select2({
                 placeholder: "Select Support Staff",
@@ -131,7 +136,6 @@
             });
             //all jquery code here
         });
-
     </script>
 @stop
 

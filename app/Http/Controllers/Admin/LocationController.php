@@ -33,7 +33,10 @@ class LocationController extends Controller
 
         return view('admin.location.index-cities' , compact('cities'));
     }
-
+    public function citiesByCountryId(Request $request)
+    {
+        dd($request);
+    }
     public function updateCountryStatus(Request $request){
 
         $country = Country::where('country_id', $request->country_id)->first();

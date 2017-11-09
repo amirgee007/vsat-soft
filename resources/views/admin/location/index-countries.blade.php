@@ -28,20 +28,20 @@
                         <header class="panel-heading">
                             Countries
                         </header>
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="countriesTable">
                             <thead>
                             <tr>
-                                <th style="vertical-align: middle" class="text-center">S/N</th>
-                                <th style="vertical-align: middle">Country Name</th>
-                                <th style="vertical-align: middle" class="text-center">Action</th>
+                                <th  class="text-center">S/N</th>
+                                <th  class="text-center">Country Name</th>
+                                <th  class="text-center">Action</th>
                             </tr>
                             </thead>
                            <tbody>
                            @foreach($countries as $country)
                                <tr>
-                                   <td class="text-left">{{$country->country_id}}</td>
-                                   <td class="text-left">{{$country->full_name}}</td>
-                                   <td>
+                                   <td class="text-center">{{$country->country_id}}</td>
+                                   <td class="text-center">{{$country->full_name}}</td>
+                                   <td class="text-center">
                                        <input type="checkbox" class="status" data-id="{{$country->country_id}}" {{$country->is_active ? 'checked' : ''}}/>
                                    </td>
                                </tr>
@@ -61,13 +61,11 @@
 @stop
 
 @section('footer_scripts')
-
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
-
+<script type="text/javascript"
+        src="{{ asset('js/jquery.dataTables.min.js') }}">
+</script>
     <script>
-
         $(function () {
-
             $('.status').on('change' , function () {
                 status_checkbox = $(this);
                 country_id = status_checkbox.attr('data-id');

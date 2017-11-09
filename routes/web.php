@@ -73,7 +73,10 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'LocationController@updateRegionStatus'
         ]);
 
-
+        Route::post('/get-cities', [
+            'as' => 'location.cities.citiesByCountry',
+            'uses' => 'LocationController@citiesByCountryId'
+        ]);
 
     });
 

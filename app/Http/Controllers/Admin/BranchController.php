@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Branch;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,7 @@ class BranchController extends Controller
     public function create()
     {
         $data['branch_no'] = Branch::max('branch_id')+1;
-        $data['countries'] = '';
+        $data['countries'] = Country::all('country_id', 'full_name');
         $data['rel_staff'] = '';
         return view('admin.branch.create' , compact('data'));
     }

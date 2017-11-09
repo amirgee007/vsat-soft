@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>@yield('pageTitle') | VSAT</title>
@@ -87,8 +88,7 @@
 <script src="{{ asset('js/jquery.customSelect.min.js') }}"></script>
 <script src="{{ asset('assets/chart-master/Chart.js') }}"></script>
 
-<!--custome script for all page-->
-<script src="{{ asset('js/scripts.js') }}"></script>
+
 <!-- custom script for this page-->
 <script src="{{ asset('js/sparkline-chart.js') }}"></script>
 {{--<script src="{{ asset('js/easy-pie-chart.js') }}"></script>--}}
@@ -107,7 +107,8 @@
 <script src="{{ asset('assets/toastr/js/pages/ui-toastr.js') }}"></script>
 
 @yield('footer_scripts')
-
+<!--custome script for all page-->
+<script src="{{ asset('js/scripts.js') }}"></script>
 <script type="text/javascript">
 
     $.ajaxSetup({
