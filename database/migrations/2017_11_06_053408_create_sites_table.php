@@ -57,6 +57,7 @@ class CreateSitesTable extends Migration
             $table->string('antenna_size');
             $table->string('pole_size');
             $table->string('pole_outside_diameter');
+            $table->string('mount_type');
             $table->string('status');
             $table->integer('added_by');
             $table->timestamps();

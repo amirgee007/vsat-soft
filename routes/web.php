@@ -158,8 +158,20 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'SiteController@index'
         ]);
 
+        Route::get('/create', [
+            'as' => 'site.create',
+            'uses' => 'SiteController@create'
+        ]);
 
+        Route::post('/create', [
+            'as' => 'site.add',
+            'uses' => 'SiteController@add'
+        ]);
 
+        Route::get('/edit/{id}', [
+            'as' => 'site.edit',
+            'uses' => 'SiteController@edit'
+        ])->Where('id', '[0-9]+');
 
     });
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
-    protected $table = '';
+    protected $table = 'sites';
     protected $guarded = [];
-    protected $primaryKey= 'id';
+    protected $primaryKey= 'site_id';
 }

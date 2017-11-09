@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <a class="btn btn-primary btn-lg" href="add_site.html" title="Add Site">Add New Site</a>
+                        <a class="btn btn-primary btn-lg" href="{{route('site.create')}}" title="Add Site">Add New Site</a>
                     </div>
                     <section class="panel">
                         <header class="panel-heading">
