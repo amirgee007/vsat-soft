@@ -1,6 +1,6 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'Active Cities')
+@section('pageTitle', 'Cities')
 
 @section('header_styles')
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
@@ -38,19 +38,21 @@
                         <table class="table table-striped table-hover results">
                             <thead>
                             <tr>
-                                <th style="vertical-align: middle" class="text-center">S/N</th>
-                                <th style="vertical-align: middle">Country Name</th>
-                                <th style="vertical-align: middle">City Name</th>
-                                <th style="vertical-align: middle" class="text-center">Action</th>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Country Name</th>
+                                <th class="text-center">City Name</th>
+                                <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($cities as $city)
                             <tr>
-                                <td>{{$city->city_id}}</td>
-                                <td class="text-left">{{$city->country_name}}</td>
-                                <td class="text-left">{{$city->city_name}}</td>
-                                <td><input type="checkbox" class="status" data-id="{{$city->city_id}}" {{$city->is_active ? 'checked' : ''}}/> </td>
+                                <td class="text-center">{{$city->city_id}}</td>
+                                <td class="text-center">{{$city->country_name}}</td>
+                                <td class="text-center">{{$city->city_name}}</td>
+                                <td class="text-center">
+                                    <input type="checkbox" class="status" data-id="{{$city->city_id}}" {{$city->is_active ? 'checked' : ''}}/>
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -68,13 +70,6 @@
 @stop
 
 @section('footer_scripts')
-
-{{--    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>--}}
-{{--    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
-{{--    <script type="text/javascript" src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>--}}
-{{--    <script type="text/javascript" src="{{ asset('js/jquery.nicescroll.js') }}"></script>--}}
-{{--    <script type="text/javascript" src="{{ asset('assets/jquery-knob/js/jquery.knob.js') }}"></script>--}}
-    {{--<script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>--}}
 
     <script>
 

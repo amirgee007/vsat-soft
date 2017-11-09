@@ -31,9 +31,9 @@
                         <table class="table table-striped table-hover" id="countriesTable">
                             <thead>
                             <tr>
-                                <th  class="text-center">S/N</th>
-                                <th  class="text-center">Country Name</th>
-                                <th  class="text-center">Action</th>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Country Name</th>
+                                <th class="text-center">Action</th>
                             </tr>
                             </thead>
                            <tbody>

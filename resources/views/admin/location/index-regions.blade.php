@@ -1,6 +1,6 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'sample page')
+@section('pageTitle', 'Regions')
 
 @section('header_styles')
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
@@ -31,18 +31,20 @@
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr>
-                                <th style="vertical-align: middle" class="text-center">S/N</th>
-                                <th style="vertical-align: middle">Region Name</th>
-                                <th style="vertical-align: middle" class="text-center">Action</th>
+                                <th class="text-center">S/N</th>
+                                <th style="vertical-align: middle" class="text-center">Region Name</th>
+                                <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach($regions as $region)
                                 <tr>
-                                    <td>{{$region->region_id}}</td>
-                                    <td class="text-left">{{$region->region_name}}</td>
-                                    <td><input type="checkbox" class="status" data-id="{{$region->region_id}}" {{$region->is_active ? 'checked' : ''}}/> </td>
+                                    <td class="text-center">{{$region->region_id}}</td>
+                                    <td style="vertical-align: middle" class="text-center">{{$region->name}}</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="status" data-id="{{$region->region_id}}" {{$region->is_active ? 'checked' : ''}}/>
+                                    </td>
                                 </tr>
                             @endforeach
                             {{--<tr>--}}
@@ -53,7 +55,7 @@
                             </tbody>
                         </table>
                     </section>
-                    <div class="pull-right"> {{ $cities->links() }}</div>
+                    <div class="pull-right"> {{ $regions->links() }}</div>
 
                 </div>
             </div>
