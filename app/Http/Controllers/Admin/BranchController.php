@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Branch;
 use App\Models\Country;
+use App\Models\SupportStaff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -14,23 +15,28 @@ class BranchController extends Controller
 
     public function index()
     {
+        $branches = Branch::all();
+        if($branches->count()<1){
+            session()->flash('app_warning', 'You have not any branch please add it here');
+            return redirect()->route('branch.create');
+        }
 
-        $user_id = Auth::user()->id;
-        $branches = Branch::where('added_by', $user_id)->get();
         return view('admin.branch.index' , compact('branches'));
     }
 
     public function create()
     {
-        $data['branch_no'] = Branch::max('branch_id')+1;
-        $data['countries'] = Country::all('country_id', 'full_name');
-        $data['rel_staff'] = '';
-        return view('admin.branch.create' , compact('data'));
+        $branch_id = Branch::getMaxBranchId();
+        $staffs = SupportStaff::all();
+        $related_staff = [];
+
+        return view('admin.branch.create' , compact('branch_id' ,'staffs','related_staff'));
     }
 
-    public  function new_branch(Request $request)
+    public  function store(Request $request)
     {
         $input = $request->all();
+
         $fileName = '';
         if ($request->hasFile('branch_logo')) {
             if($request->file('branch_logo')->isValid()) {
@@ -41,34 +47,38 @@ class BranchController extends Controller
         }
         $input['branch_logo'] = $fileName;
         $input['added_by'] = Auth::user()->id;
-        $input['id_number'] = Branch::max('branch_id')+1;
-        //$input['related_staff'] = implode(',', $input['related_staff']);
-        unset($input['related_staff']);
+        $input['id_number'] = Branch::getMaxBranchId();
+        unset($input['related_staff'] ,$input['branch_id']);
+        $branch = Branch::create($input);
 
-        if (Branch::create($input))
-        {
-            return redirect('/branch')->with('new_branch', 'New Branch Has Been Added Successfully!');
+        if ($branch){
+            $branch->staffs()->attach($request->related_staff);
+            session()->flash('app_message', 'New Branch Has Been Added Successfully!');
         }
+
+        return redirect()->route('branch.index');
     }
 
     public function edit($id)
     {
-        $branch = Branch::where('branch_id', $id)
-            ->where('added_by', Auth::user()->id)
-            ->first();
-        if ($branch){
-            return view('admin.branch.edit' , compact('branch'));
+        $branch = Branch::where('branch_id', $id)->first();
+        $staffs = SupportStaff::all();
+        $related_staff = $branch->relatedStaff();
+
+        if (!is_null($branch)){
+            return view('admin.branch.edit' , compact('branch' ,'related_staff','staffs'));
         } else {
-            return redirect()->route('branch.index')->with('find', 'No, Branch Found!');
+            session()->flash('app_warning', 'No, Branch Found!');
+            return redirect()->route('branch.index');
+
         }
     }
 
-    public function  update($id, Request $request)
+    public function  update(Request $request)
     {
-        $branch = Branch::where('branch_id', $id)
-            ->where('added_by', Auth::user()->id)
-            ->first();
-        if ($branch){
+        $branch = Branch::find($request->branch_id);
+
+        if (!is_null($branch)){
             $fileName = $branch->branch_logo;
             $input = $request->all();
             $input['related_staff'] = implode(',', $input['related_staff']);
@@ -80,26 +90,27 @@ class BranchController extends Controller
                 }
             }
             $input['branch_logo'] = str_slug($fileName);
-            unset($input['_token']);
-            $update = Branch::where('id', $id)->update($input);
+            unset($input['_token'] , $input['related_staff']);
+            $update = $branch->update($input);
             if ($update) {
-                return redirect()->route('branch.index')->with('new_branch', 'Branch Updated Successfully!');
+                $branch->staffs()->sync($request->related_staff);
+                session()->flash('app_message', 'Branch Has Been Updated Successfully!');
             }
-
-        } else {
-            return redirect()->route('branch.index')->with('find', 'No, Branch Found!');
+            return redirect()->route('branch.index');
         }
+
+        session()->flash('app_warning', 'No, Branch Found!');
+        return redirect()->route('branch.index');
     }
 
     public function delete($id)
     {
-        $branch = Branch::where('branch_id', $id)
-            ->where('added_by', Auth::user()->id);
-        if ($branch->count() == 1) {
-            $branch->delete();
-            return redirect()->back()->with('new_branch', 'Branch Deleted Successfully!');
-        } else {
-            return redirect()->route('branch.index')->with('find', 'No, Branch Found!');
-        }
+        $is_delete = Branch::find($id)->delete();
+        if($is_delete)
+            session()->flash('app_message', 'Branch Deleted Successfully!');
+        else
+        session()->flash('app_warning', 'Branch Not Deleted!');
+
+        return redirect()->route('branch.index');
     }
 }

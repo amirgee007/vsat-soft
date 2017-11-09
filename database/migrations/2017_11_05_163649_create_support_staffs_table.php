@@ -15,7 +15,7 @@ class CreateSupportStaffsTable extends Migration
     {
         Schema::create('support_staffs', function (Blueprint $table) {
 			$table->increments('support_staff_id');
-            $table->string('staff_id');
+            $table->string('staff_number');
             $table->string('cell_number');
             $table->string('first_name');
             $table->string('father_name');

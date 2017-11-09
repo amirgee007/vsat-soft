@@ -1,9 +1,10 @@
 {{ csrf_field() }}
+<input type="hidden" name="branch_id" value="{{@$branch->branch_id}}">
 <div class="form-group">
     <label class="col-sm-2 control-label" for="B-number">Branch ID Number</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" id="B-number" disabled
-               value="{{ (@$branch) ? $branch->id_number : 'B-'.$data['branch_no'] }}">
+               value="{{@$branch->id_number ?? $branch_id}}">
     </div>
 </div>
 <div class="form-group">
@@ -13,28 +14,32 @@
                value="{{ @$branch->name }}">
     </div>
 </div>
+
 <div class="form-group">
-    <label class="col-sm-2 control-label">Branch Address</label>
+    <label class="col-sm-2 control-label">Branch Address Auto</label>
+    <span class="col-sm-10">
+         <input id="autocomplete" onFocus="geolocate()" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
+    </span>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label"></label>
     <div class="col-sm-10">
         <label class="col-sm-2 col-xs-3 control-label">Country</label>
         <div class="col-sm-4 col-xs-3">
-            <select class="form-control m-bot15" name="country" id="countries">
-                @foreach($data['countries'] AS $country)
-                    <option value="{{ $country->country_id }}"> {{ $country->full_name }}</option>
-                @endforeach
-            </select>
+            <input type="text" class="form-control" name="country" id="Country" placeholder="country" value="{{@$branch->street}}"></input>
         </div>
+
         <label class="col-sm-2 col-xs-3 control-label">City</label>
         <div class="col-sm-4 col-xs-3">
-            <select class="form-control m-bot15 city" name="city">
-                <option value="" selected hidden>Select City</option>
-                <option value="1">Test City</option>
-            </select>
+            <input type="text" class="form-control" placeholder="City" name="city" id="locality"></input>
         </div>
-        <label class="col-sm-2 control-label">Street</label>
-        <span class="col-sm-10">
-      <input type="text" class="form-control" placeholder="Street" name="street" value="{{ @$branch->street }}">
-      </span>
+
+        <label class="col-sm-2 col-xs-3 control-label">Street</label>
+        <span class="col-sm-4 col-xs-3">
+            <input type="text" class="form-control" placeholder="Street" name="street" value="{{ @$branch->street }}">
+        </span>
+
         <label class="col-sm-2 control-label">Area</label>
         <span class="col-sm-4">
       <input type="text" class="form-control" placeholder="Area" name="area" value="{{ @$branch->area }}">
@@ -83,7 +88,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">Branch Logo</label>
     <div class="col-lg-offset-2 col-lg-10">
-        <img src="img/noimage.gif" alt=""/>
+        <img src="{{asset('img/noimage.gif')}}" alt=""/>
         <input class="btn btn-default" type="file" name="branch_logo">
     </div>
 </div>
@@ -91,25 +96,20 @@
     <label class="col-lg-2 control-label">Status</label>
     <div class="col-lg-10">
         <select class="form-control m-bot15" name="status">
-            <option>Enable</option>
-            <option>Disable</option>
+            <option selected value="enable">Enable</option>
+            <option value="disable">Disable</option>
         </select>
     </div>
 </div>
 <div class="form-group">
     <section class="panel">
-        <!-- <header class="panel-heading">
-             Related Staff
-             <div class="btn-group pull-right">
-                 <a class="btn btn-default addstaff" href="#"><i class="fa fa-plus-square"></i></a>
-             </div>
-         </header>-->
         <div class="panel-body">
             <label class="col-lg-2 col-xs-3 control-label">Add Support Staff</label>
-            <div class="col-lg-8 col-xs-7">
+            <div class="col-lg-10">
                 <select id="support_staff" name="related_staff[]" class="form-control m-bot15" multiple="multiple">
-                    <option value="1">Mahmood</option>
-                    <option value="2">Mohammad</option>
+                    @foreach($staffs as $staff)
+                    <option {{array_key_exists($staff->support_staff_id , $related_staff) ? 'selected' : ''}} value="{{$staff->support_staff_id}}">{{$staff->first_name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -132,6 +132,7 @@
         $(function () {
             $('#support_staff').select2({
                 placeholder: "Select Support Staff",
+                width: '100%',
                 allowClear: true
             });
             //all jquery code here

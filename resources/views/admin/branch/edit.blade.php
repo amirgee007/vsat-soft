@@ -28,15 +28,12 @@
                         <div class="panel-body bio-graph-info">
                             <h1>Edit Branch</h1>
                             <form class="form-horizontal" role="form" method="POST"
-                                  action="{{ route('branch.update', $branch->id) }}" enctype="multipart/form-data">
-                                @include('admin/branch/form')
+                                  action="{{route('post.branch.update')}}" enctype="multipart/form-data">
+                                @include('admin.branch.form')
                             </form>
                         </div>
-
-
                     </section>
                 </div>
-
             </div>
         </section>
         <!-- page end-->

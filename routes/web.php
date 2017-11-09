@@ -132,20 +132,18 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'BranchController@create'
         ]);
 
-        Route::post('/create', [
-            'as' => 'branch.new_branch',
-            'uses' => 'BranchController@new_branch'
+        Route::post('/create/store', [
+            'as' => 'post.branch.store',
+            'uses' => 'BranchController@store'
         ]);
 
         Route::get('/edit/{id}', [
-            'as' => 'branch.edit',
-            'uses' => 'BranchController@edit'
-        ])->where('id', '[0-9]+');
+            'as' => 'get.branch.edit',
+            'uses' => 'BranchController@edit'])->where('id', '[0-9]+');
 
-        Route::post('/update/{id}', [
-            'as' => 'branch.update',
-            'uses' => 'BranchController@update'
-        ])->where('id', '[0-9]+');
+        Route::post('/update', [
+            'as' => 'post.branch.update',
+            'uses' => 'BranchController@update']);
 
         Route::get('/delete/{id}', [
             'as' => 'branch.delete',

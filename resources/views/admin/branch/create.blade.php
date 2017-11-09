@@ -28,19 +28,15 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Branch</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('branch.create') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" role="form" action="{{ route('post.branch.store') }}" method="post" enctype="multipart/form-data">
                                 @include('admin/branch/form')
                             </form>
                         </div>
-
-
                     </section>
                 </div>
 
             </div>
         </section>
-
-
         <!-- page end-->
     </section>
     <!--main content end-->
