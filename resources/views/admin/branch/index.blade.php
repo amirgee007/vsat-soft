@@ -3,7 +3,8 @@
 @section('pageTitle', 'All Branches')
 
 @section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+    {{--<link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/css/dataTables.bootstrap.css') }}" />--}}
+{{--    <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />--}}
 @stop
 
 @section('content')
@@ -92,11 +93,27 @@
 
 @section('footer_scripts')
 
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
+    {{--<script type="text/javascript" src="{{ asset('assets/datatables/js/jquery.dataTables.js') }}" ></script>--}}
+    {{--<script type="text/javascript" src="{{ asset('assets/datatables/js/dataTables.bootstrap.js') }}" ></script>--}}
 
     <script>
 
         $(function () {
+
+            {{--$('#table').DataTable({--}}
+                {{--processing: true,--}}
+                {{--serverSide: true,--}}
+                {{--iDisplayLength: 100,--}}
+                {{--"order": [[ 0, "asc" ]],--}}
+                {{--ajax: '{!! route('data.cities.dt') !!}',--}}
+                {{--columns: [--}}
+                    {{--{ data: 'city_id', name: 'city_id' },--}}
+                    {{--{ data: 'country_name', name: 'country_name' },--}}
+                    {{--{ data: 'city_name', name: 'city_name' },--}}
+                    {{--{ data: 'actions', name: 'actions', orderable: false, searchable: false }--}}
+                {{--]--}}
+            {{--});--}}
+
 
             //all jquery code here
         });
