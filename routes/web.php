@@ -164,9 +164,9 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'SiteController@create'
         ]);
 
-        Route::post('/create', [
-            'as' => 'site.add',
-            'uses' => 'SiteController@add'
+        Route::post('/create/store', [
+            'as' => 'post.site.create',
+            'uses' => 'SiteController@store'
         ]);
 
         Route::get('/edit/{id}', [

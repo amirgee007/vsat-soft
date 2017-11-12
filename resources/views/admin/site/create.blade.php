@@ -1,5 +1,5 @@
 @extends('admin/layouts/default')
-@section('pageTitle', 'Create ')
+@section('pageTitle', 'Create Site')
 @section('header_styles')
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
 @stop
@@ -23,7 +23,7 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Site</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('site.create') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" role="form" action="{{ route('post.site.create') }}" method="post" enctype="multipart/form-data">
                                 @include('admin/site/form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">

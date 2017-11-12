@@ -22,7 +22,6 @@ class Branch extends Model
         return $branch_id;
     }
 
-
     public function staffs(){
         return $this->belongsToMany(SupportStaff::class ,'branch_staff' ,'branch_id','staff_id' );
     }

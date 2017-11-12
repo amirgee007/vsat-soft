@@ -1,5 +1,7 @@
 {{ csrf_field() }}
 <!-- General Info start-->
+<input type="hidden" name="site_id" value="{{@$site->site_id}}">
+
     <div class="panel panel-primary form-group">
         <div class="panel panel-heading col-sm-2">
             <h5>General Info:</h5>
@@ -9,71 +11,78 @@
                 <label class="col-sm-2 control-label" for="S-number">Site ID Number</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="S-number" disabled
-                           value="{{ (@$site) ? $site->s_number : 'S-'.$data['site_no'] }}">
+                           value="{{ @$site->id_number ?? $site_id}}" >
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="S-name">Site Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="S-name" placeholder="Site Name" name="name">
+                    <input type="text" class="form-control" id="S-name" placeholder="Site Name" name="name" value="name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="S-organization">Organization Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="S-organization" placeholder="Organization Name" name="org_name">
+                    <input type="text" class="form-control" id="S-organization" placeholder="Organization Name" name="org_name" value="org_name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Site Map Presentation</label>
                 <div class="col-lg-offset-2 col-lg-10">
-                    <img src="img/noimage.gif" alt="" />
+                    <img src="{{asset('img/noimage.gif')}}" alt="" />
                     <input class="btn btn-default" type="file" name="site_map_presentation">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Schematic Presentation of the Installation Area</label>
                 <div class="col-lg-offset-2 col-lg-10">
-                    <img src="img/noimage.gif" alt="" />
+                    <img src="{{asset('img/noimage.gif')}}" alt="" />
                     <input class="btn btn-default" type="file" name="presentation_of_ins_area">
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-sm-2 control-label">Site Address</label>
+                <label class="col-sm-2 control-label">Site Address Auto</label>
+                <span class="col-sm-10">
+                    <input id="autocomplete" onFocus="geolocate()" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+
                 <div class="col-sm-10">
                     <label class="col-sm-2 col-xs-3 control-label">Country</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select class="form-control m-bot15 country" name="country">
-                        </select>
+                        <input type="text" class="form-control" name="country" id="Country" placeholder="country" value="street"></input>
                     </div>
                     <label class="col-sm-2 col-xs-3 control-label">City</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select class="form-control m-bot15 city" name="city">
-                        </select>
+                        <input type="text" class="form-control" placeholder="City" name="city" id="locality" value="city"></input>
                     </div>
                     <label class="col-sm-2 control-label">Street</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="Street" name="street">
+                        <input type="text" class="form-control" placeholder="Street" name="street" value="street" >
                     </span>
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="Area" name="area">
+                        <input type="text" class="form-control" placeholder="Area" name="area" value="area">
                     </span>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="State" name="state">
+                        <input type="text" class="form-control" placeholder="State" name="state" value="state">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="Zip Code" name="zip_code">
+                        <input type="text" class="form-control" placeholder="Zip Code" name="zip_code" value="zip_code">
                     </span>
                     <label class="col-sm-2 control-label">Latitude</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="Latitude" name="latitude">
+                        <input type="text" class="form-control" placeholder="Latitude" name="latitude" value="latitude">
                     </span>
                     <label class="col-sm-2 control-label">Longitude</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="Longitude" name="longitude">
+                        <input type="text" class="form-control" placeholder="Longitude" name="longitude" value="longitude">
                     </span>
                 </div>
             </div>
@@ -88,15 +97,15 @@
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">Name</label>
                             <span class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Name" name="tech_name">
+                                <input type="text" class="form-control" placeholder="Name" name="tech_name" value="tech_name">
                             </span>
                             <label class="col-sm-2 control-label">Cell</label>
                             <span class="col-sm-4">
-                                <input type="tel" class="form-control" placeholder="Cell" name="tech_cell">
+                                <input type="tel" class="form-control" placeholder="Cell" name="tech_cell" value="tech_cell">
                             </span>
                             <label class="col-sm-2 control-label">Email</label>
                             <span class="col-sm-4">
-                                <input type="email" class="form-control" placeholder="Email" name="tech_email">
+                                <input type="email" class="form-control" placeholder="Email" name="tech_email" value="amirgee007@yahoo.com">
                             </span>
                         </div>
                     </div>
@@ -105,15 +114,15 @@
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">Name</label>
                             <span class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Name" name="proj_coordinator_name">
+                                <input type="text" class="form-control" placeholder="Name" name="proj_coordinator_name" value="proj_coordinator_name">
                             </span>
                             <label class="col-sm-2 control-label">Cell</label>
                             <span class="col-sm-4">
-                                <input type="tel" class="form-control" placeholder="Cell" name="proj_coordinator_cell">
+                                <input type="tel" class="form-control" placeholder="Cell" name="proj_coordinator_cell" value="proj_coordinator_cell">
                             </span>
                             <label class="col-sm-2 control-label">Email</label>
                             <span class="col-sm-4">
-                                <input type="email" class="form-control" placeholder="Email" name="proj_coordinator_email">
+                                <input type="email" class="form-control" placeholder="Email" name="proj_coordinator_email" value="amirgee007@yahoo.com">
                             </span>
                         </div>
                     </div>
@@ -122,15 +131,15 @@
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">Name</label>
                             <span class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Name" name="proj_manager_name">
+                                <input type="text" class="form-control" placeholder="Name" name="proj_manager_name" value="proj_manager_name">
                             </span>
                             <label class="col-sm-2 control-label">Cell</label>
                             <span class="col-sm-4">
-                                <input type="tel" class="form-control" placeholder="Cell" name="proj_manager_cell">
+                                <input type="tel" class="form-control" placeholder="Cell" name="proj_manager_cell" value="proj_manager_cell">
                             </span>
                             <label class="col-sm-2 control-label">Email</label>
                             <span class="col-sm-4">
-                                <input type="email" class="form-control" placeholder="Email" name="proj_manager_email">
+                                <input type="email" class="form-control" placeholder="Email" name="proj_manager_email" value="amirgee007@yahoo.com">
                             </span>
                         </div>
                     </div>
@@ -148,11 +157,11 @@
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">Days</label>
                             <span class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Days" name="working_days">
+                                <input type="text" class="form-control" placeholder="Days" name="working_days" value="working_days">
                             </span>
                             <label class="col-sm-2 control-label">Hours</label>
                             <span class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="Hours" name="working_hours">
+                                <input type="text" class="form-control" placeholder="Hours" name="working_hours" value="working_hours">
                             </span>
                         </div>
                     </div>
@@ -162,7 +171,7 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input type="radio" class="" name="is_access_normal" value="1">
+                                <input checked type="radio" class="" name="is_access_normal" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
@@ -175,7 +184,7 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input type="radio" class="" name="is_access_during_week" value="1">
+                                <input checked type="radio" class="" name="is_access_during_week" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
@@ -187,19 +196,19 @@
                         <label class="col-sm-2 control-label">
                             Describe any special identification required for access?</label>
                         <div class="col-sm-10">
-                            <textarea class="col-sm-12" cols="20" name="identification_for_access" rows="2"></textarea>
+                            <textarea class="col-sm-12" cols="20" name="identification_for_access" rows="2">required for access</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Required time to gain access</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="required_access_time_">
+                            <input type="text" class="form-control" name="required_access_time_" value="required_access_time_">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Access validity period</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="access_validity_period">
+                            <input type="text" class="form-control" name="access_validity_period" value="access_validity_period">
                         </div>
                     </div>
                 </div>
@@ -216,7 +225,7 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input type="radio" class="" name="have_direct_los" value="1">
+                                <input checked type="radio" class="" name="have_direct_los" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
@@ -227,7 +236,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Cable length between the antenna and the computer room? (max 100 m)</label>
                         <div class="col-sm-10 password">
-                            <input type="number" max="100" class="form-control" placeholder="60" name="cable_length">
+                            <input type="number" max="100" class="form-control" placeholder="60" name="cable_length" value="60">
                             <i class="fa">m</i>
                         </div>
                     </div>
@@ -245,7 +254,7 @@
                         <label class="col-lg-2 control-label">Antenna location</label>
                         <div class="col-lg-10">
                             <select class="form-control m-bot15" name="antenna_location">
-                                <option>Ground</option>
+                                <option selected>Ground</option>
                                 <option>Roof</option>
                                 <option>Wall</option>
                                 <option>Others</option>
@@ -257,7 +266,7 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input type="radio" class="" name="is_strong_enough" value="1">
+                                <input checked type="radio" class="" name="is_strong_enough" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
@@ -266,13 +275,30 @@
                         </div>
                     </div>
                     <div class="form-group">
+
+
                         <label class="col-lg-2 control-label">Picture/s of Antenna mount location</label>
                         <div class="col-lg-offset-2 col-lg-10">
-                            <input class="btn btn-default" type="file" name="antenna_mount_loc[]">
-                            <input class="btn btn-default" type="file" name="antenna_mount_loc[]">
-                            <input class="btn btn-default" type="file" name="antenna_mount_loc[]">
-                            <input class="btn btn-default" type="file" name="antenna_mount_loc[]">
-                            <input class="btn btn-default" type="file" name="antenna_mount_loc[]">
+                            <span class="col-sm-4">
+                            <img src="{{asset('img/noimage.gif')}}" alt="" />
+                            <input class="btn btn-default form-control" type="file" name="antenna_mount_loc[]">
+                            </span>
+                            <span class="col-sm-4">
+                            <img src="{{asset('img/noimage.gif')}}" alt="" />
+                            <input class="btn btn-default form-control" type="file" name="antenna_mount_loc[]">
+                            </span>
+                            <span class="col-sm-4">
+                            <img src="{{asset('img/noimage.gif')}}" alt="" />
+                            <input class="btn btn-default form-control" type="file" name="antenna_mount_loc[]">
+                            </span>
+                            <span class="col-sm-4">
+                            <img src="{{asset('img/noimage.gif')}}" alt="" />
+                            <input class="btn btn-default form-control" type="file" name="antenna_mount_loc[]">
+                            </span>
+                            <span class="col-sm-4">
+                            <img src="{{asset('img/noimage.gif')}}" alt="" />
+                            <input class="btn btn-default form-control" type="file" name="antenna_mount_loc[]">
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -280,7 +306,7 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input type="radio" class="" name="is_electrical_grounding" value="1">
+                                <input checked type="radio" class="" name="is_electrical_grounding" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
@@ -293,7 +319,7 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input type="radio" class="" name="is_lightening_protection" value="1">
+                                <input checked type="radio" class="" name="is_lightening_protection" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
@@ -305,7 +331,7 @@
                         <label class="col-sm-2 control-label">Method of transporting dish to the roof</label>
                         <div class="col-lg-10">
                             <select class="form-control m-bot15" name="method_of_transporting">
-                                <option>By hands</option>
+                                <option selected>By hands</option>
                                 <option>Elevator</option>
                                 <option>Crane</option>
                                 <option>Others</option>
@@ -315,14 +341,14 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Roof access (m<sup>2</sup>)</label>
                         <div class="col-sm-10 password">
-                            <input type="number" min="0" class="form-control" placeholder="15">
+                            <input type="number" min="0" class="form-control" placeholder="15" value="25">
                             <i class="fa">m<sup>2</sup></i>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Comments</label>
                         <div class="col-sm-10">
-                            <textarea class="col-sm-12" cols="20" rows="2" name="comments"></textarea>
+                            <textarea class="col-sm-12" cols="20" rows="2" name="comments">commmentsssssssss</textarea>
                         </div>
                     </div>
                 </div>
@@ -337,7 +363,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Antenna size (dish diameter)</label>
                         <div class="col-lg-10">
-                            <select class="form-control m-bot15" name="antenna_size">
+                            <select class="form-control m-bot15" name="antenna_size" value="antenna_size">
                                 <option>1.2 m</option>
                                 <option>1.8 m</option>
                                 <option>2.4 m</option>
@@ -349,7 +375,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Pole size</label>
                         <div class="col-lg-10">
-                            <select class="form-control m-bot15" name="pole_size">
+                            <select class="form-control m-bot15" name="pole_size" value="pole_size">
                                 <option>6.35 cm</option>
                                 <option>8.89 cm</option>
                                 <option>15.23 cm</option>
@@ -361,7 +387,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Pole - outside diameter</label>
                         <div class="col-lg-10">
-                            <select class="form-control m-bot15" name="pole_outside_diameter">
+                            <select class="form-control m-bot15" name="pole_outside_diameter" value="pole_outside_diameter">
                                 <option>7.32 cm</option>
                                 <option>10.16 cm</option>
                                 <option>16.83 cm</option>
@@ -373,8 +399,8 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Mount Type</label>
                         <div class="col-lg-10">
-                            <select class="form-control m-bot15" name="mount_type">
-                                <option>Non-penetrating mount (iron construction on ground/roof)</option>
+                            <select class="form-control m-bot15" name="mount_type" >
+                                <option selected>Non-penetrating mount (iron construction on ground/roof)</option>
                                 <option>Pole mount (pole directly in the ground/concrete)</option>
                                 <option>Wall mount (iron construction screwed onto wall)</option>
                                 <option>Others</option>
@@ -394,7 +420,7 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label">Status</label>
                 <div class="col-lg-10">
-                    <select class="form-control m-bot15" name="status">
+                    <select class="form-control m-bot15" name="status" value="status">
                         <option value="1">Enable</option>
                         <option value="0">Disable</option>
                     </select>
@@ -404,9 +430,6 @@
                 <section class="panel">
                     <header class="panel-heading">
                         Assets
-                        <div class="btn-group pull-right">
-                            <a class="btn btn-default addasset" href="#"><i class="fa fa-plus-square"></i></a>
-                        </div>
                     </header>
                     <div class="panel-body">
                         <label class="col-lg-2 control-label">Add a Part</label>
@@ -449,8 +472,9 @@
                         <label class="col-lg-2 control-label">Add Branch</label>
                         <div class="col-lg-8">
                             <select class="form-control m-bot15" multiple="multiple" name="site_branches" id="add_branch">
-                               @foreach($data['branches'] AS $branch)
-                                <option value="{{ $branch['branch_id'] }}">{{ $branch['name'] }}</option>
+                               <option value="">Select Branch</option>
+                                @foreach($branches AS $branch)
+                                <option value="{{$branch->branch_id }}">{{ $branch->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -469,7 +493,8 @@
                  placeholder: "Select Related Branches",
                  allowClear: true
              });
-             //all jquery code here
+
+
          });
 
      </script>
