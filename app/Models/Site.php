@@ -21,4 +21,16 @@ class Site extends Model
         return $site_id;
     }
 
+    public function branches(){
+        return $this->belongsToMany(Branch::class ,'branch_site' ,'site_id','branch_id' );
+    }
+
+
+    public function relatedBranches(){
+
+        return $this->staffs->pluck('first_name' ,'support_staff_id')->toArray();
+
+    }
+
+
 }

@@ -15,7 +15,7 @@ class CreateSitesTable extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->increments('site_id');
-            $table->integer('id_number');
+            $table->string('id_number');
             $table->string('name');
             $table->string('org_name');
             $table->string('site_map_presentation');
@@ -49,7 +49,11 @@ class CreateSitesTable extends Migration
             $table->string('cables_used');
             $table->string('antenna_location');
             $table->boolean('is_strong_enough');
-            $table->string('antenna_mount_loc');
+            $table->string('antenna_mount_loc1')->nullable();
+            $table->string('antenna_mount_loc2')->nullable();
+            $table->string('antenna_mount_loc3')->nullable();
+            $table->string('antenna_mount_loc4')->nullable();
+            $table->string('antenna_mount_loc5')->nullable();
             $table->boolean('is_electrical_grounding');
             $table->boolean('is_lightening_protection');
             $table->string('method_of_transporting');

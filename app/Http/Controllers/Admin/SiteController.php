@@ -46,12 +46,31 @@ class SiteController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $site_branches = $request->site_branches;
+        $count = 1;
 
+        $data['id_number'] = Site::getMaxSiteId();
+        $data['added_by'] = Auth::id();
         $data['site_map_presentation'] = $this->uploadImage($request->file('site_map_presentation') ,$data['name']);
         $data['presentation_of_ins_area'] = $this->uploadImage($request->file('presentation_of_ins_area') ,$data['name']);
 
-        dd('jana');
+        foreach ($data['antenna_mount_loc'] as $antenna_img)
+        {
+            $data['antenna_mount_loc'.$count] = $this->uploadImage($antenna_img ,$data['name']);
+            $count++;
         }
+
+        unset($data['antenna_mount_loc'] ,$data['site_branches']);
+        $site =  Site::create($data);
+
+        if ($site){
+            $site->branches()->attach($site_branches);
+            session()->flash('app_message', 'New Site Has Been Added Successfully!');
+        }
+
+        return redirect()->route('branch.index');
+
+    }
 
     public function edit()
     {
