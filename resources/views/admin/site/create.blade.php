@@ -42,10 +42,18 @@
     <!--main content end-->
 @stop
 @section('footer_scripts')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
+    <!--todo: remove CDNs-->
     <script>
         $(function () {
-            //all jquery code here
+            $('#add_branch').select2({
+                placeholder: "Select Related Branches",
+                allowClear: true
+            });
+
         });
+
     </script>
 @stop

@@ -169,10 +169,21 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'SiteController@store'
         ]);
 
+        Route::post('/edit/update', [
+            'as' => 'post.site.update',
+            'uses' => 'SiteController@update'
+        ]);
+
         Route::get('/edit/{id}', [
             'as' => 'site.edit',
             'uses' => 'SiteController@edit'
         ])->Where('id', '[0-9]+');
+
+
+        Route::get('/delete/{id}', [
+            'as' => 'site.delete',
+            'uses' => 'SiteController@delete'
+        ])->where('id', '[0-9]+');
 
     });
 

@@ -116,8 +116,8 @@
             { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     });
 
-//    http://codeseven.github.io/toastr/demo.html
 
+//    http://codeseven.github.io/toastr/demo.html
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -194,20 +194,20 @@
 
         /* ---------- Map ---------- */
 
-//        $('#map').vectorMap({
-//            map: 'world_mill_en',
-//            series: {
-//                regions: [{
-//                    values: gdpData,
-//                    scale: ['#C8EEFF', '#0071A4'],
-//                    normalizeFunction: 'polynomial'
-//                }]
-//            },
-//            backgroundColor: '#2b2b2b',
-//            onRegionTipShow: function (e, el, code) {
-//                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-//            }
-//        });
+        $('#map').vectorMap({
+            map: 'world_mill_en',
+            series: {
+                regions: [{
+                    values: gdpData,
+                    scale: ['#C8EEFF', '#0071A4'],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+            backgroundColor: '#2b2b2b',
+            onRegionTipShow: function (e, el, code) {
+                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+            }
+        });
 
 
         $('#option1 li a').on('click', function (e) {

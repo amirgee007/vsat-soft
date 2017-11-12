@@ -48,7 +48,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($branches as $branch)
+                            @forelse($branches as $branch)
                             <tr>
                                 <td class="text-center"> {{ $loop->iteration }} </td>
                                 <td><a href="#">{{ $branch->name }}</a></td>
@@ -78,7 +78,9 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                                <tr><td colspan="12" style="text-align: center">N/A</td></tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </section>

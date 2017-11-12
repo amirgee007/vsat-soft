@@ -1,9 +1,17 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'Edit Site ')
+@section('pageTitle', 'Edit Site')
 
 @section('header_styles')
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+
+    <style>
+
+        .imges{
+            height: 150px;
+            width: 200px;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -26,8 +34,8 @@
                 <div class="col-sm-12">
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
-                            <h1>Edir Site</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('site.create') }}" method="post" enctype="multipart/form-data">
+                            <h1>Edit Site</h1>
+                            <form id="edit-site-form" class="form-horizontal" role="form" action="{{ route('post.site.update') }}" method="post" enctype="multipart/form-data">
                                 @include('admin/site/form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
@@ -48,14 +56,19 @@
 @stop
 
 @section('footer_scripts')
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
-
+    <!--todo: remove CDNs-->
     <script>
-
         $(function () {
+            $('#add_branch').select2({
+                placeholder: "Select Related Branches",
+                allowClear: true
+            });
 
-            //all jquery code here
+            $(".image-type").removeAttr("required");
+
         });
 
     </script>

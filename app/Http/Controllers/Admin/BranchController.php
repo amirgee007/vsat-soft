@@ -16,11 +16,6 @@ class BranchController extends Controller
     public function index()
     {
         $branches = Branch::all();
-        if($branches->count()<1){
-            session()->flash('app_warning', 'You have not any branch please add it here');
-            return redirect()->route('branch.create');
-        }
-
         return view('admin.branch.index' , compact('branches'));
     }
 
@@ -105,7 +100,9 @@ class BranchController extends Controller
 
     public function delete($id)
     {
-        $is_delete = Branch::find($id)->delete();
+        $branch = Branch::find($id);
+        $branch->staffs()->detach();
+        $is_delete = $branch->delete();
         if($is_delete)
             session()->flash('app_message', 'Branch Deleted Successfully!');
         else

@@ -46,7 +46,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sites as $site)
+                            @forelse($sites as $site)
                                 <tr>
                                 <td class="text-center">{{$site->site_id}}</td>
                                 <td><a href="#">{{$site->name}}</a></td>
@@ -62,12 +62,21 @@
                                 <td>
                                     <div class="btn-group">
                                         <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_site.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
-                                        <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="#"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
+                                        <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="{{route('site.edit' ,$site->site_id)}}"><i class="fa fa-edit"></i></a>
+
+
+                                        {{--todo: sweet alert for all the confirmation boxes--}}
+
+                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="<?php echo e(route('site.delete', $site->site_id)); ?>" class="btn btn-danger col-sm-4 col-xs-4 text-center">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+
                                     </div>
                                 </td>
                             </tr>
-                                @endforeach
+                            @empty
+                                <tr><td colspan="12" style="text-align: center">N/A</td></tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </section>
