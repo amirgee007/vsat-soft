@@ -79,7 +79,7 @@
                                 </td>
                             </tr>
                             @empty
-                                <tr><td colspan="12" style="text-align: center">N/A</td></tr>
+                                <tr><td colspan="12" style="text-align: center">No, Branch Found!</td></tr>
                             @endforelse
                             </tbody>
                         </table>

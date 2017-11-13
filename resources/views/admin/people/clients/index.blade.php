@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <a class="btn btn-primary btn-lg" href="add_client.html" title="Add Client">Add New Client</a>
+                        <a class="btn btn-primary btn-lg" href="{{ route('people.clients.createClients') }}" title="Add Client">Add New Client</a>
                     </div>
                     <section class="panel">
                         <header class="panel-heading">
@@ -45,43 +45,38 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td><a href="view_client.html">Trace Systems</a></td>
-                                <td><a href="view_client.html">25-01-2017</a></td>
-                                <td><a href="view_client.html">United States of America</a></td>
-                                <td><a href="view_client.html">Vienna</a></td>
-                                <td>
-                                    <div class="btn-group col-sm-8 col-xs-12">
-                                        <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Active</a></div>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_client.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
-                                        <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="edit_client.html"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>Al Udeid Airbase</td>
-                                <td>01-02-2017</td>
-                                <td>Qatar</td>
-                                <td>Doha </td>
-                                <td>
-                                    <div class="btn-group col-sm-8 col-xs-12">
-                                        <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Active</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-4 col-xs-4" href="#"><i class="fa fa-print"></i></a>
-                                        <a class="btn btn-success col-sm-4 col-xs-4" href="#"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @forelse($data['clients'] as $client)
+                                <tr>
+                                    <td class="text-center"> {{ $loop->iteration }} </td>
+                                    <td><a href="#">{{ $client->org_name }}</a></td>
+                                    <td><a href="#">{{ $client->created_at ? $client->created_at->format('m-d-Y') : 'n/a' }}</a></td>
+                                    <td><a href="#">{{ $client->country }}</a></td>
+                                    <td><a href="#">{{ $client->city }}</a></td>
+                                    <td>
+                                        <div class="btn-group col-sm-10 col-xs-12">
+                                            <a class="btn btn-info btn-sm col-xs-12 disabled" href="#">
+                                                {{$client->confirm_by_status == 'Enable' ? 'Active' : 'De-active'}}
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('people.clients.editClients',$client->client_id)}}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            {{--todo: sweet alert for all the confirmation boxes--}}
+
+                                            <a onclick="return confirm('Are you sure you want to delete this record?')" href="<?php echo e(route('people.clients.delete', $client->client_id)); ?>" class="btn btn-danger col-sm-6 col-xs-6 text-center">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="12" style="text-align: center">No, Client Found!</td></tr>
+                            @endforelse
                             </tbody>
 
                         </table>

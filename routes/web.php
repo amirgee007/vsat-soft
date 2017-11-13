@@ -99,14 +99,55 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'ClientsController@index'
         ]);
 
+        Route::get('/create-client', [
+            'as' => 'people.clients.createClients',
+            'uses' => 'ClientsController@createClients'
+        ]);
+
+        Route::post('/create-client', [
+            'as' => 'people.clients.addClient',
+            'uses' => 'ClientsController@save'
+        ]);
+
+        Route::get('/edit-client/{id}', [
+            'as' => 'people.clients.editClients',
+            'uses' => 'ClientsController@edit'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/delete-client/{id}', [
+            'as' => 'people.clients.delete',
+            'uses' => 'ClientsController@delete'
+        ])->where('id', '[0-9]+');
+
+        Route::post('/update-client', [
+            'as' => 'people.clients.updateClient',
+            'uses' => 'ClientsController@update'
+        ]);
+
+
         Route::get('/support-staff', [
             'as' => 'people.supportStaff.index',
             'uses' => 'SupportStaffController@index'
         ]);
 
+        Route::get('/create-staff', [
+            'as' => 'people.supportStaff.createStaff',
+            'uses' => 'SupportStaffController@createStaff'
+        ]);
+
+        Route::get('/edit-staff', [
+            'as' => 'people.supportStaff.editStaff',
+            'uses' => 'SupportStaffController@editStaff'
+        ]);
+
         Route::get('/users', [
             'as' => 'people.users.index',
             'uses' => 'UserController@index'
+        ]);
+        //not in use for now :)
+        Route::get('/create-user', [
+            'as' => 'people.users.createUser',
+            'uses' => 'UserController@createUser'
         ]);
 
         Route::post('/profile-update', [

@@ -15,6 +15,7 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
 			$table->increments('client_id');
+            $table->string('client_number');
             $table->string('org_name');
             $table->string('street');
             $table->string('area');
@@ -70,8 +71,8 @@ class CreateClientsTable extends Migration
             $table->string('confirm_by_designation');
             $table->string('confirm_by_signature');
             $table->string('confirm_by_status');
+            $table->string('client_logo');
             $table->integer('added_by');
-
             //pivotTable client_user
             $table->timestamps();
 			});

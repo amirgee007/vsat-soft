@@ -73,7 +73,7 @@ class UserController extends Controller
     public function create() {
         //Get all roles and pass it to the view
         $roles = Role::get();
-        return view('users.create', ['roles'=>$roles]);
+        return view('admin.users.create', ['roles'=>$roles]);
     }
 
     /**
