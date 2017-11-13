@@ -106,7 +106,6 @@
 <script src="{{ asset('assets/toastr/js/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/toastr/js/pages/ui-toastr.js') }}"></script>
 
-@yield('footer_scripts')
 <!--custome script for all page-->
 <script src="{{ asset('js/scripts.js') }}"></script>
 <script type="text/javascript">
@@ -151,7 +150,6 @@
     @endif
 
 </script>
-
 
 <script>
 
@@ -233,5 +231,8 @@
     });
 
 </script>
+
+@yield('footer_scripts')
+
 </body>
 </html>

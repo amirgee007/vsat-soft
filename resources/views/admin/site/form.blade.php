@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Site Address Auto</label>
                 <span class="col-sm-10">
-                    <input id="autocomplete" onFocus="geolocate()" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
+                    <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
                 </span>
             </div>
 
@@ -56,37 +56,38 @@
                 <label class="col-sm-2 control-label"></label>
 
                 <div class="col-sm-10">
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input required type="text" class="form-control" name="country" id="Country" placeholder="country" value="{{@$site->country}}"></input>
-                    </div>
+
+                    <label class="col-sm-2 control-label">Street</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$site->street}}" id="street_number"></input>
+                    </span>
+                    <label class="col-sm-2 control-label">Area</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$site->area}}" id="route"></input>
+                    </span>
                     <label class="col-sm-2 col-xs-3 control-label">City</label>
                     <div class="col-sm-4 col-xs-3">
                         <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$site->city}}"></input>
                     </div>
-                    <label class="col-sm-2 control-label">Street</label>
-                    <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$site->street}}" >
-                    </span>
-                    <label class="col-sm-2 control-label">Area</label>
-                    <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$site->area}}">
-                    </span>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$site->state}}">
+                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$site->state}}" id="administrative_area_level_1"></input>
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Zip Code" name="zip_code" value="{{@$site->zip_code}}">
+                         <input class="form-control field" name="zip_code" value="{{@$site->zip_code}}" placeholder="Zip Code" id="postal_code"></input>
                     </span>
-                    <label class="col-sm-2 control-label">Latitude</label>
+                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <input class="form-control field" name="country" placeholder="country" value="{{@$site->country}}" id="country"></input>
+                    </div>
+                    <label class="col-sm-2 col-xs-3 control-label">Latitude</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}">
+                        <input required type="text" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}" id="longitude"></input>
                     </span>
-                    <label class="col-sm-2 control-label">Longitude</label>
+                    <label class="col-sm-2 col-xs-3 control-label">Longitude</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Longitude" name="longitude" value="{{@$site->longitude}}">
+                        <input required type="text" class="form-control" placeholder="Longitude" name="longitude" value="{{@$site->longitude}}" id="latitude"></input>
                     </span>
                 </div>
             </div>

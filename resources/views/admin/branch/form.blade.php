@@ -18,40 +18,43 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Branch Address Auto</label>
     <span class="col-sm-10">
-         <input id="autocomplete" onFocus="geolocate()" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
+        <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
     </span>
 </div>
 
 <div class="form-group">
     <label class="col-sm-2 control-label"></label>
+
     <div class="col-sm-10">
-        <label class="col-sm-2 col-xs-3 control-label">Country</label>
-        <div class="col-sm-4 col-xs-3">
-            <input type="text" class="form-control" name="country" id="Country" placeholder="country" value="{{@$branch->street}}"></input>
-        </div>
-
-        <label class="col-sm-2 col-xs-3 control-label">City</label>
-        <div class="col-sm-4 col-xs-3">
-            <input type="text" class="form-control" placeholder="City" name="city" id="locality"></input>
-        </div>
-
-        <label class="col-sm-2 col-xs-3 control-label">Street</label>
-        <span class="col-sm-4 col-xs-3">
-            <input type="text" class="form-control" placeholder="Street" name="street" value="{{ @$branch->street }}">
+        <label class="col-sm-2 control-label">Street</label>
+        <span class="col-sm-4">
+            <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$branch->street}}" id="street_number"></input>
         </span>
-
         <label class="col-sm-2 control-label">Area</label>
         <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Area" name="area" value="{{ @$branch->area }}">
-      </span>
+            <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$branch->area}}" id="route"></input>
+        </span>
+        <label class="col-sm-2 col-xs-3 control-label">City</label>
+        <div class="col-sm-4 col-xs-3">
+            <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$branch->city}}"></input>
+        </div>
         <label class="col-sm-2 control-label">State</label>
         <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="State" name="state" value="{{ @$branch->state }}">
-      </span>
+            <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$branch->state}}" id="administrative_area_level_1"></input>
+        </span>
         <label class="col-sm-2 control-label">Zip Code</label>
         <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Zip Code" name="zip_code" value="{{ @$branch->zip_code }}">
-      </span>
+            <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+        </span>
+        <label class="col-sm-2 col-xs-3 control-label">Country</label>
+        <div class="col-sm-4 col-xs-3">
+            <input class="form-control field" name="country" placeholder="country" value="{{@$branch->country}}" id="country"></input>
+        </div>
+
+        <input type="hidden" placeholder="Latitude"  id="longitude"></input>
+
+        <input type="hidden"  placeholder="Longitude" id="latitude"></input>
+
         <label class="col-sm-2 control-label">P.O.Box</label>
         <span class="col-sm-4">
       <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
@@ -121,22 +124,4 @@
         <button type="button" class="btn btn-danger">Cancel</button>
     </div>
 </div>
-
-@section('footer_scripts')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
-    <!--todo: remove CDNs-->
-    <script>
-        // global app configuration object
-        $(function () {
-            $('#support_staff').select2({
-                placeholder: "Select Support Staff",
-                width: '100%',
-                allowClear: true
-            });
-            //all jquery code here
-        });
-    </script>
-@stop
 
