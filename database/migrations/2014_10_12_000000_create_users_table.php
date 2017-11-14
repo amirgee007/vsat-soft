@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('profession')->nullable();;
             $table->string('profile_pic')->nullable();
             $table->rememberToken();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }

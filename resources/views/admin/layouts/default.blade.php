@@ -108,6 +108,8 @@
 
 <!--custome script for all page-->
 <script src="{{ asset('js/scripts.js') }}"></script>
+@yield('footer_scripts')
+
 <script type="text/javascript">
 
     $.ajaxSetup({
@@ -231,8 +233,5 @@
     });
 
 </script>
-
-@yield('footer_scripts')
-
 </body>
 </html>

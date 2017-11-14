@@ -27,6 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = ['created_at'];
+
 
     public function setPasswordAttribute($password)
     {

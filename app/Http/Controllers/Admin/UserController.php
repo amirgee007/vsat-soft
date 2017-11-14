@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 //Importing laravel-permission models
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -22,19 +23,11 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-//    public function __construct() {
-//        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
-//    }
-
 
     public function profile(){
-
         $user = Auth::user();
         return view('admin.profile.show' , compact('user'));
-
     }
-
-
 
     public function profileUpdate(ProfileFormPost $request){
 
@@ -63,118 +56,107 @@ class UserController extends Controller
         return back();
     }
 
-
     public function index() {
-
-        return view('admin.users.index');
+        $users = User::all();
+        return view('admin.people.users.index' ,compact('users'));
     }
 
 
     public function create() {
-        //Get all roles and pass it to the view
-        $roles = Role::get();
-        return view('admin.users.create', ['roles'=>$roles]);
+
+        return view('admin.people.users.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request) {
-        //Validate name, email and password fields
+
         $this->validate($request, [
-            'name'=>'required|max:120',
+            'user_name'=>'required|max:20',
             'email'=>'required|email|unique:users',
             'password'=>'required|min:6|confirmed'
         ]);
 
-        $user = User::create($request->only('email', 'name', 'password')); //Retrieving only the email and password data
+        $data  = $request->except('password_confirmation','_token');
 
-        $roles = $request['roles']; //Retrieving the roles field
-        //Checking if a role was selected
-        if (isset($roles)) {
-
-            foreach ($roles as $role) {
-                $role_r = Role::where('id', '=', $role)->firstOrFail();
-                $user->assignRole($role_r); //Assigning role to user
+        if ($request->hasFile('profile_pic')) {
+            if($request->file('profile_pic')->isValid()) {
+                $file = $request->file('profile_pic');
+                $data['profile_pic'] = str_slug($request->user_name).'-'.time() . '.' . $file->getClientOriginalExtension();
+                $request->file('profile_pic')->move("uploads/users", $data['profile_pic']);
             }
         }
-        //Redirect to the users.index view and display message
-        return redirect()->route('users.index')
-            ->with('flash_message',
-                'User successfully added.');
+
+        $user = User::create($data);
+
+        if($user){
+            session()->flash('app_message', 'User Added successfully!');
+            return redirect()->route('people.users.index');
+        }
+        else{
+            session()->flash('app_error', 'Some thing went wrong!');
+            return redirect()->back();
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id) {
         return redirect('users');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id) {
-        $user = User::findOrFail($id); //Get user with specified id
-        $roles = Role::get(); //Get all roles
+        $user = User::findOrFail($id);
+        return view('admin.people.users.edit', compact('user'));
+    }
 
-        return view('users.edit', compact('user', 'roles')); //pass user and roles data to view
+    public function update(Request $request) {
+        $user = User::findOrFail($request->user_id);
+
+        $data  = $request->except('password_confirmation','_token');
+
+        if(is_null($request->password))
+            unset($data['password']);
+        else
+            $this->validate($request, [
+                'password'=>'required|min:6|confirmed'
+            ]);
+
+        if ($request->hasFile('profile_pic')) {
+            if($request->file('profile_pic')->isValid()) {
+                $file = $request->file('profile_pic');
+                $data['profile_pic'] = str_slug($request->user_name).'-'.time() . '.' . $file->getClientOriginalExtension();
+                $request->file('profile_pic')->move("uploads/users", $data['profile_pic']);
+                File::delete("uploads/users/".$user->profile_pic);
+            }
+        }
+
+
+        $user = $user->update($data);
+
+        if($user){
+            session()->flash('app_message', 'User Updated successfully!');
+            return redirect()->route('people.users.index');
+        }
+        else{
+            session()->flash('app_error', 'Some thing went wrong!');
+            return redirect()->back();
+        }
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
-        $user = User::findOrFail($id); //Get role specified by id
 
-        //Validate name, email and password fields
-        $this->validate($request, [
-            'name'=>'required|max:120',
-            'email'=>'required|email|unique:users,email,'.$id,
-            'password'=>'required|min:6|confirmed'
-        ]);
-        $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
-        $roles = $request['roles']; //Retreive all roles
-        $user->fill($input)->save();
+    public function delete($id) {
 
-        if (isset($roles)) {
-            $user->roles()->sync($roles);  //If one or more role is selected associate user to roles
+        if($id==Auth::id()){
+            session()->flash('app_warning', 'you cannot delete yourself');
+            return redirect()->back();
         }
-        else {
-            $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
-        }
-        return redirect()->route('users.index')
-            ->with('flash_message',
-                'User successfully edited.');
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id) {
-        //Find a user with a given id and delete
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')
-            ->with('flash_message',
-                'User successfully deleted.');
+        session()->flash('app_message', 'User Deleted successfully!');
+        return redirect()->back();
     }
 }

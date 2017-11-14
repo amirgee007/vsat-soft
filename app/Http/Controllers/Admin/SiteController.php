@@ -89,7 +89,6 @@ class SiteController extends Controller
             $destinationPath = public_path() . $folderName;
             $safeName = $name.'-'.str_random(10) . '.' . $extension;
 
-
             File::delete($destinationPath.$unlink);
             $file->move($destinationPath, $safeName);
             return $safeName;

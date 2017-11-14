@@ -94,6 +94,8 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
     # People Management
     Route::group(array('prefix' => 'people'), function () {
 
+     ////////////////////////////////////////Clients/////////////////////////////   /
+
         Route::get('/clients', [
             'as' => 'people.clients.index',
             'uses' => 'ClientsController@index'
@@ -123,7 +125,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'as' => 'people.clients.updateClient',
             'uses' => 'ClientsController@update'
         ]);
-
+/////////////////////////////////////////Supporrt Stafff////////////////////
 
         Route::get('/support-staff', [
             'as' => 'people.supportStaff.index',
@@ -140,22 +142,45 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'SupportStaffController@editStaff'
         ]);
 
+//////////////////////////////////////////////USERS//////////////////////////
         Route::get('/users', [
             'as' => 'people.users.index',
             'uses' => 'UserController@index'
         ]);
-        //not in use for now :)
+
+
         Route::get('/create-user', [
             'as' => 'people.users.createUser',
-            'uses' => 'UserController@createUser'
+            'uses' => 'UserController@create'
         ]);
+
+        Route::post('/create-user/store', [
+            'as' => 'people.users.store',
+            'uses' => 'UserController@store'
+        ]);
+
+        Route::post('/create-user/update', [
+            'as' => 'people.users.update',
+            'uses' => 'UserController@update'
+        ]);
+
+
+        Route::get('/edit-user/{id}', [
+            'as' => 'people.user.edit',
+            'uses' => 'UserController@edit'
+        ])->where('id', '[0-9]+');
+
+
+        Route::get('/delete-user/{id}', [
+            'as' => 'people.user.delete',
+            'uses' => 'UserController@delete'
+        ])->where('id', '[0-9]+');
+
 
         Route::post('/profile-update', [
             'as' => 'user.profile-update',
             'uses' => 'UserController@profileUpdate'
         ]);
-
-
 
     });
 
