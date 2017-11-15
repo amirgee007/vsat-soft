@@ -48,46 +48,44 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Site Address Auto</label>
                 <span class="col-sm-10">
-                    <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
+                    <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text">
                 </span>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
-
                 <div class="col-sm-10">
-
                     <label class="col-sm-2 control-label">Street</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$site->street}}" id="street_number"></input>
+                        <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$site->street}}" id="street_number">
                     </span>
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$site->area}}" id="route"></input>
+                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$site->area}}" id="route">
                     </span>
                     <label class="col-sm-2 col-xs-3 control-label">City</label>
                     <div class="col-sm-4 col-xs-3">
-                        <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$site->city}}"></input>
+                        <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$site->city}}">
                     </div>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$site->state}}" id="administrative_area_level_1"></input>
+                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$site->state}}" id="administrative_area_level_1">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                         <input class="form-control field" name="zip_code" value="{{@$site->zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+                         <input class="form-control field" name="zip_code" value="{{@$site->zip_code}}" placeholder="Zip Code" id="postal_code">
                     </span>
                     <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input class="form-control field" name="country" placeholder="country" value="{{@$site->country}}" id="country"></input>
-                    </div>
-                    <label class="col-sm-2 col-xs-3 control-label">Latitude</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}" id="longitude"></input>
+                        <input class="form-control field" name="country" placeholder="country" value="{{@$site->country}}" id="country">
+                   </span>
+                    <label class="col-sm-2 control-label">Latitude</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}" id="longitude">
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Longitude</label>
+                    <label class="col-sm-2 control-label">Longitude</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Longitude" name="longitude" value="{{@$site->longitude}}" id="latitude"></input>
+                        <input required type="text" class="form-control" placeholder="Longitude" name="longitude" value="{{@$site->longitude}}" id="latitude">
                     </span>
                 </div>
             </div>
