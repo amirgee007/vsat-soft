@@ -3,7 +3,9 @@
 @section('pageTitle', 'My Profile')
 
 @section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+
+{{--    <link href="{{ asset('assets/dropify/dist/css/demo.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 
 @section('content')
@@ -26,11 +28,11 @@
                     <div class="profile-widget profile-widget-info">
                         <div class="panel-body">
                             <div class="col-lg-2 col-sm-2">
-                                <h4>{{$user->first_name.' ' .$user->last_name}}</h4>
+                                <h4>{{$user->first_name}}</h4>
                                 <div class="follow-ava">
-                                    <img src="{{asset('img/profile-widget-avatar.jpg')}}" alt="">
+                                    <img height="34px" width="34px" src="{{asset('uploads/users/'.$user->profile_pic)}}" alt="">
                                 </div>
-                                <h6>Administrator</h6>
+                                <h6>{{$user->user_name}}</h6>
                             </div>
                             <div class="col-lg-4 col-sm-4 follow-info">
                                 <table class="row">
@@ -127,7 +129,7 @@
                                     <section class="panel">
                                         <div class="panel-body bio-graph-info">
                                             <h1> Edit Profile</h1>
-                                            <form action="{{route('user.profile-update')}}" class="form-horizontal" role="form" method="post" >
+                                            <form action="{{route('user.profile-update')}}" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="user_id" value="{{$user->id}}">
 
@@ -180,10 +182,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label">Profile Image</label>
-                                                    <div class="col-lg-offset-2 col-lg-10">
-                                                        <img  src="{{asset('img/noimage.gif')}}" alt=""/>
-                                                        <input class="btn btn-default" type="file" name="profile_pic">
+                                                    <label class="col-lg-6 control-label">Profile Image</label>
+                                                    <div class="col-lg-offset-2 col-lg-6">
+                                                        <input id="input-file-now" type="file" @if(@$user->profile_pic) data-default-file="{{asset('uploads/users/'.$user->profile_pic)}}" @endif name="profile_pic" class="dropify"/>
+                                                        <br />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -221,13 +223,13 @@
 
 @section('footer_scripts')
 
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
 
     <script>
 
         $(function () {
 
-            //all jquery code here
+            $('.dropify').dropify();
         });
 
     </script>

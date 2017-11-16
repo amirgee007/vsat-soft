@@ -34,6 +34,8 @@ class ProfileFormPost extends FormRequest
             'email' => 'required|max:20',
             'cell_num' => 'required',
             'phone_num' => 'required',
+            'profile_pic' => 'required',
+
         ];
     }
 }

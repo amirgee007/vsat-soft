@@ -36,6 +36,7 @@ class UserController extends Controller
 
 
         if ($file = $request->file('profile_pic')) {
+
             $fileName = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension() ? : 'png';
             $folderName = '/uploads/users/';
