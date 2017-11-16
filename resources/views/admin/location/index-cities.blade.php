@@ -96,7 +96,7 @@
 
                     },
                     success: function() {
-                        toastr.success("Active status changed successfully.", "City Status");
+                        toastr.success("Selected City has been Changed.", "Info");
                     },
                     type: 'POST'
                 });

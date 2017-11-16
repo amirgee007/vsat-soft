@@ -87,7 +87,8 @@
 
                     },
                     success: function() {
-                        toastr.success("Active status changed successfully.", "Country Status");
+                        toastr.success("Selected Country has been Changed.", "Info");
+
                     },
                     type: 'POST'
                 });
