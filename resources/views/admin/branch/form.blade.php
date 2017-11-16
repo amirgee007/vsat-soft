@@ -89,10 +89,10 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-2 control-label">Branch Logo</label>
-    <div class="col-lg-offset-2 col-lg-10">
-        <img src="{{asset('img/noimage.gif')}}" alt=""/>
-        <input class="btn btn-default" type="file" name="branch_logo">
+    <label class="col-lg-6 control-label">Profile Image</label>
+    <div class="col-lg-offset-2 col-lg-6">
+        <input required id="input-file-now" type="file" @if(@$branch->branch_logo) data-default-file="{{asset('uploads/branches/'.$branch->branch_logo)}}" @endif name="branch_logo" class="dropify"/>
+        <br />
     </div>
 </div>
 <div class="form-group">

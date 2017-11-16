@@ -3,8 +3,6 @@
 @section('pageTitle', 'My Profile')
 
 @section('header_styles')
-
-{{--    <link href="{{ asset('assets/dropify/dist/css/demo.css') }}" rel="stylesheet" type="text/css"/>--}}
     <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 
