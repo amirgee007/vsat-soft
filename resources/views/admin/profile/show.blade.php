@@ -182,7 +182,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-6 control-label">Profile Image</label>
                                                     <div class="col-lg-offset-2 col-lg-6">
-                                                        <input required id="input-file-now" type="file" @if(@$user->profile_pic) data-default-file="{{asset('uploads/users/'.$user->profile_pic)}}" @endif name="profile_pic" class="dropify"/>
+                                                        <input id="input-file-now" type="file" @if(@$user->profile_pic) data-default-file="{{asset('uploads/users/'.$user->profile_pic)}}" @endif name="profile_pic" class="dropify"/>
                                                         <br />
                                                     </div>
                                                 </div>
