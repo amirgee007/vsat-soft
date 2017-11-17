@@ -10,8 +10,13 @@ class SupportStaff extends Model
     protected $primaryKey= 'support_staff_id';
     protected $guarded = [];
 
-    public function branches(){
+    public function branches()
+    {
         return $this->belongsToMany(Branch::class ,'branch_staff' ,'staff_id','branch_id');
-
+    }
+    public static function getMaxStaffId()
+    {
+        $nextStaff = self::max('support_staff_id');
+        return 'S-'.($nextStaff+1);
     }
 }

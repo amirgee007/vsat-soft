@@ -137,10 +137,25 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'SupportStaffController@createStaff'
         ]);
 
-        Route::get('/edit-staff', [
+        Route::post('/create-staff', [
+            'as' => 'people.supportStaff.store',
+            'uses' => 'SupportStaffController@store'
+        ]);
+
+        Route::get('/edit-staff/{id}', [
             'as' => 'people.supportStaff.editStaff',
             'uses' => 'SupportStaffController@editStaff'
+        ])->where('id', '[0-9]+');
+
+        Route::post('/edit-staff', [
+            'as' => 'people.supportStaff.updateStaff',
+            'uses' => 'SupportStaffController@update'
         ]);
+
+        Route::get('/delete-staff/{id}', [
+            'as' => 'people.supportStaff.delete',
+            'uses' => 'SupportStaffController@delete'
+        ])->where('id', '[0-9]+');
 
 //////////////////////////////////////////////USERS//////////////////////////
         Route::get('/users', [

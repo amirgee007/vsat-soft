@@ -1,6 +1,6 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'sample page')
+@section('pageTitle', 'SUPPORT STAFF')
 
 @section('header_styles')
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
@@ -13,7 +13,7 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-users"></i>SUPPORT STAFF MANAGEMENT</h3>
+                    <h3 class="page-header"><i class="fa fa-users"></i>SUPPORT STAFF MANAGEMENT [{{count($supportStaff)}}]</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="{{route('index.dashboard')}}">Home</a></li>
                         <li><i class="fa fa-users"></i>SUPPORT STAFF MANAGEMENT</li>
@@ -42,50 +42,45 @@
                             <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> S/N</th>
                             <th><i class="icon_profile"></i> Employee Name</th>
                             <th><i class="icon_calendar"></i> Created Date</th>
-                            <th><i class="icon_mail_alt"></i> Email</th>
+                            <th><i class="icon_mail_alt"></i>Country</th>
                             <th><i class="icon_mobile"></i> Cell</th>
                             <th><i class="icon_question"></i> Status</th>
                             <th><i class="icon_cogs"></i> Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="text-center">1</td>
-                            <td><a href="view_staff.html">Mahmood Ameen</a></td>
-                            <td><a href="view_staff.html">05-01-2017</a></td>
-                            <td><a href="view_staff.html">Mahmood@ics-technologies-mea.com</a></td>
-                            <td><a href="view_staff.html">(+971) (50) 333 3311</a></td>
-                            <td>
-                                <div class="btn-group col-sm-9 col-xs-12">
-                                    <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Active</a></div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_staff.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
-                                    <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="edit_staff.html"><i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-danger col-sm-4 col-xs-4 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td>Mohammad shankar</td>
-                            <td>01-02-2017</td>
-                            <td>Mohammad@ics-technologies-mea.com</td>
-                            <td>(+971) (50) 221 3211 </td>
-                            <td>
-                                <div class="btn-group col-sm-9 col-xs-12">
-                                    <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Active</a></div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#"><i class="fa fa-print"></i></a>
-                                    <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="#"><i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-danger col-sm-4 col-xs-4 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                        @forelse($supportStaff as $staff)
+                            <tr>
+                                <td class="text-center"> {{ $loop->iteration }} </td>
+                                <td><a href="#">{{ $staff->first_name }}</a></td>
+                                <td><a href="#">{{ $staff->created_at ? $staff->created_at->format('m-d-Y') : 'N/A' }}</a></td>
+                                <td><a href="#">{{ $staff->local_country }}</a></td>
+                                <td><a href="#">{{ $staff->cell_number }}</a></td>
+                                <td>
+                                    <div class="btn-group col-sm-10 col-xs-12">
+                                        <a class="btn btn-info btn-sm col-xs-12 disabled" href="#">
+                                            {{$staff->status == '1' ? 'Active' : 'De-active'}}
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
 
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('people.supportStaff.editStaff',$staff->support_staff_id)}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        {{--todo: sweet alert for all the confirmation boxes--}}
+
+                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="<?php echo e(route('people.supportStaff.delete', $staff->support_staff_id)); ?>" class="btn btn-danger col-sm-6 col-xs-6 text-center">
+                                            <i class="fa fa-close"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr><td colspan="12" style="text-align: center">No, Support Staff Found!</td></tr>
+                        @endforelse
                         </tbody>
                     </table>
                 </section>
