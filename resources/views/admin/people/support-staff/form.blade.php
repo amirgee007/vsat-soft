@@ -296,7 +296,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">Status</label>
     <div class="col-lg-10">
-        
+
         <select class="form-control m-bot15" name="status">
             <option value="1">Enable</option>
             <option value="0">Disable</option>
