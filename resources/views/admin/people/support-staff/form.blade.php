@@ -10,7 +10,7 @@
                 <label class="col-sm-2 col-xs-3 control-label" for="S-number">Staff ID Number</label>
                 <div class="col-sm-10 col-xs-9">
                     <input type="text" class="form-control" id="S-number" disabled
-                           value="{{@$staff->staff_id ?? $data['staff_no']}}">
+                           value="{{@$staff->staff_id ?? $staff_no}}">
                 </div>
             </div>
             <div class="form-group">
@@ -306,9 +306,26 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">Related User</label>
     <div class="col-lg-10">
-        <select class="form-control m-bot15">
-            <option>Mahmood</option>
-            <option>Mohammad</option>
+        <select id="related_user" name="" class="form-control m-bot15" multiple="multiple">
+            @foreach($users AS $user)
+                <option  value="{{$user->id}}">
+                    {{$user->first_name.' '.$user->last_name}}
+                </option>
+            @endforeach
         </select>
     </div>
 </div>
+@section('footer_scripts')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script>
+
+    $(function () {
+        $('#related_user').select2({
+            placeholder: "Select Related Users",
+            width: '100%',
+            allowClear: true
+        });
+    });
+</script>
+@stop

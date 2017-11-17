@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Models\SupportStaff;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,9 @@ class SupportStaffController extends Controller
 
     public function createStaff()
     {
-        $data['staff_no'] = SupportStaff::getMaxStaffId();
-        return view('admin.people.support-staff.create', compact('data'));
+        $staff_no = SupportStaff::getMaxStaffId();
+        $users = User::all(['id','first_name', 'last_name']);
+        return view('admin.people.support-staff.create', compact('staff_no', 'users'));
     }
 
     public function store(Request $request)
@@ -54,7 +56,8 @@ class SupportStaffController extends Controller
     public function editStaff($id)
     {
         $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id])->first();
-        return view('admin.people.support-staff.edit', compact('staff'));
+        $users = User::all(['id','first_name', 'last_name']);
+        return view('admin.people.support-staff.edit', compact('staff', 'users'));
     }
 
     public function update(Request $request)
