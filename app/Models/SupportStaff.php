@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class SupportStaff extends Model
@@ -18,5 +19,10 @@ class SupportStaff extends Model
     {
         $nextStaff = self::max('support_staff_id');
         return 'S-'.($nextStaff+1);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class ,'support_staff_user' ,'support_id','user_id' );
     }
 }

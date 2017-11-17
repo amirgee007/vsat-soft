@@ -41,9 +41,11 @@ class SupportStaffController extends Controller
         $input['visa_staff_photo'] = $fileName;
         $input['added_by'] = Auth::user()->id;
         $input['staff_id'] = SupportStaff::getMaxStaffId();
+        unset($input['related_user']);
         $staff = $staff->create($input);
         if ($staff)
         {
+            $staff->users()->attach($request->related_user);
             if($isUploadAble)
             {
                 $request->file('visa_staff_photo')->move("uploads/support_staff", $fileName);

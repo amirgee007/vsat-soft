@@ -306,7 +306,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">Related User</label>
     <div class="col-lg-10">
-        <select id="related_user" name="" class="form-control m-bot15" multiple="multiple">
+        <select id="related_user" name="related_user" class="form-control m-bot15" multiple="multiple">
             @foreach($users AS $user)
                 <option  value="{{$user->id}}">
                     {{$user->first_name.' '.$user->last_name}}
