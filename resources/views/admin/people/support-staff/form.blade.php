@@ -303,7 +303,7 @@
             <div class="form-group">
                 <label class="col-lg-6 control-label">Staff Photo</label>
                 <div class="col-lg-offset-2 col-lg-6">
-                    <input required id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @endif name="visa_staff_photo" class="dropify"/>
+                    <input  id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @endif name="visa_staff_photo" class="dropify"/>
                     <br />
                 </div>
             </div>
@@ -334,3 +334,4 @@
         </select>
     </div>
 </div>
+

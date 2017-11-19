@@ -1,6 +1,6 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'Create Branch')
+@section('pageTitle', 'Edit Staff')
 
 @section('header_styles')
     <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
