@@ -190,19 +190,19 @@
                 <div class="col-sm-10 col-xs-9">
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Single</label>
-                        <input  type="radio"  class="" name="marital_status"  value="single">
+                        <input @if(@$staff->date_of_birth=='single') checked @endif type="radio" class="" name="marital_status"  value="single">
                     </div>
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Married</label>
-                        <input  type="radio" class="" name="marital_status" value="married">
+                        <input  @if(@$staff->date_of_birth=='married') checked @endif type="radio" class="" name="marital_status" value="married">
                     </div>
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Widow</label>
-                        <input  type="radio" class="" name="marital_status" value="widow">
+                        <input @if(@$staff->date_of_birth=='widow') checked @endif type="radio" class="" name="marital_status" value="widow">
                     </div>
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Separated</label>
-                        <input  type="radio" class="" name="marital_status" value="separated">
+                        <input @if(@$staff->date_of_birth=='separated') checked @endif type="radio" class="" name="marital_status" value="separated">
                     </div>
                 </div>
             </div>
@@ -329,7 +329,6 @@
             @foreach($users AS $user)
                 <option  @if(array_key_exists($user->id , $relatedUser)) selected @endif  value="{{$user->id}}">
                     {{$user->first_name.' '.$user->last_name}}
-
                 </option>
             @endforeach
         </select>
