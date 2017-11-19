@@ -60,12 +60,13 @@ class BranchController extends Controller
         $staffs = SupportStaff::all();
         $related_staff = $branch->relatedStaff();
 
-        if (!is_null($branch)){
+        if (!is_null($branch))
+        {
             return view('admin.branch.edit' , compact('branch' ,'related_staff','staffs'));
-        } else {
+        } else
+        {
             session()->flash('app_warning', 'No, Branch Found!');
             return redirect()->route('branch.index');
-
         }
     }
 
