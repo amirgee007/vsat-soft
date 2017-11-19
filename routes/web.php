@@ -81,7 +81,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
     });
 
     # profile Management
-    Route::group(array('prefix' => 'profile'), function () {
+    Route::group(array('prefix' => 'my-profile'), function () {
 
         Route::get('/', [
             'as' => 'profile.show',

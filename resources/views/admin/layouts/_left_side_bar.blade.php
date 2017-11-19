@@ -9,7 +9,8 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="sub-menu">
+
+            <li class="sub-menu {{Request::is('location/*') ? 'active' : ''}} ">
                 <a href="javascript:;" class="">
                     <i class="fa fa-map"></i>
                     <span>Locations</span>
@@ -22,7 +23,7 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="" >
                 <a class="" href="{{route('profile.show')}}">
                     <i class="icon_profile"></i>
                     <span>My Profile</span>
@@ -40,7 +41,7 @@
                     <li><a class="" href="{{route('people.users.index')}}">Users</a></li>
                 </ul>
             </li>
-            <li>
+            <li class="{{Request::is('branch/*') ? 'active' : ''}}">
                 <a class="" href="{{route('branch.index')}}">
                     <i class="icon_flowchart_alt"></i>
                     <span>Branches</span>
