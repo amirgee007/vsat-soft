@@ -19,78 +19,86 @@
                     <input name="org_name" value="{{@$client->org_name}}" type="text" class="form-control" id="O-name" placeholder="Organization Name">
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-sm-2 col-xs-3 control-label">Client Address</label>
-                <div class="col-sm-10 col-xs-9">
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <select name="country" value="{{@$client->country}}" class="form-control m-bot15 country">
-                        </select>
-                    </div>
+                <label class="col-sm-2 control-label">Branch Address Auto</label>
+                <span class="col-sm-10">
+        <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
+    </span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label">Street</label>
+                    <span class="col-sm-4">
+            <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$branch->street}}" id="street_number"></input>
+        </span>
+                    <label class="col-sm-2 control-label">Area</label>
+                    <span class="col-sm-4">
+            <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$branch->area}}" id="route"></input>
+        </span>
                     <label class="col-sm-2 col-xs-3 control-label">City</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select name="city"  value="{{@$client->city}}" class="form-control m-bot15 city">
-                        </select>
+                        <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$branch->city}}"></input>
                     </div>
-                    <label class="col-sm-2 col-xs-3 control-label">Street</label>
-                    <span class="col-sm-10 col-xs-9">
-               <input name="street" value="{{@$client->street}}" type="text" class="form-control"
-                      placeholder="Street">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Area</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="area" value="{{@$client->area}}" type="text" class="form-control" placeholder="Area">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">State</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="state" value="{{@$client->state}}" type="text" class="form-control" placeholder="State">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Zip Code</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="zip_code" value="{{@$client->zip_code}}" type="text" class="form-control"
-                      placeholder="Zip Code">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">P.O.Box</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="po_box" value="{{@$client->po_box}}" type="text" class="form-control"
-                      placeholder="P.O.Box">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Office Tel</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="official_tel" value="{{@$client->official_tel}}" type="tel" class="form-control"
-                      placeholder="Office Tel">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Fax No</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="fax_no" value="{{@$client->fax_no}}" type="tel" class="form-control" placeholder="Fax No">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Email</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="email" value="{{@$client->email}}" type="email" class="form-control"
-                      placeholder="Email">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Website</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="website" value="{{@$client->website}}" type="text" class="form-control"
-                      placeholder="Website">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Working Days</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="working_days" value="{{@$client->working_days}}" type="text" class="form-control"
-                      placeholder="Working Days">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Working Times</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="working_times" value="{{@$client->working_times}}" type="tel" class="form-control"
-                      placeholder="Working Times">
-               </span>
+                    <label class="col-sm-2 control-label">State</label>
+                    <span class="col-sm-4">
+            <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$branch->state}}" id="administrative_area_level_1"></input>
+        </span>
+                    <label class="col-sm-2 control-label">Zip Code</label>
+                    <span class="col-sm-4">
+            <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+        </span>
+                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <input class="form-control field" name="country" placeholder="country" value="{{@$branch->country}}" id="country"></input>
+                    </div>
+
+                    <input type="hidden" placeholder="Latitude"  id="longitude"></input>
+
+                    <input type="hidden"  placeholder="Longitude" id="latitude"></input>
+
+                    <label class="col-sm-2 control-label">P.O.Box</label>
+                    <span class="col-sm-4">
+      <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
+      </span>
+                    <label class="col-sm-2 control-label">Office Tel</label>
+                    <span class="col-sm-4">
+      <input type="tel" class="form-control" placeholder="Office Tel" name="office_tel"
+             value="{{ @$branch->office_tel }}">
+      </span>
+                    <label class="col-sm-2 control-label">Fax No</label>
+                    <span class="col-sm-4">
+      <input type="tel" class="form-control" placeholder="Fax No" name="fax_no" value="{{ @$branch->fax_no }}">
+      </span>
+                    <label class="col-sm-2 control-label">Email</label>
+                    <span class="col-sm-4">
+      <input type="email" class="form-control" placeholder="Email" name="email" value="{{ @$branch->email }}">
+      </span>
+                    <label class="col-sm-2 control-label">Website</label>
+                    <span class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Website" name="website" value="{{ @$branch->website }}">
+      </span>
+                    <label class="col-sm-2 control-label">Working Days</label>
+                    <span class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Working Days" name="working_days"
+             value="{{ @$branch->working_days }}">
+      </span>
+                    <label class="col-sm-2 control-label">Working Times</label>
+                    <span class="col-sm-4">
+      <input type="tel" class="form-control" placeholder="Working Times" name="working_times"
+             value="{{ @$branch->working_times }}">
+      </span>
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-lg-2 control-label">Client Logo</label>
-                <div class="col-lg-offset-2 col-lg-10">
-                    <img src="img/noimage.gif" alt=""/>
-                    <input class="btn btn-default" type="file" name="client_logo">
+                <label class="col-lg-6 control-label">Client Logo</label>
+                <div class="col-lg-offset-2 col-lg-6">
+                    <input required id="input-file-now" type="file" @if(@$client->client_logo) data-default-file="{{asset('uploads/clients/'.$client->client_logo)}}" @endif name="client_logo" class="dropify"/>
+                    <br />
                 </div>
             </div>
         </div>
@@ -350,11 +358,12 @@
 <div class="form-group">
     <section class="panel">
         <div class="panel-body">
-            <label class="col-lg-2 col-xs-3 control-label">Add User</label>
-            <div class="col-lg-8 col-xs-7">
-                <select name="" class="form-control m-bot15" id="related_user">
-                    <option>Mahmood</option>
-                    <option>Mohammad</option>
+            <label class="col-lg-2 col-xs-3 control-label" for="related_user">Add Users</label>
+            <div class="col-lg-10">
+                <select id="related_user" name="related_user[]" class="form-control m-bot15" multiple="multiple">
+                    @foreach($users as $user)
+                        <option {{array_key_exists($user->user_id , $related_user) ? 'selected' : ''}} value="{{$user->user_id}}">{{$user->username}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

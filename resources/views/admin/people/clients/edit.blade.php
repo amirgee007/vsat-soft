@@ -1,9 +1,11 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'Create ')
+@section('pageTitle', 'Create Client')
 
 @section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
+
 @stop
 
 @section('content')
@@ -48,14 +50,25 @@
 
 @section('footer_scripts')
 
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeU39v4go-9ToGgad0c4ZXHDj-k2XO6tc&libraries=places"></script>
+    <link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
+    <!--todo: remove CDNs-->
+
+    @include('admin.layouts.partials.autocompleteAddres')
 
     <script>
 
         $(function () {
+            $('#related_user').select2({
+                placeholder: "Select Users",
+                width: '100%',
+                allowClear: true
+            });
 
-            //all jquery code here
+            $('.dropify').dropify();
+
         });
-
     </script>
 @stop

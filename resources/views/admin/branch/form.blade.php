@@ -95,6 +95,7 @@
         <br />
     </div>
 </div>
+
 <div class="form-group">
     <label class="col-lg-2 control-label">Status</label>
     <div class="col-lg-10">

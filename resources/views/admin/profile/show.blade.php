@@ -144,9 +144,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label">Country</label>
+                                                    <label class="col-lg-2 control-label">Country (autocomplete)</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" name="country" value="{{$user->country}}" class="form-control" id="c-name" placeholder="Country">
+                                                        <input required type="text" name="country" value="{{$user->country}}" class="form-control" id="c-name" placeholder="Country">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -158,7 +158,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Profession</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" name="profession" value="{{$user->profession}}" class="form-control" id="occupation" placeholder="Profession">
+                                                        <input required type="text" name="profession" value="{{$user->profession}}" class="form-control" id="occupation" placeholder="Profession">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -170,13 +170,13 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Cell</label>
                                                     <div class="col-lg-6">
-                                                        <input type="number" name="cell_num" value="{{$user->cell_num}}" class="form-control" id="cell" placeholder="Cell">
+                                                        <input required type="number" name="cell_num" value="{{$user->cell_num}}" class="form-control" id="cell" placeholder="Cell">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Phone</label>
                                                     <div class="col-lg-6">
-                                                        <input type="number" name="phone_num" value="{{$user->phone_num}}" class="form-control" id="phone" placeholder="Phone">
+                                                        <input required type="number" name="phone_num" value="{{$user->phone_num}}" class="form-control" id="phone" placeholder="Phone">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

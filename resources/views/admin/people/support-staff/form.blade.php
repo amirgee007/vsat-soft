@@ -316,8 +316,8 @@
     </div>
 </div>
 @section('footer_scripts')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
+<script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
 <script>
 
     $(function () {

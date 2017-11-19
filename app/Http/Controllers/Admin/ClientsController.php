@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,9 @@ class ClientsController extends Controller
     public function createClients()
     {
         $data['client_no'] = Client::getMaxClientId();
-        return view('admin.people.clients.create', compact('data'));
+        $users = User::all(['id','first_name', 'last_name']);
+        $related_user = [];
+        return view('admin.people.clients.create', compact('data' ,'users' ,'related_user'));
     }
 
     public function save(Request $request)
