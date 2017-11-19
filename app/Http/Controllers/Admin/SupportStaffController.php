@@ -13,8 +13,8 @@ class SupportStaffController extends Controller
     public function index()
     {
         $supportStaff = SupportStaff::where('added_by', Auth::user()->id)
-                 ->orderBy('support_staff_id', 'desc')
-                 ->get();
+            ->orderBy('support_staff_id', 'desc')
+            ->get();
         return view('admin.people.support-staff.index', compact('supportStaff'));
     }
 
@@ -66,6 +66,7 @@ class SupportStaffController extends Controller
 
     public function update(Request $request)
     {
+
         $staffId = $request->staff_no;
         $isUploadAble = false;
         $staff = SupportStaff::where(['support_staff_id'=>$staffId, 'added_by' => Auth::user()->id])->first();
@@ -82,28 +83,30 @@ class SupportStaffController extends Controller
             }
             $input['visa_staff_photo'] = $fileName;
             unset($input['_token'], $input['staff_no'], $input['related_user']);
-            if ($staff->update($input)):
+            if ($staff->update($input)) {
+                $staff->users()->sync($request->related_user);
                 if ($isUploadAble) {
-                    $staff->users()->sync($request->related_user);
+                    // todo: first delete previous then store new
                     $request->file('visa_staff_photo')->move("uploads/support_staff", $fileName);
                 }
-                    session()->flash('app_message', 'Staff Updated Successfully!');
-            else:
+
+                session()->flash('app_message', 'Staff Updated Successfully!');
+
+            }else{
                 session()->flash('app_warning', 'An error occurred, Please try again later');
-            endif;
-            return redirect()->route('people.supportStaff.index');
+            }
         }
-        session()->flash('app_warning', 'No, Staff Found!');
+        else{
+            session()->flash('app_warning', 'No, Staff Found!');
+        }
+
         return redirect()->route('people.supportStaff.index');
     }
     public function delete ($id)
     {
-        $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id])->first();
-        if($staff->delete()) {
-
-            $staff->users()->detach();
+        $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id]);
+        if($staff->delete())
             session()->flash('app_message', 'Staff Deleted Successfully!');
-        }
         else
             session()->flash('app_warning', 'Staff Not Deleted!');
         return redirect()->route('people.supportStaff.index');

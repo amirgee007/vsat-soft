@@ -1,6 +1,6 @@
 @extends('admin/layouts/default')
 
-@section('pageTitle', 'Create ')
+@section('pageTitle', 'EDIT STAFF')
 
 
 @section('header_styles')
@@ -31,7 +31,7 @@
                             <h1>Update Staff</h1>
                             <form class="form-horizontal" role="form" action="{{ route('people.supportStaff.updateStaff') }}" method="post" enctype="multipart/form-data">
                                 @include('admin.people.support-staff.form')
-                                <input type="hidden" name="client_no" value="{{$staff->client_id}}">
+                                <input type="hidden" name="staff_no" value="{{$staff->support_staff_id}}">
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10 col-xs-9">
                                         <button type="submit" class="btn btn-primary">Update</button>
