@@ -48,92 +48,107 @@
                </span>
                 </div>
             </div>
+            {{--       local Address           --}}
             <div class="form-group">
-                <label class="col-sm-2 col-xs-3 control-label">Local Address</label>
-                <div class="col-sm-10 col-xs-9">
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <select class="form-control m-bot15 country" name="local_country">
-                        </select>
-                    </div>
+                <label class="col-sm-2 control-label">Local Address Auto</label>
+                <span class="col-sm-10">
+                    <input id="autocomplete" onFocus="geolocate()" required placeholder="Street ,City ,State ,Country Autocomplete" class="form-control" type="text"></input>
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label">Street</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Street" name="local_street" value="{{@$staff->local_street}}" id="street_number"></input>
+                    </span>
+                    <label class="col-sm-2 control-label">Area</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Area" name="local_area" value="{{@$staff->local_area}}" id="route"></input>
+                    </span>
                     <label class="col-sm-2 col-xs-3 control-label">City</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select class="form-control m-bot15 city" name="local_city">
-                        </select>
+                        <input required type="text" class="form-control" placeholder="City" name="local_city" id="locality" value="{{@$staff->local_city}}"></input>
                     </div>
-                    <label class="col-sm-2 col-xs-3 control-label">Street</label>
-                    <span class="col-sm-10 col-xs-9">
-               <input name="local_street" value="{{@$staff->local_street}}" type="text" class="form-control" placeholder="Street">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Area</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="local_area" value="{{@$staff->local_area}}" type="text" class="form-control" placeholder="Area">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">State</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="local_state" value="{{@$staff->local_state}}" type="text" class="form-control" placeholder="State">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Zip Code</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="local_zip_code" value="{{@$staff->local_zip_code}}" type="text" class="form-control" placeholder="Zip Code">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">P.O.Box</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="local_po_box" value="{{@$staff->local_po_box}}" type="text" class="form-control" placeholder="P.O.Box">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Office Tel</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="local_official_tel" value="{{@$staff->local_official_tel}}" type="tel" class="form-control" placeholder="Office Tel">
-               </span>
+                    <label class="col-sm-2 control-label">State</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="State" name="local_state" value="{{@$staff->local_state}}" id="administrative_area_level_1"></input>
+                    </span>
+                    <label class="col-sm-2 control-label">Zip Code</label>
+                    <span class="col-sm-4">
+                        <input class="form-control field" name="local_zip_code" value="{{@$staff->local_zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+                    </span>
+                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <input class="form-control field" name="local_country" placeholder="country" value="{{@$staff->local_country}}" id="country"></input>
+                    </div>
+
+                    <label class="col-sm-2 control-label">P.O.Box</label>
+                    <span class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="local_po_box" value="{{ @$staff->local_po_box }}">
+                    </span>
+                    <label class="col-sm-2 control-label">Office phone</label>
+                    <span class="col-sm-4">
+                        <input type="tel" class="form-control" placeholder="Office phone" name="local_official_tel" value="{{ @$staff->local_official_tel }}">
+                    </span>
+
                     <label class="col-sm-2 col-xs-3 control-label">Home Tel</label>
                     <span class="col-sm-4 col-xs-3">
-               <input name="local_home_tel" value="{{@$staff->local_home_tel}}" type="tel" class="form-control" placeholder="Home Tel">
-               </span>
+                        <input name="local_home_tel" value="{{@$staff->local_home_tel}}" type="tel" class="form-control" placeholder="Home Telephone">
+                    </span>
                 </div>
+            </div>
+
+            {{--       Permnt Address           --}}
+            <div class="form-group" id="addressautocomplete2">
+                <label class="col-sm-2 control-label">Permanent Address (Abroad)</label>
+                <span class="col-sm-10">
+                    <input id="autocomplete2" onFocus="geolocate()" placeholder="Street ,City ,State ,Country Autocomplete" class="form-control" type="text"></input>
+                </span>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 col-xs-3 control-label">Permanent Address (Abroad)</label>
-                <div class="col-sm-10 col-xs-9">
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <select class="form-control m-bot15 country" name="permanent_country">
-                        </select>
-                    </div>
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label">Street</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Street" name="permanent_street" value="{{@$staff->permanent_street}}" id="street_number2"></input>
+                    </span>
+                    <label class="col-sm-2 control-label">Area</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="Area" name="permanent_area" value="{{@$staff->permanent_area}}" id="route2"></input>
+                    </span>
                     <label class="col-sm-2 col-xs-3 control-label">City</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select class="form-control m-bot15 city" name="permanent_city">
-                        </select>
+                        <input required type="text" class="form-control" placeholder="City" name="permanent_city" id="locality2" value="{{@$staff->permanent_city}}"></input>
                     </div>
-                    <label class="col-sm-2 col-xs-3 control-label">Street</label>
-                    <span class="col-sm-10 col-xs-9">
-               <input name="permanent_street" value="{{@$staff->permanent_street}}" type="text" class="form-control" placeholder="Street">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Area</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="permanent_area" value="{{@$staff->permanent_area}}" type="text" class="form-control" placeholder="Area">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">State</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="permanent_state" value="{{@$staff->permanent_state}}" type="text" class="form-control" placeholder="State">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Zip Code</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="permanent_zip_code" value="{{@$staff->permanent_zip_code}}" type="text" class="form-control" placeholder="Zip Code">
-               </span>
-                    <label class="col-sm-2 col-xs-3 control-label">P.O.Box</label>
-                    <span class="col-sm-4 col-xs-3">
-               <input name="permanent_po_box" value="{{@$staff->permanent_po_box}}" type="text" class="form-control" placeholder="P.O.Box">
-               </span>
+                    <label class="col-sm-2 control-label">State</label>
+                    <span class="col-sm-4">
+                        <input required type="text" class="form-control" placeholder="State" name="permanent_state" value="{{@$staff->permanent_state}}" id="administrative_area_level_12"></input>
+                    </span>
+                    <label class="col-sm-2 control-label">Zip Code</label>
+                    <span class="col-sm-4">
+                        <input class="form-control field" name="permanent_zip_code" value="{{@$staff->permanent_zip_code}}" placeholder="Zip Code" id="postal_code2"></input>
+                    </span>
+                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <input class="form-control field" name="permanent_country" placeholder="country" value="{{@$staff->permanent_country}}" id="country2"></input>
+                    </div>
+
+                    <label class="col-sm-2 control-label">P.O.Box</label>
+                    <span class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="permanent_po_box" value="{{ @$staff->permanent_po_box }}">
+                    </span>
                     <label class="col-sm-2 col-xs-3 control-label">Contact Name</label>
                     <span class="col-sm-4 col-xs-3">
-               <input name="contact_name" value="{{@$staff->contact_name}}" type="text" class="form-control" placeholder="Contact Name">
-               </span>
+                        <input name="contact_name" value="{{@$staff->contact_name}}" type="text" class="form-control" placeholder="Contact Name">
+                    </span>
                     <label class="col-sm-2 col-xs-3 control-label">Emergency Number</label>
                     <span class="col-sm-4 col-xs-3">
-               <input name="emergency_number" value="{{@$staff->emergency_number}}" type="tel" class="form-control" placeholder="Emergency Number">
-               </span>
+                        <input name="emergency_number" value="{{@$staff->emergency_number}}" type="tel" class="form-control" placeholder="Emergency Number">
+                    </span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label" for="S-designation">Designation</label>
                 <div class="col-sm-10 col-xs-9">
@@ -146,6 +161,7 @@
                     <input name="qualification" value="{{@$staff->qualification}}" type="text" class="form-control" id="S-qualification" placeholder="Qualification">
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label" for="S-gender">Gender</label>
                 <div class="col-sm-10 col-xs-9">
@@ -155,6 +171,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">Birth Details</label>
                 <div class="col-sm-10 col-xs-9">
@@ -282,13 +299,15 @@
                </span>
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-lg-2 control-label">Staff Photo</label>
-                <div class="col-lg-offset-2 col-lg-10">
-                    <img src="{{  (@$staff->visa_staff_photo) ?  asset('uploads/support_staff/'.$staff->visa_staff_photo.'')  :'img/noimage.gif' }}" alt="" width="300px" height="250px "/>
-                    <input name="visa_staff_photo" class="btn btn-default" type="file" >
+                <label class="col-lg-6 control-label">Staff Photo</label>
+                <div class="col-lg-offset-2 col-lg-6">
+                    <input required id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @endif name="visa_staff_photo" class="dropify"/>
+                    <br />
                 </div>
             </div>
+
         </div>
     </section>
 </div>
@@ -307,25 +326,11 @@
     <label class="col-lg-2 control-label">Related User</label>
     <div class="col-lg-10">
         <select id="related_user" name="related_user" class="form-control m-bot15" multiple="multiple">
-            @foreach($users AS $user)
+            @foreach($users as $user)
                 <option  value="{{$user->id}}">
-                    {{$user->first_name.' '.$user->last_name}}
+                    {{$user->last_name}}
                 </option>
             @endforeach
         </select>
     </div>
 </div>
-@section('footer_scripts')
-<link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
-<script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
-<script>
-
-    $(function () {
-        $('#related_user').select2({
-            placeholder: "Select Related Users",
-            width: '100%',
-            allowClear: true
-        });
-    });
-</script>
-@stop

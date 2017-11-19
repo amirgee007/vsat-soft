@@ -88,6 +88,7 @@
       </span>
     </div>
 </div>
+
 <div class="form-group">
     <label class="col-lg-6 control-label">Profile Image</label>
     <div class="col-lg-offset-2 col-lg-6">
