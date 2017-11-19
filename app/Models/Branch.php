@@ -26,10 +26,9 @@ class Branch extends Model
         return $this->belongsToMany(SupportStaff::class ,'branch_staff' ,'branch_id','staff_id' );
     }
 
-    public function relatedStaff(){
-
+    public function relatedStaff()
+    {
       return $this->staffs->pluck('first_name' ,'support_staff_id')->toArray();
-
     }
 
 

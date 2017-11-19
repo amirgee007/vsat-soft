@@ -59,7 +59,8 @@ class SupportStaffController extends Controller
     {
         $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id])->first();
         $users = User::all(['id','first_name', 'last_name']);
-        return view('admin.people.support-staff.edit', compact('staff', 'users'));
+        $relatedUser = $staff->relatedUser();
+        return view('admin.people.support-staff.edit', compact('staff', 'users', 'relatedUser'));
     }
 
     public function update(Request $request)
@@ -79,11 +80,13 @@ class SupportStaffController extends Controller
                 }
             }
             $input['visa_staff_photo'] = $fileName;
-            unset($input['_token'], $input['staff_no']);
+            unset($input['_token'], $input['staff_no'], $input['related_user']);
             if ($staff->update($input)):
-                if($isUploadAble)
+                if ($isUploadAble) {
+                    $staff->users()->sync($request->related_user);
                     $request->file('visa_staff_photo')->move("uploads/support_staff", $fileName);
-                session()->flash('app_message', 'Staff Updated Successfully!');
+                }
+                    session()->flash('app_message', 'Staff Updated Successfully!');
             else:
                 session()->flash('app_warning', 'An error occurred, Please try again later');
             endif;

@@ -25,4 +25,9 @@ class SupportStaff extends Model
     {
         return $this->belongsToMany(User::class ,'support_staff_user' ,'support_id','user_id' );
     }
+
+    public function relatedUser()
+    {
+        return $this->users()->pluck('first_name' ,'id')->toArray();
+    }
 }
