@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Local Address Auto</label>
                 <span class="col-sm-10">
-                    <input id="autocomplete" onFocus="geolocate()" required placeholder="Street ,City ,State ,Country Autocomplete" class="form-control" type="text"></input>
+                    <input id="autocomplete" onFocus="geolocate()" placeholder="Street ,City ,State ,Country Autocomplete" class="form-control" type="text"></input>
                 </span>
             </div>
             <div class="form-group">
