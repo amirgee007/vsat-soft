@@ -67,8 +67,7 @@
                 </a>
                 <ul class="sub">
                     <li><a class="" href="#">Stock</a></li>
-                    <li><a class="" href="tools_equipments.html">Tools & Equipments</a></li>
-                    <li><a class="" href="other_tools.html">Other Tools</a></li>
+                    <li><a class="" href="{{route('equipments.index')}}">Tools & Equipments</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

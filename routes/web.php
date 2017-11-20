@@ -275,12 +275,41 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'as' => 'ticket.index',
             'uses' => 'TicketController@index'
         ]);
-
-
-
-
     });
 
+    #TOOLS & EQUIPMENT Management
+    Route::group(array('prefix' => 'equipments'), function () {
+
+        Route::get('/', [
+            'as' => 'equipments.index',
+            'uses' => 'EquipmentController@index'
+        ]);
+
+        Route::get('/add-tool', [
+            'as' => 'equipments.tools.create',
+            'uses' => 'EquipmentController@create'
+        ]);
+
+        Route::post('/add-tool', [
+            'as' => 'equipments.tools.store',
+            'uses' => 'EquipmentController@store'
+        ]);
+
+        Route::get('/edit-tool/{id}', [
+            'as' => 'equipments.tools.edit',
+            'uses' => 'EquipmentController@edit'
+        ])->where('id', '[0-9]+');
+
+        Route::post('/edit-tool', [
+            'as' => 'equipments.tools.update',
+            'uses' => 'EquipmentController@update'
+        ]);
+
+        Route::get('/delete-tool/{id}', [
+            'as' => 'equipments.tools.delete',
+            'uses' => 'EquipmentController@delete'
+        ])->where('id', '[0-9]+');
+    });
 
 });
 

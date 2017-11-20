@@ -16,9 +16,12 @@ class CreateToolsTable extends Migration
         Schema::create('tools', function (Blueprint $table) {
 
             $table->increments('tool_id');
-            $table->integer('description');
-            $table->integer('image');
+            $table->string('tool_name', '120');
+            $table->string('tool_type', '120');
+            $table->string('tool_img', '120');
+            $table->text('description');
             $table->integer('added_by');
+            $table->timestamps();
         });
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tool extends Model
 {
-    protected $table = '';
+    protected $table = 'tools';
     protected $guarded = [];
-    protected $primaryKey= 'id';
+    protected $primaryKey= 'tool_id';
 }
