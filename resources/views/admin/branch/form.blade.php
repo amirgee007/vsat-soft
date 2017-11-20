@@ -92,7 +92,7 @@
 <div class="form-group">
     <label class="col-lg-6 control-label">Profile Image</label>
     <div class="col-lg-offset-2 col-lg-6">
-        <input required id="input-file-now" type="file" @if(@$branch->branch_logo) data-default-file="{{asset('uploads/branches/'.$branch->branch_logo)}}" @endif name="branch_logo" class="dropify"/>
+        <input  id="input-file-now" type="file" @if(@$branch->branch_logo) data-default-file="{{asset('uploads/branches/'.$branch->branch_logo)}}" @endif name="branch_logo" class="dropify"/>
         <br />
     </div>
 </div>
@@ -101,8 +101,9 @@
     <label class="col-lg-2 control-label">Status</label>
     <div class="col-lg-10">
         <select class="form-control m-bot15" name="status">
-            <option selected value="enable">Enable</option>
-            <option value="disable">Disable</option>
+            <option value="" hidden selected> Select Branch Status</option>
+            <option value="enable" @if(@$branch->status == 'enable') selected @endif>Enable</option>
+            <option value="disable" @if(@$branch->status == 'disable') selected @endif>Disable</option>
         </select>
     </div>
 </div>

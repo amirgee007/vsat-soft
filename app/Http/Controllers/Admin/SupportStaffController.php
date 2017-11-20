@@ -104,11 +104,13 @@ class SupportStaffController extends Controller
     }
     public function delete ($id)
     {
-        $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id]);
-        if($staff->delete())
+        $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id])->first();
+        if($staff->delete()):
+            $staff->users()->detach();
             session()->flash('app_message', 'Staff Deleted Successfully!');
-        else
+        else:
             session()->flash('app_warning', 'Staff Not Deleted!');
+        endif;
         return redirect()->route('people.supportStaff.index');
     }
 }

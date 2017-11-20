@@ -190,19 +190,19 @@
                 <div class="col-sm-10 col-xs-9">
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Single</label>
-                        <input @if(@$staff->date_of_birth=='single') checked @endif type="radio" class="" name="marital_status"  value="single">
+                        <input @if(@$staff->marital_status =='single') checked @endif type="radio" class="" name="marital_status"  value="single">
                     </div>
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Married</label>
-                        <input  @if(@$staff->date_of_birth=='married') checked @endif type="radio" class="" name="marital_status" value="married">
+                        <input  @if(@$staff->marital_status =='married') checked @endif type="radio" class="" name="marital_status" value="married">
                     </div>
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Widow</label>
-                        <input @if(@$staff->date_of_birth=='widow') checked @endif type="radio" class="" name="marital_status" value="widow">
+                        <input @if(@$staff->marital_status == 'widow') checked @endif type="radio" class="" name="marital_status" value="widow">
                     </div>
                     <div class="col-sm-3 col-xs-3">
                         <label class="control-label">Separated</label>
-                        <input @if(@$staff->date_of_birth=='separated') checked @endif type="radio" class="" name="marital_status" value="separated">
+                        <input @if(@$staff->marital_status =='separated') checked @endif type="radio" class="" name="marital_status" value="separated">
                     </div>
                 </div>
             </div>
@@ -303,7 +303,7 @@
             <div class="form-group">
                 <label class="col-lg-6 control-label">Staff Photo</label>
                 <div class="col-lg-offset-2 col-lg-6">
-                    <input  id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @endif name="visa_staff_photo" class="dropify"/>
+                    <input   id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @endif name="visa_staff_photo" class="dropify"/>
                     <br />
                 </div>
             </div>
@@ -317,8 +317,8 @@
     <div class="col-lg-10">
 
         <select class="form-control m-bot15" name="status">
-            <option value="1">Enable</option>
-            <option value="0">Disable</option>
+            <option value="1" @if(@$staff->status == '1') {{ 'Selected' }} @endif>Enable</option>
+            <option value="0" @if(@$staff->status == '0') {{ 'Selected' }} @endif>Disable</option>
         </select>
     </div>
 </div>

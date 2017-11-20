@@ -26,7 +26,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="info-box blue-bg">
                     <i class="fa fa-wifi"></i>
-                    <div class="count">16</div>
+                    <div class="count">{{count(@$sites)}}</div>
                     <div class="title">Sites</div>
                 </div>
                 <!--/.info-box-->
@@ -36,7 +36,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="info-box green-bg">
                     <i class="fa fa-crosshairs"></i>
-                    <div class="count">6</div>
+                    <div class="count">{{count(@$countries)}}</div>
                     <div class="title">Countries</div>
                 </div>
                 <!--/.info-box-->
@@ -79,14 +79,19 @@
                                 <a class="btn btn-primary" title="Regions" style="width: 80%; float: left;">Regions</a>
                                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                 <ul id="option1" class="dropdown-menu scrollable-menu" role="menu">
-                                    <li><a href="#" title="world_mill_en">World</a></li>
+                                    @forelse( $regions as $region)
+                                        <li><a href="#" title="world_mill_en">{{$region->name}}</a></li>
+                                    @empty
+                                        <li style="text-align: center">No, Regions Found</li>
+                                    @endforelse
+                                    <!--<li><a href="#" title="world_mill_en">World</a></li>
                                     <li><a href="#" title="ca_lcc">Canada</a></li>
                                     <li><a href="#" title="africa_mill">Africa</a></li>
                                     <li><a href="#" title="asia_mill">Asia</a></li>
                                     <li><a href="#" title="europe_mill">Europe</a></li>
                                     <li><a href="#" title="north_america_mill">North America</a></li>
                                     <li><a href="#" title="south_america_mill">South America</a></li>
-                                    <li><a href="#" title="oceania_mill">Oceania</a></li>
+                                    <li><a href="#" title="oceania_mill">Oceania</a></li>-->
                                 </ul>
                             </div>
                             <!-- /btn-group -->
@@ -94,12 +99,18 @@
                                 <a class="btn btn-danger" title="Countries" style="width: 80%;">Countries</a>
                                 <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                 <ul id="option2" class="dropdown-menu scrollable-menu" role="menu">
+                                    @forelse( $countries as $country)
+                                        <li><a href="#" title="world_mill_en">{{$country->full_name}}</a></li>
+                                    @empty
+                                        <li style="text-align: center">No, Countries Found</li>
+                                    @endforelse
+                                    <!--
                                     <li><a href="#" title="ca_lcc">Kuwait</a></li>
                                     <li><a href="#" title="world_mill_en">Jordan</a></li>
                                     <li><a href="#" title="Arctic">Qatar</a></li>
                                     <li><a href="#" title="Asia">United Arab Emirates</a></li>
                                     <li><a href="#" title="Australasia">Bahrain</a></li>
-                                    <li><a href="#" title="Balkans">Iraq</a></li>
+                                    <li><a href="#" title="Balkans">Iraq</a></li>-->
                                 </ul>
                             </div>
                             <!-- /btn-group -->
@@ -107,6 +118,12 @@
                                 <a class="btn btn-success" title="Cities" style="width: 80%; float: left;">Cities</a>
                                 <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                 <ul id="option3" class="dropdown-menu scrollable-menu" role="menu">
+                                    @forelse( $cities as $city)
+                                        <li><a href="#" title="world_mill_en">{{$city->city_name}}</a></li>
+                                    @empty
+                                        <li style="text-align: center">No, Cities Found</li>
+                                    @endforelse
+                                    <!--
                                     <li><a href="#" title="ca_lcc">Kuwait</a></li>
                                     <li><a href="#" title="world_mill_en">Amman</a></li>
                                     <li><a href="#" title="Arctic">Doha</a></li>
@@ -115,7 +132,7 @@
                                     <li><a href="#" title="Balkans">Manama</a></li>
                                     <li><a href="#" title="Baltic States">Fallujah</a></li>
                                     <li><a href="#" title="Caribbean">Al Qayyarah</a></li>
-                                    <li><a href="#" title="Central Africa">Zawita</a></li>
+                                    <li><a href="#" title="Central Africa">Zawita</a></li>-->
                                 </ul>
                             </div>
                             <!-- /btn-group -->
