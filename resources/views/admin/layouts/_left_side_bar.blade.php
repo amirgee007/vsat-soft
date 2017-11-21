@@ -88,9 +88,9 @@
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="installation_log.html">Installation Log</a></li>
-                    <li><a class="" href="maintenance_log.html">Maintenance Log</a></li>
-                    <li><a class="" href="test_cases.html">Test Cases</a></li>
+                    <li><a class="" href="{{route('log.installation.index')}}">Installation Log</a></li>
+                    <li><a class="" href="{{route('log.maintenance.index')}}">Maintenance Log</a></li>
+                    <li><a class="" href="{{ route('log.testCases.testCase') }}">Test Cases</a></li>
                 </ul>
             </li>
             <li class="sub-menu">

@@ -7,30 +7,68 @@ use App\Http\Controllers\Controller;
 
 class LogController extends Controller
 {
-    //
-
-    public function create()
+    public function indexInstLog()
     {
-        return view('admin.equipments.create');
+        return view('admin.log.installation_log.index');
     }
 
-    public function store(Request $request)
+    public function createInstLog()
+    {
+        return view('admin.log.installation_log.create');
+    }
+
+    public function storeInstLog(Request $request)
     {
         dd($request->all());
     }
 
-    public function edit($id)
+    public function editInstLog($id)
     {
-        dd($id);
+        return view('admin.log.installation_log.edit');
     }
 
-    public function update(Request $request)
+    public function updateInstLog(Request $request)
     {
         dd($request->all());
     }
 
-    public function delete($id)
+    public function deleteInstLog($id)
     {
         dd($id);
+    }
+
+    public function IndexMainLog()
+    {
+        return view('admin.log.maintenance_log.index');
+    }
+
+    public function createMainLog()
+    {
+        return view('admin.log.maintenance_log.create');
+    }
+
+    public function storeMainLog(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function editMainLog($id)
+    {
+        return view('admin.log.maintenance_log.edit');
+    }
+
+    public function updateMainLog(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function deleteMainLog($id)
+    {
+        dd($id);
+    }
+
+    public function testCase()
+    {
+        return view('admin.log.test_cases.index');
     }
 }
