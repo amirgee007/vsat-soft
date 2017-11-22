@@ -320,17 +320,17 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
              'uses' => 'LogController@indexInstLog'
          ]);
 
-         Route::get('/add-installation-log', [
+         Route::get('/installation-log/add', [
              'as' => 'log.installation.createInstLog',
              'uses' => 'LogController@createInstLog'
          ]);
 
-         Route::get('/edit-installation-log/{id}', [
+         Route::get('/installation-log/edit/{id}', [
              'as' => 'log.installation.editInstLog',
              'uses' => 'LogController@editInstLog'
          ])->where('id', '[0-9]+');
 
-         Route::get('/delete-installation-log/{id}', [
+         Route::get('/installation-log/delete/{id}', [
              'as' => 'log.installation.deleteInstLog',
              'uses' => 'LogController@deleteInstLog'
          ])->where('id', '[0-9]+');
