@@ -91,6 +91,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
     });
 
 
+
     # People Management
     Route::group(array('prefix' => 'people'), function () {
 
@@ -359,6 +360,64 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
               'uses' => 'LogController@testCase'
           ]);
      });
+
+    #Documents Management
+    Route::group(array('prefix' => 'documents'), function () {
+
+        Route::get('/project', [
+            'as' => 'document.project.index',
+            'uses' => 'DocumentController@projectIndex'
+        ]);
+
+        Route::get('/general', [
+            'as' => 'document.general.index',
+            'uses' => 'DocumentController@generalIndex'
+        ]);
+
+        Route::get('/general/add', [
+            'as' => 'document.general.create',
+            'uses' => 'DocumentController@generalCreate'
+        ]);
+
+        Route::get('/general/edit/{id}', [
+            'as' => 'document.general.edit',
+            'uses' => 'DocumentController@generalEdit'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/general/delete/{id}', [
+            'as' => 'document.general.delete',
+            'uses' => 'DocumentController@generalDelete'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/special', [
+            'as' => 'document.special.index',
+            'uses' => 'DocumentController@specialIndex'
+        ]);
+
+        Route::get('/special/add', [
+            'as' => 'document.special.create',
+            'uses' => 'DocumentController@specialCreate'
+        ]);
+
+        Route::get('/special/edit/{id}', [
+            'as' => 'document.special.edit',
+            'uses' => 'DocumentController@specialEdit'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/special/delete/{id}', [
+            'as' => 'document.special.delete',
+            'uses' => 'DocumentController@specialDelete'
+        ])->where('id', '[0-9]+');
+    });
+
+    #Reports Management
+    Route::group(array('prefix' => 'reports'), function () {
+
+        Route::get('/', [
+            'as' => 'report.index',
+            'uses' => 'ReportController@index'
+        ]);
+    });
 
 });
 

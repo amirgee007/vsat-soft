@@ -399,9 +399,6 @@ ul.sidebar-menu li ul.sub li {
     margin-left: 0;
     margin-right: 0;
 }
-
-
-
     ul.sidebar-menu li ul.sub li:last-child {
         border-radius: 0 0 4px 4px;
         -webkit-border-radius: 0 0 4px 4px;
@@ -426,6 +423,8 @@ ul.sidebar-menu li ul.sub li {
 
 
         ul.sidebar-menu li ul.sub li a:hover, ul.sidebar-menu li ul.sub li.active a {
+            background-color: #2f5271 ;
+            font-weight: bold;
             color: #fff;
             -webkit-transition: all 0.3s ease;
             -moz-transition: all 0.3s ease;

@@ -30,7 +30,6 @@ class LocationController extends Controller
     public function indexCities()
     {
         $cities= City::paginate(20);
-
         return view('admin.location.index-cities' , compact('cities'));
     }
 
