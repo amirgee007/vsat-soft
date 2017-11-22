@@ -66,8 +66,8 @@
       </span>
                     <label class="col-sm-2 control-label">Office Tel</label>
                     <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Office Tel" name="office_tel"
-             value="{{ @$branch->office_tel }}">
+      <input type="tel" class="form-control" placeholder="Office Tel" name="official_tel"
+             value="{{ @$branch->official_tel }}">
       </span>
                     <label class="col-sm-2 control-label">Fax No</label>
                     <span class="col-sm-4">
@@ -234,7 +234,7 @@
                </span>
                     <label class="col-sm-2 col-xs-3 control-label">Email</label>
                     <span class="col-sm-4 col-xs-3">
-               <input name="finance_2nd_email" value="{{@$client->finance_2nd_email}}" type="email" class="form-control"
+               <input name="finance_1st_email" value="{{@$client->finance_1st_email}}" type="email" class="form-control"
                       placeholder="Email">
                </span>
                     <label class="col-sm-2 col-xs-3 control-label">Email</label>
