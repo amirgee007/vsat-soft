@@ -21,7 +21,7 @@
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Maintenance Log</h1>
                             <form class="form-horizontal" role="form">
-                                @include('admin.log.maintenance_log.form')
+                                @include('admin.log.maintenance-log.form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary">Add</button>

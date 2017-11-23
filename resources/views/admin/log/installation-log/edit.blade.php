@@ -21,7 +21,7 @@
                         <div class="panel-body bio-graph-info">
                             <h1>Edit Installation Log</h1>
                             <form class="form-horizontal" role="form">
-                                @include('admin.log.installation_log.form')
+                                @include('admin.log.installation-log.form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary">Update</button>
