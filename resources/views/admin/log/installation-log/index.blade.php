@@ -1,5 +1,5 @@
 @extends('admin/layouts/default')
-@section('pageTitle', 'INSTALLATION LOG')
+@section('pageTitle', 'Installation Logs')
 @section('content')
     <!--main content start-->
     <section id="main-content">
@@ -37,26 +37,30 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @forelse($installationLogs as $installationLog)
                             <tr>
-                                <td class="text-center">1</td>
-                                <td><a href="view_installation_log.html">ICS-I-10001</a></td>
-                                <td><a href="view_installation_log.html">09-02-2017</a></td>
-                                <td><a href="view_installation_log.html">Naval Base Mina Salman</a></td>
-                                <td><a href="view_installation_log.html">Manama</a></td>
-                                <td><a href="view_installation_log.html">ICS UAE</a></td>
+                                <td class="text-center">{{$installationLog->installation_log_id}}</td>
+                                <td><a href="#">{{$installationLog->job_number}}</a></td>
+                                <td><a href="#">{{$installationLog->install_finish_date}}</a></td>
+                                <td><a href="#">{{$installationLog->site_name}}</a></td>
+                                <td><a href="#">{{$installationLog->city}}</a></td>
+                                <td><a href="#">Branches(?) Multiple</a></td>
                                 <td>
                                     <div class="btn-group col-sm-10 col-xs-12">
-                                        <a class="btn btn-success col-xs-12 btn-sm disabled" href="#">Closed</a>
+                                        <a class="btn btn-success col-xs-12 btn-sm disabled" href="#">{{$installationLog->status}}</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-success col-sm-4 col-xs-4" href="{{ route('log.installation.editInstLog', ['id' =>1]) }}"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('log.installation.editInstLog', ['id' =>1]) }}"><i class="fa fa-close"></i></a>
+                                        <a class="btn btn-success col-sm-4 col-xs-4" href="{{ route('log.installation.editInstLog', $installationLog->installation_log_id) }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('log.installation.editInstLog', $installationLog->installation_log_id) }}"><i class="fa fa-close"></i></a>
                                         <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_installation_log.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
                                        </div>
                                 </td>
                             </tr>
+                            @empty
+                                <tr><td colspan="12" style="text-align: center">No, Installation Log Found!</td></tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </section>

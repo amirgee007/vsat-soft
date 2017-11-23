@@ -317,43 +317,59 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
 
          Route::get('/installation-log', [
              'as' => 'log.installation.index',
-             'uses' => 'LogController@indexInstLog'
+             'uses' => 'InstallationLogController@index'
          ]);
 
-         Route::get('/installation-log/add', [
+         Route::get('/installation-log/create', [
              'as' => 'log.installation.createInstLog',
-             'uses' => 'LogController@createInstLog'
+             'uses' => 'InstallationLogController@create'
+         ]);
+
+         Route::post('/installation-log/store', [
+             'as' => 'log.installation.store',
+             'uses' => 'InstallationLogController@store'
          ]);
 
          Route::get('/installation-log/edit/{id}', [
              'as' => 'log.installation.editInstLog',
-             'uses' => 'LogController@editInstLog'
+             'uses' => 'InstallationLogController@edit'
          ])->where('id', '[0-9]+');
+
+
+         Route::post('/installation-log/update', [
+             'as' => 'log.installation.update',
+             'uses' => 'InstallationLogController@update'
+         ]);
 
          Route::get('/installation-log/delete/{id}', [
              'as' => 'log.installation.deleteInstLog',
-             'uses' => 'LogController@deleteInstLog'
+             'uses' => 'InstallationLogController@delete'
          ])->where('id', '[0-9]+');
+
+
+     ///////////////////////////////////////Maintenance Log routes//////////////
 
          Route::get('/maintenance-log', [
              'as' => 'log.maintenance.index',
-             'uses' => 'LogController@indexMainLog'
+             'uses' => 'MaintenanceLogController@index'
          ]);
 
-         Route::get('/add-maintenance-log', [
+         Route::get('/maintenance-log/create', [
              'as' => 'log.maintenance.createMainLog',
-             'uses' => 'LogController@createMainLog'
+             'uses' => 'MaintenanceLogController@create'
          ]);
 
-         Route::get('/edit-maintenance-log/{id}', [
+         Route::get('/maintenance-log/edit/{id}', [
              'as' => 'log.maintenance.editMainLog',
-             'uses' => 'LogController@editMainLog'
+             'uses' => 'MaintenanceLogController@edit'
          ])->where('id', '[0-9]+');
 
-          Route::get('/delete-maintenance-log/{id}', [
+          Route::get('/maintenance-log/delete/{id}', [
               'as' => 'log.maintenance.deleteMainLog',
-              'uses' => 'LogController@deleteMainLog'
+              'uses' => 'MaintenanceLogController@delete'
           ])->where('id', '[0-9]+');
+
+
 
           Route::get('/test-cases', [
               'as' => 'log.testCases.testCase',
