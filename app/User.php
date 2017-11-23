@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+    protected $appends = ['name'];
     use Notifiable;
 
     /**
@@ -33,5 +35,12 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+
+    public function getNameAttribute()
+    {
+     return $this->user_name;
+
     }
 }

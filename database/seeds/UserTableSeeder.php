@@ -17,15 +17,15 @@ class UserTableSeeder extends Seeder
             0 =>
                 array (
                     'id' => 1,
-                    'user_name' => 'amir',
-                    'email' => 'amir@yahoo.com',
+                    'user_name' => 'seersol',
+                    'email' => 'seersol@gmail.com',
                     'password' => bcrypt('123456'),
                     'created_at' => '2017-11-07 20:32:41',
                     'updated_at' => '2017-11-07 20:34:44',
                 ),
         ));
 
-        echo "user Login:       amir@yahoo.com";
+        echo "user Login:       seersol@gmail.com";
         echo '----and-----';
         echo "Password:         123456";
 

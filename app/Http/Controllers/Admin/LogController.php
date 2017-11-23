@@ -9,12 +9,12 @@ class LogController extends Controller
 {
     public function indexInstLog()
     {
-        return view('admin.log.installation_log.index');
+        return view('admin.log.installation-log.index');
     }
 
     public function createInstLog()
     {
-        return view('admin.log.installation_log.create');
+        return view('admin.log.installation-log.create');
     }
 
     public function storeInstLog(Request $request)
@@ -24,7 +24,7 @@ class LogController extends Controller
 
     public function editInstLog($id)
     {
-        return view('admin.log.installation_log.edit');
+        return view('admin.log.installation-log.edit');
     }
 
     public function updateInstLog(Request $request)
@@ -39,12 +39,12 @@ class LogController extends Controller
 
     public function IndexMainLog()
     {
-        return view('admin.log.maintenance_log.index');
+        return view('admin.log.maintenance-log.index');
     }
 
     public function createMainLog()
     {
-        return view('admin.log.maintenance_log.create');
+        return view('admin.log.maintenance-log.create');
     }
 
     public function storeMainLog(Request $request)
@@ -69,6 +69,6 @@ class LogController extends Controller
 
     public function testCase()
     {
-        return view('admin.log.test_cases.index');
+        return view('admin.log.test-cases.index');
     }
 }
