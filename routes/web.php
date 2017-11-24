@@ -430,6 +430,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'DocumentController@specialEdit'
         ])->where('id', '[0-9]+');
 
+        Route::post('/special/edit', [
+            'as' => 'document.special.update',
+            'uses' => 'DocumentController@specialUpdate'
+        ]);
+
         Route::get('/special/delete/{id}', [
             'as' => 'document.special.delete',
             'uses' => 'DocumentController@specialDelete'

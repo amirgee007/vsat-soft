@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,21 +124,39 @@ class DocumentController extends Controller
 
     public function specialIndex()
     {
-        return view('admin.document.special.index');
+        $docs = Document::where(['added_by' => Auth::user()->id, 'type' => 'special'])
+            ->get();
+        return view('admin.document.special.index', compact('docs'));
     }
+
 
     public function specialCreate()
     {
-        return view('admin.document.special.create');
+        $users = User::all(['id','first_name', 'last_name']);
+        return view('admin.document.special.create', compact('users'));
     }
 
     public function specialEdit($id)
     {
-        return view('admin.document.special.edit');
+        $doc = Document::where(['document_id'=>$id, 'type' => 'special' ,'added_by' => Auth::user()->id])->first();
+        if(!is_null($doc)):
+            return view('admin.document.special.edit', compact('doc'));
+        else:
+            session()->flash('app_warning', 'No, Document Found!');
+        endif;
+        return redirect()->route('document.special.index');
     }
 
     public function specialDelete($id)
     {
-        dd($id);
+        $doc = Document::where(['document_id'=>$id, 'type' => 'special', 'added_by' => Auth::user()->id])->first();
+        if($doc->delete()):
+            $destinationPath = public_path().'/uploads/documents/';
+            File::delete($destinationPath.$doc->file_upload_name);
+            session()->flash('app_message', 'Special Document Deleted Successfully!');
+        else:
+            session()->flash('app_warning', 'No, Document Found!');
+        endif;
+        return redirect()->route('document.special.index');
     }
 }

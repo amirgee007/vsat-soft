@@ -20,8 +20,9 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Edit Special Document</h1>
-                            <form class="form-horizontal" role="form">
-                                @include('admin.document.special.form')
+                            <form class="form-horizontal" role="form" action="{{ route('document.special.update') }}" method="post" enctype="multipart/form-data">
+                            @include('admin.document.special.form')
+                                <input type="hidden" name="document_no" value="{{@$doc->document_id}}">
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary">Update</button>

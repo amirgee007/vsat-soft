@@ -327,7 +327,7 @@
     <div class="col-lg-10">
         <select id="related_user" name="related_user[]" class="form-control m-bot15" multiple="multiple">
             @foreach($users AS $user)
-                <option  @if(array_key_exists($user->id , $relatedUser)) selected @endif  value="{{$user->id}}">
+                <option  @if(@$relatedUser && array_key_exists($user->id , $relatedUser)) selected @endif  value="{{$user->id}}">
                     {{$user->first_name.' '.$user->last_name}}
                 </option>
             @endforeach

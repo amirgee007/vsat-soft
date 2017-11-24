@@ -22,8 +22,7 @@ class SupportStaffController extends Controller
     {
         $staff_no = SupportStaff::getMaxStaffId();
         $users = User::all(['id','first_name', 'last_name']);
-        $relatedUser = [];
-        return view('admin.people.support-staff.create', compact('staff_no', 'users' ,'relatedUser'));
+        return view('admin.people.support-staff.create', compact('staff_no', 'users' ));
     }
 
     public function store(Request $request)

@@ -32,18 +32,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="col-sm-6 col-xs-5">SP-500-002 Course Notes GVF500 Ed 2 Intro to Satcom Part 1.pdf</td>
-                                <td>09-04-2017</td>
-                                <td>Mahmoud</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="assets/Documents/Special/SP-500-002 Course Notes GVF500 Ed 2 Intro to Satcom Part 1.pdf" download><i class="fa fa-download"></i></a>
-                                        <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="edit_special_document.html"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" name="close" href="#"><i class="fa fa-close"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @forelse($docs AS $doc)
+                                <tr>
+                                    <td class="col-sm-6 col-xs-5">
+                                        {{ $doc->file_name }}
+                                    </td>
+                                    <td><a href="#">{{ $doc->created_at ? $doc->created_at->format('m-d-Y') : 'N/A' }}</a></td>
+                                    <td>{{ $doc->user->user_name }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary col-sm-4 col-xs-4 text-center"
+                                               href="{{ asset('uploads/documents/'.$doc->file_upload_name) }}" download><i class="fa fa-download"></i></a>
+                                            <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="{{ route('document.special.edit', ['id' => $doc->document_id]) }}"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-danger col-sm-4 col-xs-4 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('document.special.delete', ['id' => $doc->document_id]) }}"><i class="fa fa-close"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="12" style="text-align: center">No, Special Documents Found!</td></tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </section>
