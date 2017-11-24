@@ -20,9 +20,10 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Edit General Document</h1>
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" action="{{ route('document.general.update') }}" method="post" enctype="multipart/form-data">
                                 <div class="panel panel-primary form-group">
                                     @include('admin.document.general.form')
+                                    <input type="hidden" name="document_no" value="{{@$doc->document_id}}">
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">

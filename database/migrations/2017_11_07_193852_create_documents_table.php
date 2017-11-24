@@ -20,8 +20,9 @@ class CreateDocumentsTable extends Migration
             $table->increments('document_id');
             $table->string('file_name');
             $table->string('file_upload_name');
-            $table->string('type');
+            $table->enum('type', ['general,special']);
             $table->integer('added_by');
+            $table->timestamps();
 
 //        doc_type(general,special)
 

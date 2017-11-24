@@ -20,7 +20,7 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New General Document</h1>
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" action="{{ route('document.general.create') }}" method="post" enctype="multipart/form-data">
                                 <div class="panel panel-primary form-group">
                                     @include('admin.document.general.form')
                                 </div>

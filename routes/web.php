@@ -395,6 +395,16 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'DocumentController@generalCreate'
         ]);
 
+        Route::post('/general/add', [
+            'as' => 'document.general.create',
+            'uses' => 'DocumentController@generalStore'
+        ]);
+
+        Route::post('/general/edit', [
+            'as' => 'document.general.update',
+            'uses' => 'DocumentController@generalUpdate'
+        ]);
+
         Route::get('/general/edit/{id}', [
             'as' => 'document.general.edit',
             'uses' => 'DocumentController@generalEdit'
