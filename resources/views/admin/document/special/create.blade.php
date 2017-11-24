@@ -20,7 +20,7 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Special Document</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('document.special.create') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" role="form" action="{{ route('document.special.store') }}" method="post" enctype="multipart/form-data">
                                @include('admin.document.special.form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">

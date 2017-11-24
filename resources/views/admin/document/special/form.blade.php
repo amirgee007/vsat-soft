@@ -1,3 +1,4 @@
+{{ csrf_field() }}
 <div class="panel panel-primary form-group">
     <section class="panel">
         <div class="panel-content" style="clear: both;">
@@ -10,7 +11,7 @@
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">File Upload</label>
                 <div class="col-sm-10 col-xs-9">
-                    <input type="file" class="btn btn-default" name="Select File">
+                    <input type="file" class="btn btn-default" name="file_upload_name" placeholder="Select File">
                 </div>
             </div>
         </div>
@@ -20,13 +21,10 @@
     <section class="panel">
         <header class="panel-heading">
             Related Users that can access the document
-            <div class="btn-group pull-right">
-                <a class="btn btn-default adduser" href="#"><i class="fa fa-plus-square"></i></a>
-            </div>
         </header>
         <div class="panel-body">
             <label class="col-lg-2 col-xs-3 control-label">Add User</label>
-            <div class="col-lg-8 col-xs-7">
+            <div class="col-sm-10 col-xs-9">
                 <select id="related_user" name="related_user[]" class="form-control m-bot15" multiple="multiple">
                     @foreach($users AS $user)
                         <option  @if(@$relatedUser && array_key_exists($user->id , $relatedUser)) selected @endif  value="{{$user->id}}">

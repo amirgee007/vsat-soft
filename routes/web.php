@@ -425,6 +425,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'DocumentController@specialCreate'
         ]);
 
+        Route::post('/special/add', [
+            'as' => 'document.special.store',
+            'uses' => 'DocumentController@specialStore'
+        ]);
+
         Route::get('/special/edit/{id}', [
             'as' => 'document.special.edit',
             'uses' => 'DocumentController@specialEdit'
