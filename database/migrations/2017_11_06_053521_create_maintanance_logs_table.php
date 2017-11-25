@@ -15,16 +15,12 @@ class CreateMaintananceLogsTable extends Migration
     {
         Schema::create('maintenance_logs', function (Blueprint $table) {
             $table->increments('maintenance_log_id');
-            $table->integer('branch_id');
-            $table->integer('user_id');
+            $table->string('job_number');
+            $table->date('repair_start_date');
+            $table->date('repair_finish_date');
             $table->integer('site_id');
-            $table->integer('part_id');
-            $table->integer('job_number')->index();
-            $table->dateTime('repair_start_date');
-            $table->dateTime('repair_finish_date');
-            $table->string('site_name');
-            $table->string('country');
-            $table->string('city');
+            $table->integer('country_id');
+            $table->integer('city_id');
             $table->string('client_symptom_detail');
             $table->string('eng_symptom_detail1');
             $table->string('eng_solution_detail1');
@@ -33,7 +29,7 @@ class CreateMaintananceLogsTable extends Migration
             $table->string('eng_symptom_detail3');
             $table->string('eng_solution_detail3');
             $table->string('repair_mode');
-            $table->string('engineer_comment');
+            $table->text('engineer_comments');
             $table->string('status');
             $table->integer('added_by');
             $table->timestamps();

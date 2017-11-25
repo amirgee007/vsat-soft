@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <a class="btn btn-primary btn-lg" href="{{ route('log.installation.createInstLog') }}" title="Add Installation Log">Add New Installation Log</a>
+                        <a class="btn btn-primary btn-lg" href="{{ route('log.installation.create') }}" title="Add Installation Log">Add New Installation Log</a>
                     </div>
                     <section class="panel">
                         <header class="panel-heading">
@@ -52,8 +52,8 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-success col-sm-4 col-xs-4" href="{{ route('log.installation.editInstLog', $installationLog->installation_log_id) }}"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('log.installation.editInstLog', $installationLog->installation_log_id) }}"><i class="fa fa-close"></i></a>
+                                        <a class="btn btn-success col-sm-4 col-xs-4" href="{{ route('log.installation.edit', $installationLog->installation_log_id) }}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger col-sm-4 col-xs-4 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('log.installation.edit', $installationLog->installation_log_id) }}"><i class="fa fa-close"></i></a>
                                         <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_installation_log.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
                                        </div>
                                 </td>

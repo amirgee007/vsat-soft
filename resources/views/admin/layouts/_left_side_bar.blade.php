@@ -90,7 +90,7 @@
                 <ul class="sub">
                     <li><a class="" href="{{route('log.installation.index')}}">Installation Log</a></li>
                     <li><a class="" href="{{route('log.maintenance.index')}}">Maintenance Log</a></li>
-                    <li><a class="" href="{{ route('log.testCases.testCase') }}">Test Cases</a></li>
+                    <li><a class="" href="{{ route('log.testCases.index') }}">Test Cases</a></li>
                 </ul>
             </li>
             <li class="sub-menu {{ Request::is('documents/*') ? 'active' : '' }}">

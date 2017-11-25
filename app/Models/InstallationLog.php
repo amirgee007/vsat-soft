@@ -28,7 +28,6 @@ class InstallationLog extends Model
 
 
     public function relatedBranches(){
-
         return $this->branches->pluck('name' ,'branch_id')->toArray();
 
     }
@@ -39,7 +38,6 @@ class InstallationLog extends Model
 
 
     public function relatedStaffs(){
-
         return $this->staffs->pluck('name' ,'support_staff_id')->toArray();
 
     }

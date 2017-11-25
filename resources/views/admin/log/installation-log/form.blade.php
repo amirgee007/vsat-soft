@@ -27,7 +27,6 @@
             @foreach($sites as $site)
                 <option @if(@$installation_log->site_id==$site->site_id) selected @endif value="{{$site->site_id}}">{{$site->name}}</option>
             @endforeach
-
         </select>
     </div>
 </div>
@@ -107,8 +106,8 @@
             <label class="col-lg-2 control-label">Add Branch</label>
             <div class="col-lg-8">
                 <select required name="related_branches[]"  class="form-control m-bot15" multiple="multiple" id="add_branch">
-                    <option value="1">Select branch</option>
-                    @foreach($branches AS $branch)
+                    <option value="1">dummy</option>
+                @foreach($branches AS $branch)
                     <option {{array_key_exists($branch->branch_id , $selected_branches) ? 'selected' : ''}} value="{{$branch->branch_id}}">{{ $branch->name }}</option>
                     @endforeach
                 </select>
@@ -124,8 +123,8 @@
             <label class="col-lg-2 col-xs-3 control-label">Add Support Staff</label>
             <div class="col-lg-8 col-xs-7">
                 <select required name="related_staff[]"  class="form-control m-bot15" multiple="multiple" id="add_support_staff">
-                    <option value="1">Select staff</option>
-                    @foreach($staffs as $staff)
+                    <option value="1">dummy</option>
+                @foreach($staffs as $staff)
                         <option {{array_key_exists($staff->support_staff_id , $selected_staffs) ? 'selected' : ''}} value="{{$staff->support_staff_id }}">{{ $staff->first_name  }}</option>
                     @endforeach
                 </select>
@@ -140,6 +139,6 @@
     <select required name="status" class="form-control m-bot15">
             <option @if(@$installation_log->status=='closed') selected @endif value="closed">Closed</option>
             <option @if(@$installation_log->status=='pending') selected @endif value="pending">Pending</option>
-        </select>
+    </select>
     </div>
 </div>
