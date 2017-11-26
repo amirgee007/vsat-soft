@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         $this->call(UserTableSeeder::class);
 
+        //code to automatic run the sql file and import all location
+        //run php artisan db:Seed
         $path = 'locations_sql.sql';
         DB::unprepared(file_get_contents($path));
         $this->command->info('-----locations_sql seeded!');
