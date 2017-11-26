@@ -10,4 +10,9 @@ class Country extends Model
     protected $guarded = [];
     protected $primaryKey= 'country_id';
 
+    public function cities(){
+        return $this->hasMany( City::class , 'country_id' , 'country_id');
+    }
+
+
 }

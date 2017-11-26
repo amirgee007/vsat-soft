@@ -95,7 +95,7 @@
 
                     },
                     success: function() {
-                        toastr.success("Selected Region has been Changed.", "Info");
+                        toastr.success("Region with related Countries,Cities has been Updated.", "Info");
                     },
                     type: 'POST'
                 });

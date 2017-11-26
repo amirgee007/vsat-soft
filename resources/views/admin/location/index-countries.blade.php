@@ -87,7 +87,7 @@
 
                     },
                     success: function() {
-                        toastr.success("Selected Country has been Changed.", "Info");
+                        toastr.success("Country with related Cities has been updated.", "Info");
 
                     },
                     type: 'POST'

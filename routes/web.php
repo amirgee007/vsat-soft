@@ -11,9 +11,17 @@
 |
 */
 
+use App\Models\Region;
+
 Route::get('admin/test' ,function (){
 
-    return view('admin.404');
+
+    $region = Region::first();
+
+    $cities = $region->cities()->update(['cities.is_active' => true]);
+    dd($cities);
+    dd($region->countries);
+
 });
 
 

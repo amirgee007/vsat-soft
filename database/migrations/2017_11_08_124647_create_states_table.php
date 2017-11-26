@@ -13,14 +13,14 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
-
-            $table->increments('state_id');
-            $table->string('name');
-            $table->integer('country_id');
-            $table->boolean('is_active')->default(0);
-            $table->timestamps();
-        });
+//        Schema::create('states', function (Blueprint $table) {
+//
+//            $table->increments('state_id');
+//            $table->string('name');
+//            $table->integer('country_id');
+//            $table->boolean('is_active')->default(0);
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regions');
+//        Schema::dropIfExists('regions');
     }
 }
