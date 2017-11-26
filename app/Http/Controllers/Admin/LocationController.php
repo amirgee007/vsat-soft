@@ -14,7 +14,7 @@ class LocationController extends Controller
 
     public function indexRegions()
     {
-        $regions = Region::where('is_active' ,true)->paginate(20);
+        $regions = Region::paginate(20);
         return view('admin.location.index-regions' , compact('regions'));
     }
 
