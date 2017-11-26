@@ -24,11 +24,6 @@
             <!-- page start-->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="form-group">
-                            <input type="text" class="search form-control" placeholder="What you looking for?">
-                        </div>
-                    </div>
                     <section class="panel">
 
                         <header class="panel-heading">
@@ -45,6 +40,7 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach((object)$cities as $city)
                             <tr>
                                 <td class="text-center">{{$city->city_id}}</td>
@@ -96,7 +92,7 @@
 
                     },
                     success: function() {
-                        toastr.success("Selected City has been Changed.", "Info");
+                        toastr.success("City has been updated.", "Info");
                     },
                     type: 'POST'
                 });
@@ -106,34 +102,6 @@
 
             //knob
             $(".knob").knob();
-
-            $(document).ready(function() {
-                $(".search").keyup(function () {
-                    var searchTerm = $(".search").val();
-                    var listItem = $('.results tbody').children('tr');
-                    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-
-                    $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-                        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                    }
-                    });
-
-                    $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-                        $(this).attr('visible','false');
-                    });
-
-                    $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-                        $(this).attr('visible','true');
-                    });
-
-                    var jobCount = $('.results tbody tr[visible="true"]').length;
-                    $('.counter').text(jobCount + ' item');
-
-                    if(jobCount == '0') {$('.no-result').show();}
-                    else {$('.no-result').hide();}
-                });
-            });
-
     });
 
     </script>
