@@ -21,7 +21,8 @@ class DocumentController extends Controller
     public function generalIndex()
     {
         $docs = Document::where(['added_by' => Auth::user()->id, 'type' => 'general'])
-                ->get();
+            ->orderBy('document_id', 'desc')
+            ->get();
         return view('admin.document.general.index', compact('docs'));
     }
 
@@ -78,22 +79,24 @@ class DocumentController extends Controller
         $doc = Document::where(['document_id'=>$documentId, 'type' => 'general', 'added_by' => Auth::user()->id])->first();
         if (!is_null($doc))
         {
-            $fileName = $doc->file_upload_name;
+            $oldFileName = $doc->file_upload_name;
             $input = $request->all();
             if ($request->hasFile('file_upload_name')) {
                 if($request->file('file_upload_name')->isValid()) {
                     $file = $request->file('file_upload_name');
                     $fileName = str_slug($input['file_name']).'-'.time() . '.' . $file->getClientOriginalExtension();
                     $isUploadAble = true;
+                    $input['file_upload_name'] = $fileName;
                 }
             }
-            $input['file_upload_name'] = $fileName;
             unset($input['_token'], $input['document_no']);
             if ($doc->update($input))
             {
                 if ($isUploadAble)
                 {
                     // todo: first delete previous then store new
+                    $destinationPath = public_path().'/uploads/documents/';
+                    File::delete($destinationPath.$oldFileName);
                     $request->file('file_upload_name')->move("uploads/documents", $fileName);
                 }
                 session()->flash('app_message', 'Document Updated Successfully!');
@@ -126,6 +129,7 @@ class DocumentController extends Controller
     public function specialIndex()
     {
         $docs = Document::where(['added_by' => Auth::user()->id, 'type' => 'special'])
+            ->orderBy('document_id', 'desc')
             ->get();
         return view('admin.document.special.index', compact('docs'));
     }

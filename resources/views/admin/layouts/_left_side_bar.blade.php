@@ -70,15 +70,16 @@
                     <li><a class="" href="{{route('equipments.index')}}">Tools & Equipments</a></li>
                 </ul>
             </li>
-            <li class="sub-menu ">
+            <li class="sub-menu {{Request::is('survey/*') ? 'active' : ''}}">
                 <a href="javascript:;" class="">
                     <i class="fa fa-file-text-o"></i>
                     <span>Survey</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="#">Site Survey</a></li>
-                    <li><a class="" href="#">Performance Survey</a></li>
+                    <li class="{{ Request::segment(2)=='add' ? 'active' : '' }}"><a class="" href="{{ route('survey.index.addSurvey') }}">Add Survey</a></li>
+                    <li class="{{ Request::segment(2)=='site' ? 'active' : '' }}"><a class="" href="{{ route('survey.site.survey') }}">Site Survey</a></li>
+                    <li class="{{ Request::segment(2)=='performance' ? 'active' : '' }}"><a class="" href="{{ route('survey.performance.survey') }}">Performance Survey</a></li>
                 </ul>
             </li>
             <li class="sub-menu {{Request::is('log/*') ? 'active' : ''}}">

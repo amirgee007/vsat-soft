@@ -464,6 +464,23 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
         ])->where('id', '[0-9]+');
     });
 
+    Route::group(array('prefix' => 'survey'), function () {
+        Route::get('/add', [
+            'as' => 'survey.index.addSurvey',
+            'uses' => 'SurveyController@create'
+        ]);
+
+        Route::get('/site', [
+            'as' => 'survey.site.survey',
+            'uses' => 'SurveyController@site'
+        ]);
+
+        Route::get('/performance', [
+            'as' => 'survey.performance.survey',
+            'uses' => 'SurveyController@performance'
+        ]);
+    });
+
     #Reports Management
     Route::group(array('prefix' => 'reports'), function () {
 
