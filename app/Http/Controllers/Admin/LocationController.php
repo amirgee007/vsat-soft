@@ -14,7 +14,7 @@ class LocationController extends Controller
 
     public function indexRegions()
     {
-        $regions = Region::paginate(20);
+        $regions = Region::where('is_active' ,true)->paginate(20);
         return view('admin.location.index-regions' , compact('regions'));
     }
 
@@ -22,14 +22,14 @@ class LocationController extends Controller
     public function indexCountries()
     {
 
-        $countries= Country::paginate(20);
+        $countries= Country::where('is_active' ,true)->paginate(20);
 
         return view('admin.location.index-countries' , compact('countries'));
     }
 
     public function indexCities()
     {
-        $cities= City::paginate(20);
+        $cities= City::where('is_active' ,true)->paginate(20);
         return view('admin.location.index-cities' , compact('cities'));
     }
 
