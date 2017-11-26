@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Country;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Client;
@@ -18,8 +19,9 @@ class ClientsController extends Controller
     {
         $data['client_no'] = Client::getMaxClientId();
         $users = User::all(['id','first_name', 'last_name']);
+        $countries = Country::all();
         $related_user = [];
-        return view('admin.people.clients.create', compact('data' ,'users' ,'related_user'));
+        return view('admin.people.clients.create', compact('countries','data' ,'users' ,'related_user'));
     }
 
     public function save(Request $request)
@@ -51,7 +53,8 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = Client::where('client_id', $id)->first();
-        return view('admin.people.clients.edit', compact('client'));
+        $countries = Country::all();
+        return view('admin.people.clients.edit', compact('countries','client'));
     }
 
     public function update (Request $request)

@@ -17,12 +17,12 @@ class CreateClientsTable extends Migration
 			$table->increments('client_id');
             $table->string('client_number');
             $table->string('org_name');
+            $table->integer('country_id');
+            $table->integer('city_id');
             $table->string('street');
             $table->string('area');
-            $table->string('city');
             $table->string('state');
             $table->string('zip_code');
-            $table->string('country');
             $table->string('po_box');
             $table->string('official_tel');
             $table->string('fax_no');

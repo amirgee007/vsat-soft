@@ -114,6 +114,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'ClientsController@createClients'
         ]);
 
+        Route::get('/country-select-ajax', [
+            'as' => 'country-ajax',
+            'uses' => 'SystemController@countryAjax'
+        ]);
+
         Route::post('/create-client', [
             'as' => 'people.clients.addClient',
             'uses' => 'ClientsController@save'

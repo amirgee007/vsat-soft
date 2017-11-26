@@ -45,14 +45,8 @@
 
     <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeU39v4go-9ToGgad0c4ZXHDj-k2XO6tc&libraries=places"></script>
-
     <link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
     <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
-    <!--todo: remove CDNs-->
-
-
-    @include('admin.layouts.partials.autocompleteAddres')
 
     <script>
 
