@@ -1,5 +1,5 @@
 @extends('admin/layouts/default')
-@section('pageTitle', 'TEST CASES')
+@section('pageTitle', 'Test Case')
 @section('content')
     <!--main content start-->
     <section id="main-content">
@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="fa fa-flask"></i>Test Cases</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                        <li><i class="fa fa-home"></i><a href="#">Home</a></li>
                         <li><i class="fa fa-flask"></i>Test Cases</li>
                     </ol>
                 </div>
@@ -106,12 +106,12 @@
                             </thead>
                             <tbody>
                             <tr id="Dubai-1">
-                                <td><a href="view_test.html">UAE</a></td>
-                                <td><a href="view_test.html">Dubai</a></td>
-                                <td><a href="view_test.html">AL MINHAD</a></td>
-                                <td><a href="view_test.html">UAE-LH-N-001</a></td>
-                                <td><a href="view_test.html">09-04-2017</a></td>
-                                <td><a href="view_test.html">Majdi</a></td>
+                                <td><a href="#">UAE</a></td>
+                                <td><a href="#">Dubai</a></td>
+                                <td><a href="#">AL MINHAD</a></td>
+                                <td><a href="#">UAE-LH-N-001</a></td>
+                                <td><a href="#">09-04-2017</a></td>
+                                <td><a href="#">Majdi</a></td>
                                 <td>
                                     <div class="btn-group col-sm-8 col-xs-12">
                                         <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Submitted</a>
@@ -187,7 +187,8 @@
                 </div>
             </div>
         </section>
-        <!--main content end-->
+    </section>
+    <!--main content end-->
 @stop
 @section('footer_scripts')
     <script>
