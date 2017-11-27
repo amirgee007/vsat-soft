@@ -9,8 +9,10 @@ class TicketController extends Controller
 {
 
     public function index() {
-
         return view('admin.ticket.index');
+    }
 
+    public function create() {
+        return view('admin.ticket.create');
     }
 }

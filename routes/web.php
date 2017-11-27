@@ -288,6 +288,13 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'as' => 'ticket.index',
             'uses' => 'TicketController@index'
         ]);
+
+        Route::get('/add', [
+            'as' => 'ticket.create',
+            'uses' => 'TicketController@create'
+        ]);
+
+
     });
 
     #TOOLS & EQUIPMENT Management

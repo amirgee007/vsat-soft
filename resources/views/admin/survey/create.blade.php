@@ -19,7 +19,6 @@
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Survey</h1>
                             <form class="form-horizontal" role="form" action="http://vsat-soft.dev/documents/special/add" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="h0LTNxMVzwhRfb84AbWfOCXbLJ9SNYN08bgok16t">
                                 <div class="panel panel-primary form-group">
                                     <section class="panel">
                                         <div class="panel-content" style="clear: both;">
