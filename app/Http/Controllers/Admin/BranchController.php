@@ -24,8 +24,9 @@ class BranchController extends Controller
         $branch_id = Branch::getMaxBranchId();
         $staffs = SupportStaff::all();
         $related_staff = [];
+        $countries = Country::IsActive()->get();
 
-        return view('admin.branch.create' , compact('branch_id' ,'staffs','related_staff'));
+        return view('admin.branch.create' , compact('countries','branch_id' ,'staffs','related_staff'));
     }
 
     public  function store(Request $request)
@@ -59,10 +60,11 @@ class BranchController extends Controller
         $branch = Branch::where('branch_id', $id)->first();
         $staffs = SupportStaff::all();
         $related_staff = $branch->relatedStaff();
+        $countries = Country::IsActive()->get();
 
         if (!is_null($branch))
         {
-            return view('admin.branch.edit' , compact('branch' ,'related_staff','staffs'));
+            return view('admin.branch.edit' , compact('countries','branch' ,'related_staff','staffs'));
         } else
         {
             session()->flash('app_warning', 'No, Branch Found!');

@@ -49,6 +49,7 @@
     <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
     <link href="{{asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
     <script src="{{asset('assets/select2-4.0.4/select2.min.js')}}"></script>
+    @include('admin.layouts.partials.aax-country-based')
 
     <script>
 

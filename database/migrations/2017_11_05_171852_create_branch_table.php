@@ -17,12 +17,12 @@ class CreateBranchTable extends Migration
 			$table->increments('branch_id');
             $table->string('id_number');
             $table->string('name');
+            $table->string('country_id');
+            $table->string('city_id');
             $table->string('street');
             $table->string('area');
-            $table->string('city');
             $table->string('state');
             $table->string('zip_code');
-            $table->string('country');
             $table->string('po_box');
             $table->string('office_tel');
             $table->string('fax_no');

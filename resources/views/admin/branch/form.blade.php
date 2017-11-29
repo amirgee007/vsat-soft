@@ -16,49 +16,46 @@
 </div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label">Branch Address Auto</label>
-    <span class="col-sm-10">
-        <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text"></input>
-    </span>
-</div>
+    <label class="col-sm-2 col-xs-3 control-label">Branch Address</label>
+    <div class="col-sm-10 col-xs-9">
+        <label class="col-sm-2 col-xs-3 control-label">Country {{@$branch->country}}</label>
+        <div class="col-sm-4 col-xs-3">
+            <select required name="country_id" class="form-control m-bot15 country" id="country">
+                <option>Select Country</option>
+                @foreach($countries as $country)
+                    <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                @endforeach
+            </select>
+        </div>
 
-<div class="form-group">
-    <label class="col-sm-2 control-label"></label>
+        <label class="col-sm-2 col-xs-3 control-label">City {{@$branch->city}}</label>
+        <div class="col-sm-4 col-xs-3">
+            <select required name="city_id" id="city" class="form-control m-bot15 city"></select>
+        </div>
 
-    <div class="col-sm-10">
-        <label class="col-sm-2 control-label">Street</label>
-        <span class="col-sm-4">
-            <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$branch->street}}" id="street_number"></input>
+        <label class="col-sm-2 col-xs-3 control-label">Street</label>
+        <span class="col-sm-10 col-xs-9">
+            <input type="text" required name="street" class="form-control" value="{{@$branch->street}}" placeholder="Street">
         </span>
+
         <label class="col-sm-2 control-label">Area</label>
         <span class="col-sm-4">
-            <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$branch->area}}" id="route"></input>
+            <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$branch->area}}">
         </span>
-        <label class="col-sm-2 col-xs-3 control-label">City</label>
-        <div class="col-sm-4 col-xs-3">
-            <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$branch->city}}"></input>
-        </div>
         <label class="col-sm-2 control-label">State</label>
         <span class="col-sm-4">
-            <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$branch->state}}" id="administrative_area_level_1"></input>
+            <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$branch->state}}">
         </span>
         <label class="col-sm-2 control-label">Zip Code</label>
         <span class="col-sm-4">
-            <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+            <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" >
         </span>
-        <label class="col-sm-2 col-xs-3 control-label">Country</label>
-        <div class="col-sm-4 col-xs-3">
-            <input class="form-control field" name="country" placeholder="country" value="{{@$branch->country}}" id="country"></input>
-        </div>
-
-        <input type="hidden" placeholder="Latitude"  id="longitude"></input>
-
-        <input type="hidden"  placeholder="Longitude" id="latitude"></input>
 
         <label class="col-sm-2 control-label">P.O.Box</label>
         <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
-      </span>
+            <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
+        </span>
+
         <label class="col-sm-2 control-label">Office Tel</label>
         <span class="col-sm-4">
       <input type="tel" class="form-control" placeholder="Office Tel" name="office_tel"
@@ -127,4 +124,3 @@
         <button type="button" class="btn btn-danger">Cancel</button>
     </div>
 </div>
-
