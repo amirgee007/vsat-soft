@@ -1,11 +1,5 @@
 @extends('admin/layouts/default')
-
-@section('pageTitle', 'sample page')
-
-@section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
-@stop
-
+@section('pageTitle', 'Ticket Management')
 @section('content')
 
     <!--main content start-->
@@ -25,13 +19,26 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
-                        <a class="btn btn-primary btn-lg" href="add_branch.html" title="Add Branch">Add New Branch</a>
+                        <a class="btn btn-primary btn-lg" href="{{ route('ticket.create') }}" title="Open A New Ticket">
+                            Open New Ticket
+                        </a>
                     </div>
                     <section class="panel">
                         <header class="panel-heading">
                             Tickets
                         </header>
-
+                        <table class="table table-striped table-advance table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> Ticket #</th>
+                            <th><i class="fa fa-houzz"></i>Create Date</th>
+                            <th><i class="icon_calendar"></i>Status</th>
+                            <th><i class="fa fa-flag"></i> Subject</th>
+                            <th><i class="icon_cogs"></i> Reply/View</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                        </table>
                     </section>
                 </div>
             </div>
@@ -40,19 +47,4 @@
         </section>
     </section>
     <!--main content end-->
-
-@stop
-
-@section('footer_scripts')
-
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
-
-    <script>
-
-        $(function () {
-
-            //all jquery code here
-        });
-
-    </script>
 @stop

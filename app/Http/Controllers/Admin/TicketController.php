@@ -15,4 +15,7 @@ class TicketController extends Controller
     public function create() {
         return view('admin.ticket.create');
     }
+    public function show() {
+        return view('admin.ticket.show');
+    }
 }

@@ -1,24 +1,16 @@
 @extends('admin/layouts/default')
-
-@section('pageTitle', 'Create Staff')
-
-@section('header_styles')
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
-@stop
-
+@section('pageTitle', 'Open Ticket')
 @section('content')
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-header"><i class="fa fa-user-plus"></i>ADD NEW SUPPORT Ticket</h3>
+                    <h3 class="page-header"><i class="fa fa-user-plus"></i>Add New Ticket</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="{{ route('index.dashboard') }}">Home</a></li>
-                        <li><i class="fa fa-users"></i><a href="{{ route('people.supportStaff.index') }}">Ticket Management </a></li>
-                        <li><i class="fa fa-user-plus"></i>ADD NEW SUPPORT STAFF</li>
+                        <li><i class="fa fa-users"></i><a href="{{ route('ticket.index') }}">Ticket Management </a></li>
+                        <li><i class="fa fa-user-plus"></i>ADD NEW TICKET</li>
                     </ol>
                 </div>
             </div>
