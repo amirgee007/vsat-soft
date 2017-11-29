@@ -23,21 +23,23 @@ class CreateSupportStaffsTable extends Migration
             $table->string('mother_name');
             $table->string('last_name')->nullable();
             $table->string('maiden_name')->nullable();
-            $table->string('local_street');
+            $table->string('local_country_id');
+            $table->string('local_city_id');
             $table->string('local_area');
-            $table->string('local_city');
+            $table->string('local_street');
             $table->string('local_state');
             $table->string('local_zip_code');
-            $table->string('local_country');
             $table->string('local_po_box');
             $table->string('local_official_tel');
             $table->string('local_home_tel');
+
+
+            $table->string('permanent_country_id');
+            $table->string('permanent_city_id');
             $table->string('permanent_street');
             $table->string('permanent_area');
-            $table->string('permanent_city');
             $table->string('permanent_state');
             $table->string('permanent_zip_code');
-            $table->string('permanent_country');
             $table->string('permanent_po_box');
             $table->string('contact_name');
             $table->string('emergency_number');

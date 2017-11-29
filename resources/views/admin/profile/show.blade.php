@@ -144,7 +144,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label">Country (autocomplete)</label>
+                                                    <label class="col-lg-2 control-label">Country</label>
                                                     <div class="col-lg-6">
                                                         <input required type="text" name="country" value="{{$user->country}}" class="form-control" id="c-name" placeholder="Country">
                                                     </div>

@@ -88,14 +88,12 @@
     </div>
 
     <div class="form-group">
-        <label class="col-lg-2 control-label">Profile Image</label>
-        <div class="col-lg-offset-2 col-lg-10">
-            <img src="{{asset(@@$user->profile_pic ? 'uploads/users/'.@$user->profile_pic : 'img/noimage.gif')}}" alt="User Image"  style="height:150px; width: 200px"/>
-
-            <input class="btn btn-default" type="file" name="profile_pic">
+        <label class="col-lg-6 control-label">Profile Image</label>
+        <div class="col-lg-offset-2 col-lg-6">
+            <input id="input-file-now" type="file" @if(@$user->profile_pic) data-default-file="{{asset('uploads/users/'.$user->profile_pic)}}" @endif name="profile_pic" class="dropify"/>
+            <br />
         </div>
     </div>
-
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">

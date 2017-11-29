@@ -67,6 +67,8 @@
 
         });
 
+        @include('admin.layouts.partials.aax-country-based')
+        @include('admin.people.support-staff.aax-country2-based')
     </script>
 @stop
 

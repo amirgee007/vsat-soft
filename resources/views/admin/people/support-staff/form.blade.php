@@ -49,43 +49,46 @@
                 </div>
             </div>
             {{--       local Address           --}}
+
             <div class="form-group">
-                <label class="col-sm-2 control-label">Local Address Auto</label>
-                <span class="col-sm-10">
-                    <input id="autocomplete" onFocus="geolocate()" placeholder="Street ,City ,State ,Country Autocomplete" class="form-control" type="text"></input>
-                </span>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label"></label>
-                <div class="col-sm-10">
-                    <label class="col-sm-2 control-label">Street</label>
-                    <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Street" name="local_street" value="{{@$staff->local_street}}" id="street_number"></input>
+                <label class="col-sm-2 col-xs-3 control-label">Local Address</label>
+                <div class="col-sm-10 col-xs-9">
+                    <label class="col-sm-2 col-xs-3 control-label">Country {{@$staff->country}}</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <select required name="local_country_id" class="form-control m-bot15 country" id="country">
+                            <option>Select Country</option>
+                            @foreach($countries as $country)
+                                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <label class="col-sm-2 col-xs-3 control-label">City {{@$staff->city}}</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <select required name="local_city_id" id="city" class="form-control m-bot15 city"></select>
+                    </div>
+
+                    <label class="col-sm-2 col-xs-3 control-label">Street</label>
+                    <span class="col-sm-10 col-xs-9">
+                        <input type="text" required name="local_street" class="form-control" value="{{@$staff->street}}" placeholder="Street">
                     </span>
+
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="local_area" value="{{@$staff->local_area}}" id="route"></input>
+                        <input required type="text" name="local_area" class="form-control" placeholder="Area" value="{{@$staff->area}}">
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">City</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input required type="text" class="form-control" placeholder="City" name="local_city" id="locality" value="{{@$staff->local_city}}"></input>
-                    </div>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="local_state" value="{{@$staff->local_state}}" id="administrative_area_level_1"></input>
+                        <input required type="text" name="local_state" class="form-control" placeholder="State" value="{{@$staff->state}}">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input class="form-control field" name="local_zip_code" value="{{@$staff->local_zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+                        <input class="form-control field" name="local_zip_code" value="{{@$staff->zip_code}}" placeholder="Zip Code" >
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input class="form-control field" name="local_country" placeholder="country" value="{{@$staff->local_country}}" id="country"></input>
-                    </div>
 
                     <label class="col-sm-2 control-label">P.O.Box</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="P.O.Box" name="local_po_box" value="{{ @$staff->local_po_box }}">
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="local_po_box" value="{{ @$staff->po_box }}">
                     </span>
                     <label class="col-sm-2 control-label">Office phone</label>
                     <span class="col-sm-4">
@@ -100,44 +103,48 @@
             </div>
 
             {{--       Permnt Address           --}}
-            <div class="form-group" id="addressautocomplete2">
-                <label class="col-sm-2 control-label">Permanent Address (Abroad)</label>
-                <span class="col-sm-10">
-                    <input id="autocomplete2" onFocus="geolocate()" placeholder="Street ,City ,State ,Country Autocomplete" class="form-control" type="text"></input>
-                </span>
-            </div>
+
             <div class="form-group">
-                <label class="col-sm-2 control-label"></label>
-                <div class="col-sm-10">
-                    <label class="col-sm-2 control-label">Street</label>
-                    <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Street" name="permanent_street" value="{{@$staff->permanent_street}}" id="street_number2"></input>
+                <label class="col-sm-2 col-xs-3 control-label">Permanent Address</label>
+                <div class="col-sm-10 col-xs-9">
+                    <label class="col-sm-2 col-xs-3 control-label">Country {{@$staff->country}}</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <select required name="permanent_country_id" class="form-control m-bot15 country" id="country2">
+                            <option>Select Country</option>
+                            @foreach($countries as $country)
+                                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <label class="col-sm-2 col-xs-3 control-label">City {{@$staff->city}}</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <select required name="permanent_city_id"  id="city2" class="form-control m-bot15 city"></select>
+                    </div>
+
+                    <label class="col-sm-2 col-xs-3 control-label">Street</label>
+                    <span class="col-sm-10 col-xs-9">
+                        <input type="text" required name="permanent_street" class="form-control" value="{{@$staff->street}}" placeholder="Street">
                     </span>
+
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="permanent_area" value="{{@$staff->permanent_area}}" id="route2"></input>
+                        <input required type="text" class="form-control" placeholder="Area" name="permanent_area" value="{{@$staff->area}}">
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">City</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input required type="text" class="form-control" placeholder="City" name="permanent_city" id="locality2" value="{{@$staff->permanent_city}}"></input>
-                    </div>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="permanent_state" value="{{@$staff->permanent_state}}" id="administrative_area_level_12"></input>
+                        <input required type="text" class="form-control" placeholder="State" name="permanent_state" value="{{@$staff->state}}">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input class="form-control field" name="permanent_zip_code" value="{{@$staff->permanent_zip_code}}" placeholder="Zip Code" id="postal_code2"></input>
+                        <input class="form-control field" name="permanent_zip_code" value="{{@$staff->zip_code}}" placeholder="Zip Code" >
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input class="form-control field" name="permanent_country" placeholder="country" value="{{@$staff->permanent_country}}" id="country2"></input>
-                    </div>
 
                     <label class="col-sm-2 control-label">P.O.Box</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="P.O.Box" name="permanent_po_box" value="{{ @$staff->permanent_po_box }}">
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="permanent_po_box" value="{{ @$staff->po_box }}">
                     </span>
+
                     <label class="col-sm-2 col-xs-3 control-label">Contact Name</label>
                     <span class="col-sm-4 col-xs-3">
                         <input name="contact_name" value="{{@$staff->contact_name}}" type="text" class="form-control" placeholder="Contact Name">
@@ -334,4 +341,3 @@
         </select>
     </div>
 </div>
-

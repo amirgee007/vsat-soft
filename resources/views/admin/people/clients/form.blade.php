@@ -21,6 +21,7 @@
             </div>
 
             <div class="form-group">
+
                 <label class="col-sm-2 col-xs-3 control-label">Client Address</label>
                 <div class="col-sm-10 col-xs-9">
                     <label class="col-sm-2 col-xs-3 control-label">Country {{@$branch->country}}</label>
@@ -35,7 +36,7 @@
 
                     <label class="col-sm-2 col-xs-3 control-label">City {{@$branch->city}}</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select required name="city_id" class="form-control m-bot15 city" id="city"></select>
+                        <select required name="city_id" id="city" class="form-control m-bot15 city"></select>
                     </div>
 
                     <label class="col-sm-2 col-xs-3 control-label">Street</label>
@@ -45,48 +46,49 @@
 
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$branch->area}}" id="route"></input>
+                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$branch->area}}">
                     </span>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$branch->state}}" id="administrative_area_level_1"></input>
+                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$branch->state}}">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" id="postal_code"></input>
+                        <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" >
                     </span>
 
                     <label class="col-sm-2 control-label">P.O.Box</label>
                     <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
-      </span>
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
+                    </span>
+
                     <label class="col-sm-2 control-label">Office Tel</label>
                     <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Office Tel" name="official_tel"
-             value="{{ @$branch->official_tel }}">
-      </span>
+                        <input type="tel" class="form-control" placeholder="Office Tel" name="official_tel"
+                               value="{{ @$branch->official_tel }}">
+                    </span>
                     <label class="col-sm-2 control-label">Fax No</label>
                     <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Fax No" name="fax_no" value="{{ @$branch->fax_no }}">
-      </span>
+                        <input type="tel" class="form-control" placeholder="Fax No" name="fax_no" value="{{ @$branch->fax_no }}">
+                    </span>
                     <label class="col-sm-2 control-label">Email</label>
                     <span class="col-sm-4">
-      <input type="email" class="form-control" placeholder="Email" name="email" value="{{ @$branch->email }}">
-      </span>
+                        <input type="email" class="form-control" placeholder="Email" name="email" value="{{ @$branch->email }}">
+                    </span>
                     <label class="col-sm-2 control-label">Website</label>
                     <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Website" name="website" value="{{ @$branch->website }}">
-      </span>
+                        <input type="text" class="form-control" placeholder="Website" name="website" value="{{ @$branch->website }}">
+                    </span>
                     <label class="col-sm-2 control-label">Working Days</label>
                     <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Working Days" name="working_days"
-             value="{{ @$branch->working_days }}">
-      </span>
+                        <input type="text" class="form-control" placeholder="Working Days" name="working_days"
+                               value="{{ @$branch->working_days }}">
+                    </span>
                     <label class="col-sm-2 control-label">Working Times</label>
                     <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Working Times" name="working_times"
-             value="{{ @$branch->working_times }}">
-      </span>
+                        <input type="tel" class="form-control" placeholder="Working Times" name="working_times"
+                               value="{{ @$branch->working_times }}">
+                    </span>
                 </div>
             </div>
 

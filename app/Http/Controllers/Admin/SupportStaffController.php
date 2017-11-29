@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Country;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\SupportStaff;
@@ -22,7 +23,8 @@ class SupportStaffController extends Controller
     {
         $staff_no = SupportStaff::getMaxStaffId();
         $users = User::all(['id','first_name', 'last_name']);
-        return view('admin.people.support-staff.create', compact('staff_no', 'users' ));
+        $countries = Country::IsActive()->get();
+        return view('admin.people.support-staff.create', compact('countries','staff_no', 'users' ));
     }
 
     public function store(Request $request)
@@ -60,7 +62,8 @@ class SupportStaffController extends Controller
         $staff = SupportStaff::where(['support_staff_id'=>$id, 'added_by' => Auth::user()->id])->first();
         $users = User::all(['id','first_name', 'last_name']);
         $relatedUser = $staff->relatedUser();
-        return view('admin.people.support-staff.edit', compact('staff', 'users', 'relatedUser'));
+        $countries = Country::IsActive()->get();
+        return view('admin.people.support-staff.edit', compact('countries','staff', 'users', 'relatedUser'));
     }
 
     public function update(Request $request)

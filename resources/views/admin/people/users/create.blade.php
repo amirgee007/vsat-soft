@@ -3,7 +3,7 @@
 @section('pageTitle', 'Add New User')
 
 @section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 
 @section('content')
@@ -45,6 +45,17 @@
 @stop
 
 @section('footer_scripts')
+    <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
+
+    <script>
+
+        $(function () {
+
+            $('.dropify').dropify();
+        });
+
+    </script>
+
 
     <script>
 

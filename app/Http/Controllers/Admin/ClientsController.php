@@ -19,7 +19,7 @@ class ClientsController extends Controller
     {
         $data['client_no'] = Client::getMaxClientId();
         $users = User::all(['id','first_name', 'last_name']);
-        $countries = Country::all();
+        $countries = Country::IsActive()->get();
         $related_user = [];
         return view('admin.people.clients.create', compact('countries','data' ,'users' ,'related_user'));
     }
@@ -53,7 +53,7 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = Client::where('client_id', $id)->first();
-        $countries = Country::all();
+        $countries = Country::IsActive()->get();
         return view('admin.people.clients.edit', compact('countries','client'));
     }
 
