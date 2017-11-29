@@ -15,3 +15,6 @@ yarn-error.log
 /public/uploads/clients/
 /public/uploads/sites/
 /public/uploads/documents/
+/public/uploads/tools_equipments/
+/public/uploads/users/
+/public/uploads/support_staff/
