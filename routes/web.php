@@ -294,6 +294,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
             'uses' => 'TicketController@create'
         ]);
 
+        Route::get('/view', [
+            'as' => 'ticket.show',
+            'uses' => 'TicketController@show'
+        ]);
+
 
     });
 

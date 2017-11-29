@@ -53,8 +53,9 @@
                     <span>Sites</span>
                 </a>
             </li>
-            <li>
-                <a class="" href="{{route('ticket.index')}}">
+            <li class="{{Request::is('ticket') ? 'active' : ''}}">
+                <a
+                   href="{{route('ticket.index')}}">
                     <i class="icon_tags"></i>
                     <span>Ticketing</span>
                 </a>
