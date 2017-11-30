@@ -43,7 +43,7 @@
 
                             @foreach((object)$cities as $city)
                             <tr>
-                                <td class="text-center">{{$city->city_id}}</td>
+                                <td class="text-center">{{$loop->iteration}}</td>
                                 <td class="text-center">{{$city->country_name}}</td>
                                 <td class="text-center">{{$city->city_name}}</td>
                                 <td class="text-center">

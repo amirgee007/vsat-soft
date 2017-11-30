@@ -511,6 +511,8 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
         ])->where('id', '[0-9]+');
     });
 
+    //Survey Management
+
     Route::group(array('prefix' => 'survey'), function () {
 
         Route::get('/add', [
@@ -518,25 +520,42 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'SurveyController@create'
         ]);
 
-        Route::get('/take', [
+        Route::get('/take/{id}', [
             'as' => 'survey.take',
             'uses' => 'SurveyController@takeSurvey'
-        ]);
+        ])->where('id', '[0-9]+');
 
-        Route::post('/add', [
+        Route::post('/add/store', [
             'as' => 'survey.store',
             'uses' => 'SurveyController@store'
         ]);
 
+        Route::get('/edit/{id}', [
+            'as' => 'get.survey.edit',
+            'uses' => 'SurveyController@edit'
+        ])->where('id', '[0-9]+');
+
+        
+        Route::post('/update', [
+            'as' => 'survey.post.update',
+            'uses' => 'SurveyController@update'
+        ]);
+
         Route::get('/site', [
-            'as' => 'survey.site.survey',
-            'uses' => 'SurveyController@site'
+            'as' => 'survey.site.index',
+            'uses' => 'SurveyController@indexSiteSurvey'
         ]);
 
         Route::get('/performance', [
-            'as' => 'survey.performance.survey',
-            'uses' => 'SurveyController@performance'
+            'as' => 'survey.performance.index',
+            'uses' => 'SurveyController@indexPerformanceSurvey'
         ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'get.survey.delete',
+            'uses' => 'SurveyController@delete'
+        ])->where('id', '[0-9]+');
+
     });
 
     #Reports Management

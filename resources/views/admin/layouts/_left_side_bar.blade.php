@@ -86,8 +86,8 @@
                 </a>
                 <ul class="sub">
                     <li class="{{ Request::segment(2)=='add' ? 'active' : '' }}"><a class="" href="{{ route('survey.create') }}">Add Survey</a></li>
-                    <li class="{{ Request::segment(2)=='site' ? 'active' : '' }}"><a class="" href="{{ route('survey.site.survey') }}">Site Survey</a></li>
-                    <li class="{{ Request::segment(2)=='performance' ? 'active' : '' }}"><a class="" href="{{ route('survey.performance.survey') }}">Performance Survey</a></li>
+                    <li class="{{ Request::segment(2)=='site' ? 'active' : '' }}"><a class="" href="{{ route('survey.site.index') }}">Site Survey</a></li>
+                    <li class="{{ Request::segment(2)=='performance' ? 'active' : '' }}"><a class="" href="{{ route('survey.performance.index') }}">Performance Survey</a></li>
                 </ul>
             </li>
             <li class="sub-menu {{Request::is('log/*') ? 'active' : ''}}">

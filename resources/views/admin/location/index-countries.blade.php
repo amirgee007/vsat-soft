@@ -39,7 +39,7 @@
                            <tbody>
                            @foreach($countries as $country)
                                <tr>
-                                   <td class="text-center">{{$country->country_id}}</td>
+                                   <td class="text-center">{{$loop->iteration}}</td>
                                    <td class="text-center">{{$country->full_name}}</td>
                                    <td class="text-center">
                                        <input type="checkbox" class="status" data-id="{{$country->country_id}}" {{$country->is_active ? 'checked' : ''}}/>

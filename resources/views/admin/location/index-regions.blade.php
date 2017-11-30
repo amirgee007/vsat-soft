@@ -40,7 +40,7 @@
 
                             @foreach($regions as $region)
                                 <tr>
-                                    <td class="text-center">{{$region->region_id}}</td>
+                                    <td class="text-center">{{$loop->iteration}}</td>
                                     <td style="vertical-align: middle" class="text-center">{{$region->name}}</td>
                                     <td class="text-center">
                                         <input type="checkbox" class="status" data-id="{{$region->region_id}}" {{$region->is_active ? 'checked' : ''}}/>
