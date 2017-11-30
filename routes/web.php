@@ -535,7 +535,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'SurveyController@edit'
         ])->where('id', '[0-9]+');
 
-        
+
         Route::post('/update', [
             'as' => 'survey.post.update',
             'uses' => 'SurveyController@update'

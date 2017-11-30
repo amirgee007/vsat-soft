@@ -34,18 +34,18 @@
                                     <h3 class="box-title">Answer these questions. There's no time limit.</h3>
                                 </div>
                                 <div class="box-body">
+                                    @foreach($questions as $question)
                                     <table class="table table-bordered table-responsive table-question">
                                         <thead>
-                                        <th class="text-left"><strong>Question #1</strong></th>
-                                        <th class="text-left"><strong>Look at the code snippet. Which of these four flags does not
-                                                exist?</strong>
+                                        <th class="text-left"><strong>Question #{{$loop->iteration}}</strong></th>
+                                        <th class="text-left"><strong>{{$question->question_name}} ?</strong>
                                         </th>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>Code snippet</td>
+                                            <td>Explanation</td>
                                             <td>
-                                                <pre>php artisan make:model Project --migration --controller --resource --seed</pre>
+                                                <pre>Check options Here</pre>
                                             </td>
                                         </tr>
                                         <tr>
@@ -54,76 +54,34 @@
                                                 <div class="icheck">
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[78]" value="311">
-                                                            --controller
+                                                            <input type="radio" name="answers[]" value="1">
+                                                            {{$question->option_1}}
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[78]" value="312">
-                                                            --resource
+                                                            <input type="radio" name="answers[]" value="2">
+                                                            {{$question->option_2}}
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[78]" value="310">
-                                                            --migration
+                                                            <input type="radio" name="answers[]" value="3">
+                                                            {{$question->option_3}}
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[78]" value="309">
-                                                            --seed
+                                                            <input type="radio" name="answers[]" value="4">
+                                                            {{$question->option_4}}
                                                         </label>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                         </tbody>
-                                        <input name="questions[1]" type="hidden" value="78">
                                     </table>
-                                    <p></p>
-                                    <table class="table table-bordered table-responsive table-question">
-                                        <thead>
-                                        <th class="text-left"><strong>Question #2</strong></th>
-                                        <th class="text-left"><strong>What command will show you all available routes in Laravel?</strong>
-                                        </th>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-left">Options</td>
-                                            <td class="text-left">
-                                                <div class="icheck">
-                                                    <div>
-                                                        <label>
-                                                            <input type="radio" name="answers[80]" value="318">
-                                                            artisan route:all
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <label>
-                                                            <input type="radio" name="answers[80]" value="319">
-                                                            artisan route:get
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <label>
-                                                            <input type="radio" name="answers[80]" value="317">
-                                                            artisan route:list
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <label>
-                                                            <input type="radio" name="answers[80]" value="320">
-                                                            artisan routes
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <input name="questions[2]" type="hidden" value="80">
-                                    </table>
+                                    @endforeach
                                 </div>
                                 </div>
                                 </section>

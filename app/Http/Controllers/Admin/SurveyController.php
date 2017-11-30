@@ -68,7 +68,10 @@ class SurveyController extends Controller
 
     public function takeSurvey($id)
     {
-        return view('admin.survey.survey-questions' ,compact('id'));
+        $survey = Survey::where('survey_id',$id)->first();
+
+        $questions = $survey->questions;
+        return view('admin.survey.survey-questions' ,compact('questions'));
     }
 
     public function delete($id)
