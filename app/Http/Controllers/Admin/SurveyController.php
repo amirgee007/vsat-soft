@@ -24,4 +24,13 @@ class SurveyController extends Controller
     {
         return view('admin.survey.create');
     }
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function takeSurvey()
+    {
+        return view('admin.survey.survey_questions');
+    }
 }

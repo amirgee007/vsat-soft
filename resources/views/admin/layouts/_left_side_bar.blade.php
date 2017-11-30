@@ -53,7 +53,14 @@
                     <span>Sites</span>
                 </a>
             </li>
-            <li class="{{Request::is('ticket') ? 'active' : ''}}">
+            <li class="{{ ( Request::is('asset/*') || Request::is('asset') ) ? 'active' : ''}}">
+                <a class="" href="{{route('asset.index')}}">
+                    <i class="icon_archive"></i>
+                    <span>Assets</span>
+                </a>
+            </li>
+
+            <li class="{{( Request::is('ticket/*') || Request::is('ticket') ) ? 'active' : ''}}">
                 <a
                    href="{{route('ticket.index')}}">
                     <i class="icon_tags"></i>
@@ -78,7 +85,7 @@
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li class="{{ Request::segment(2)=='add' ? 'active' : '' }}"><a class="" href="{{ route('survey.index.addSurvey') }}">Add Survey</a></li>
+                    <li class="{{ Request::segment(2)=='add' ? 'active' : '' }}"><a class="" href="{{ route('survey.create') }}">Add Survey</a></li>
                     <li class="{{ Request::segment(2)=='site' ? 'active' : '' }}"><a class="" href="{{ route('survey.site.survey') }}">Site Survey</a></li>
                     <li class="{{ Request::segment(2)=='performance' ? 'active' : '' }}"><a class="" href="{{ route('survey.performance.survey') }}">Performance Survey</a></li>
                 </ul>

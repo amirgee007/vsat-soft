@@ -5,14 +5,14 @@
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">Full Name</label>
                 <div class="col-sm-10 col-xs-9">
-                    <input type="text" name="survey_name" value="" class="form-control" placeholder="Survey Name">
+                    <input type="text" name="survey_name" value="" class="form-control" placeholder="Full Name">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">Email Address </label>
                 <div class="col-sm-10 col-xs-9">
-                    <input type="text" name="survey_name" value="" class="form-control" placeholder="Survey Address">
+                    <input type="text" name="survey_name" value="" class="form-control" placeholder="Email Address">
                 </div>
             </div>
             <div class="form-group">
@@ -46,6 +46,27 @@
                     <textarea name="survey_des" class="form-control" id="" cols="20" rows="10"></textarea>
                 </div>
             </div>
+            <label class="col-lg-2 control-label">Select Users</label>
+            <div class="col-lg-10">
+                <select required class="form-control m-bot15" multiple="multiple" name="related_site" id="related_site">
+                    <option value="">Select User</option>
+                    <option value="a">User A</option>
+                    <option value="b">User B</option>
+                </select>
+            </div>
         </div>
     </section>
 </div>
+@section('footer_scripts')
+    <link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#related_site').select2({
+                placeholder: "Select Related Users",
+                width: '100%',
+                allowClear: true
+            });
+        });
+    </script>
+@stop

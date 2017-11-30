@@ -32,9 +32,9 @@
                         <tr>
                             <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> Ticket #</th>
                             <th><i class="fa fa-houzz"></i>Create Date</th>
-                            <th><i class="icon_calendar"></i>Status</th>
                             <th><i class="fa fa-flag"></i> Subject</th>
-                            <th><i class="icon_cogs"></i> Reply/View</th>
+                            <th><i class="icon_calendar"></i>Status</th>
+                            <th><i class="icon_cogs"></i> View</th>
                         </tr>
                         </thead>
                         <tbody></tbody>

@@ -42,7 +42,7 @@ Auth::routes();
 
 
 //////// Main Logged In User routes /////////
-Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
+Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
 
     Route::get('/dashboard', array(
         'as' => 'index.dashboard',
@@ -302,6 +302,36 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
 
     });
 
+    # Asset Management
+    Route::group(array('prefix' => 'asset'), function () {
+
+        Route::get('/', [
+            'as' => 'asset.index',
+            'uses' => 'AssetController@index'
+        ]);
+
+        Route::get('/add', [
+            'as' => 'asset.create',
+            'uses' => 'AssetController@create'
+        ]);
+
+        Route::post('/add', [
+            'as' => 'asset.create',
+            'uses' => 'AssetController@store'
+        ]);
+
+        Route::get('/edit/{id}', [
+            'as' => 'asset.edit',
+            'uses' => 'AssetController@edit'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/delete/{id}', [
+            'as' => 'asset.delete',
+            'uses' => 'AssetController@delete'
+        ])->where('id', '[0-9]+');
+
+    });
+
     #TOOLS & EQUIPMENT Management
     Route::group(array('prefix' => 'equipments'), function () {
 
@@ -482,9 +512,20 @@ Route::group(['namespace' =>'Admin' ,'middleware' => 'auth'] , function(){
     });
 
     Route::group(array('prefix' => 'survey'), function () {
+
         Route::get('/add', [
-            'as' => 'survey.index.addSurvey',
+            'as' => 'survey.create',
             'uses' => 'SurveyController@create'
+        ]);
+
+        Route::get('/take', [
+            'as' => 'survey.take',
+            'uses' => 'SurveyController@takeSurvey'
+        ]);
+
+        Route::post('/add', [
+            'as' => 'survey.store',
+            'uses' => 'SurveyController@store'
         ]);
 
         Route::get('/site', [
