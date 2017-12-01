@@ -530,6 +530,13 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'SurveyController@store'
         ]);
 
+        Route::post('/take', [
+            'as' => 'survey.submit.survey',
+            'uses' => 'SurveyController@submitSurveyResult'
+        ]);
+
+
+
         Route::get('/edit/{id}', [
             'as' => 'get.survey.edit',
             'uses' => 'SurveyController@edit'

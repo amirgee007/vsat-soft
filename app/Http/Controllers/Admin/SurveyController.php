@@ -93,11 +93,29 @@ class SurveyController extends Controller
     public function takeSurvey($id)
     {
         $survey = Survey::where('survey_id',$id)->first();
-
         $questions = $survey->questions;
-        return view('admin.survey.survey-questions' ,compact('questions'));
+        return view('admin.survey.survey-questions' ,compact('questions', 'survey'));
     }
 
+    public function submitSurveyResult(Request $request)
+    {
+         $input = $request->all();
+         $answers = $input['answers'];
+         reset($answers);
+         $surveyId = key($answers);
+         $answers = $answers[$surveyId];
+         $survey = Survey::where('survey_id', $surveyId)->first();
+         $correctAnswers = $survey->answers();
+         if ( count($answers) == count($correctAnswers) )
+         {
+             array_unshift($correctAnswers,"");
+             unset($correctAnswers[0]);
+             $result = array_diff_assoc($correctAnswers, $answers);
+             dd('Number of Wrong Answers:'.count($result));
+
+         }
+
+    }
     public function delete($id)
     {
         $is_delete = Survey::where('survey_id',$id)->delete();

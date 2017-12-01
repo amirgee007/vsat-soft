@@ -13,4 +13,9 @@ class Survey extends Model
     public function questions(){
         return $this->hasMany( SurveyQuestion::class , 'survey_id' , 'survey_id');
     }
+
+    public function answers(){
+        return $this->hasMany( SurveyQuestion::class , 'survey_id' , 'survey_id')
+            ->pluck('correct_answer')->toArray();
+    }
 }

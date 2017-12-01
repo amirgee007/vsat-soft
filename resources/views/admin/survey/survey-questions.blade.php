@@ -16,17 +16,18 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-header"><i class="fa fa-user-plus"></i>Do you know Laravel Blade?</h3>
+                    <h3 class="page-header"><i class="fa fa-user-plus"></i>{{@$survey->name}}</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="{{ route('index.dashboard') }}">Home</a></li>
                         <li><i class="fa fa-users"></i><a href="{{ route('index.dashboard') }}">Survey Management</a></li>
-                        <li><i class="fa fa-user-plus"></i>Do you know Laravel Blade?</li>
+                        <li><i class="fa fa-user-plus"></i>{{@$survey->name}}</li>
                     </ol>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                        <form method="POST" action="" accept-charset="UTF-8">
+                        <form method="POST" action="{{ route('survey.submit.survey') }}" accept-charset="UTF-8">
+                            {{ csrf_field() }}
                             <div class="box box-primary">
                                 <section class="panel">
                                 <div class="panel-body">
@@ -42,37 +43,37 @@
                                         </th>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <!--<tr>
                                             <td>Explanation</td>
                                             <td>
                                                 <pre>Check options Here</pre>
                                             </td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <td class="text-left">Options</td>
                                             <td class="text-left">
                                                 <div class="icheck">
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[]" value="1">
+                                                            <input type="radio" required name="answers[{{@$survey->survey_id}}][{{$loop->iteration}}]" value="1">
                                                             {{$question->option_1}}
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[]" value="2">
+                                                            <input type="radio" required name="answers[{{@$survey->survey_id}}][{{$loop->iteration}}]" value="2">
                                                             {{$question->option_2}}
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[]" value="3">
+                                                            <input type="radio" required name="answers[{{@$survey->survey_id}}][{{$loop->iteration}}]" value="3">
                                                             {{$question->option_3}}
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input type="radio" name="answers[]" value="4">
+                                                            <input type="radio" required name="answers[{{@$survey->survey_id}}][{{$loop->iteration}}]" value="4">
                                                             {{$question->option_4}}
                                                         </label>
                                                     </div>
