@@ -42,7 +42,9 @@
             @foreach($survey->questions as $question)
             <div id="question_panel">
                 <div class="panel-body">
+                    @if($loop->iteration!=1)
                     <a class="btn btn-danger pull-right removeQuestion" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a><hr><div class=clearfix></div>
+                    @endif
                 <label class="col-lg-2 col-xs-3 control-label">Question</label>
                 <div class="col-sm-10 col-xs-9">
                     <input type="text" required value="{{$question->question_name}}" name="question_name[{{$loop->iteration}}]" placeholder="Type Your Question Here !" class="form-control">
@@ -156,9 +158,11 @@
 @section('footer_scripts')
     <script>
         $(function () {
+            var totalQs = "{{count($survey->questions)}}";
             var addQuestion = $('#add-question'); //Add button selector
             var wrapper = $('#question_panel'); //Input field wrapper
-            var question = 1;
+            var question = totalQs >0 ? totalQs : 1;
+
             var html = '';
             addQuestion.on('click', function (e) {
                 html = '<div class="panel-body">'
@@ -190,14 +194,15 @@
             +'<label class="col-lg-2 col-xs-3 control-label">Select Correct Answer</label>'
             +'<div class="col-sm-10 col-xs-9">'
                +'<select required name=correct_answer['+question+'] id="" class="form-control">'
-                 +'<option value="1">1st Answer Is Correct</option>'
-                 +'<option value="2">2nd Answer Is Correct</option>'
-                 +'<option value="3">3rd Answer Is Correct</option>'
-                 +'<option value="4">4th Answer Is Correct</option>'
+                 +'<option value="1">1st Answer is Correct</option>'
+                 +'<option value="2">2nd Answer is Correct</option>'
+                 +'<option value="3">3rd Answer is Correct</option>'
+                 +'<option value="4">4th Answer is Correct</option>'
                 +'</select></div></div>';
                 wrapper.append(html);
                 question++;
             });
+            
             $(wrapper).on('click', '.removeQuestion', function(e){ //Once remove button is clicked
                 e.preventDefault();
                 $(this).parent('div').remove(); //Remove field html
