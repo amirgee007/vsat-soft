@@ -34,9 +34,9 @@ class AdminController extends Controller
     public function showHome()
     {
         $user      = Auth::user()->id;
-        $cities    = City::where('is_active', '1')->get();
-        $regions   = Region::where('is_active', '1')->get();
-        $countries = Country::where('is_active', '1')->get();
+        $cities    = City::Isactive()->get();
+        $regions   = Region::Isactive()->get();
+        $countries = Country::Isactive()->get();
         $sites     = Site::where('added_by', $user)->get();
         return view('admin.dashboard', compact('cities', 'regions', 'countries', 'sites'));
     }

@@ -368,4 +368,4 @@
     </section>
 </div>
 
-@include('admin.layouts.partials.aax-country-based')
+@include('admin.layouts.partials.ajax-country-based')

@@ -4,6 +4,13 @@
 
 @section('header_styles')
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+
+    <style>
+        .custom-select{
+            color:white;
+            background-color:#005370;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -76,70 +83,31 @@
                         </div>
                         <div class="panel-content">
                             <div class="btn-group" style="width: 33%; float: left">
-                                <a class="btn btn-primary" title="Regions" style="width: 80%; float: left;">Regions</a>
-                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                                <ul id="option1" class="dropdown-menu scrollable-menu" role="menu">
-                                    @forelse( $regions as $region)
-                                        <li><a href="#" title="world_mill_en">{{$region->name}}</a></li>
-                                    @empty
-                                        <li style="text-align: center">No, Regions Found</li>
-                                    @endforelse
-                                    <!--<li><a href="#" title="world_mill_en">World</a></li>
-                                    <li><a href="#" title="ca_lcc">Canada</a></li>
-                                    <li><a href="#" title="africa_mill">Africa</a></li>
-                                    <li><a href="#" title="asia_mill">Asia</a></li>
-                                    <li><a href="#" title="europe_mill">Europe</a></li>
-                                    <li><a href="#" title="north_america_mill">North America</a></li>
-                                    <li><a href="#" title="south_america_mill">South America</a></li>
-                                    <li><a href="#" title="oceania_mill">Oceania</a></li>-->
-                                </ul>
+                                <div style="width: 80%; float: left;">
+                                    <select name="region_id" id="region" class="form-control custom-select">
+                                        <option>Select Region</option>
+                                        @foreach($regions as $region)
+                                            <option value="{{$region->region_id}}">{{$region->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <!-- /btn-group -->
                             <div class="btn-group" style="width: 33%; float: left">
-                                <a class="btn btn-danger" title="Countries" style="width: 80%;">Countries</a>
-                                <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                                <ul id="option2" class="dropdown-menu scrollable-menu" role="menu">
-                                    @forelse( $countries as $country)
-                                        <li><a href="#" title="world_mill_en">{{$country->full_name}}</a></li>
-                                    @empty
-                                        <li style="text-align: center">No, Countries Found</li>
-                                    @endforelse
-                                    <!--
-                                    <li><a href="#" title="ca_lcc">Kuwait</a></li>
-                                    <li><a href="#" title="world_mill_en">Jordan</a></li>
-                                    <li><a href="#" title="Arctic">Qatar</a></li>
-                                    <li><a href="#" title="Asia">United Arab Emirates</a></li>
-                                    <li><a href="#" title="Australasia">Bahrain</a></li>
-                                    <li><a href="#" title="Balkans">Iraq</a></li>-->
-                                </ul>
+                                <div style="width: 80%; float: left;">
+                                    <select name="country_id" id="country" class="form-control custom-select">
+                                        <option>Select Country</option>
+                                    </select>
+                                </div>
                             </div>
-                            <!-- /btn-group -->
                             <div class="btn-group" style="width: 33%; float: left;">
-                                <a class="btn btn-success" title="Cities" style="width: 80%; float: left;">Cities</a>
-                                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                                <ul id="option3" class="dropdown-menu scrollable-menu" role="menu">
-                                    @forelse( $cities as $city)
-                                        <li><a href="#" title="world_mill_en">{{$city->city_name}}</a></li>
-                                    @empty
-                                        <li style="text-align: center">No, Cities Found</li>
-                                    @endforelse
-                                    <!--
-                                    <li><a href="#" title="ca_lcc">Kuwait</a></li>
-                                    <li><a href="#" title="world_mill_en">Amman</a></li>
-                                    <li><a href="#" title="Arctic">Doha</a></li>
-                                    <li><a href="#" title="Asia">Dubai</a></li>
-                                    <li><a href="#" title="Australasia">Abu Dhabi</a></li>
-                                    <li><a href="#" title="Balkans">Manama</a></li>
-                                    <li><a href="#" title="Baltic States">Fallujah</a></li>
-                                    <li><a href="#" title="Caribbean">Al Qayyarah</a></li>
-                                    <li><a href="#" title="Central Africa">Zawita</a></li>-->
-                                </ul>
-                            </div>
-                            <!-- /btn-group -->
+                                <div style="width: 80%; float: left;">
+                                    <select name="city_id" id="city" class="form-control custom-select">
+                                        <option>Select City</option>
+                                    </select>
+                                </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="row">
@@ -167,13 +135,12 @@
         <!-- Today status end -->
 
 
-
         <div class="row">
 
             <div class="col-lg-9 col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
+                        <h2><i class="fa fa-flag-o red"></i><strong>Registered Sites</strong></h2>
 
                     </div>
                     <div class="table-responsive">
@@ -423,11 +390,11 @@
 
         <br>
         <br>
+        </div>
     </section>
     <div class="text-right">
         <div class="credits">
-
-            <img src="img/ics technologies new.png" alt="Powered By ICS Technologies" />
+            <img src="{{asset('img/ics technologies new.png')}}" alt="Powered By ICS Technologies" />
         </div>
     </div>
 </section>
@@ -435,10 +402,7 @@
 @stop
 @section('footer_scripts')
 
-    <script>
-        $(function () {
-            //all jquery code here
-        });
+    @include('admin.layouts.partials.ajax-regions-based')
+    @include('admin.layouts.partials.ajax-country-based')
 
-    </script>
 @stop

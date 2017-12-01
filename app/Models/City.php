@@ -17,6 +17,10 @@ class City extends Model
         return $this->hasOne( Country::class , 'country_id' , 'country_id');
     }
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     public function getCountryNameAttribute(){
 

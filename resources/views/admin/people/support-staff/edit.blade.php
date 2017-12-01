@@ -67,7 +67,7 @@
 
         });
 
-        @include('admin.layouts.partials.aax-country-based')
+        @include('admin.layouts.partials.ajax-country-based')
         @include('admin.people.support-staff.aax-country2-based')
     </script>
 @stop

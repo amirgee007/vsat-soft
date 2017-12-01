@@ -44,9 +44,16 @@ Auth::routes();
 //////// Main Logged In User routes /////////
 Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
 
+    # Dashboard Managment
     Route::get('/dashboard', array(
         'as' => 'index.dashboard',
         'uses' => 'AdminController@showHome'));
+
+    Route::get('/region-select-ajax', [
+        'as' => 'region-country-ajax',
+        'uses' => 'SystemController@regionCountryAjax'
+    ]);
+
 
     # Location Management
     Route::group(array('prefix' => 'location'), function () {
@@ -115,8 +122,8 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
         ]);
 
         Route::get('/country-select-ajax', [
-            'as' => 'country-ajax',
-            'uses' => 'SystemController@countryAjax'
+            'as' => 'country-city-ajax',
+            'uses' => 'SystemController@countryCityAjax'
         ]);
 
         Route::post('/create-client', [

@@ -14,6 +14,9 @@ class Region extends Model
         return $this->hasMany( Country::class , 'region_id' , 'region_id');
     }
 
+    public function scopeIsActive($query){
+        return $query->where('is_active', 1);
+    }
 
     public function cities()
     {

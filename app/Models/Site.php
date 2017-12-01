@@ -27,9 +27,7 @@ class Site extends Model
 
 
     public function relatedBranches(){
-
         return $this->branches->pluck('name' ,'branch_id')->toArray();
-
     }
 
 
