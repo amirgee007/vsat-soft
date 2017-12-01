@@ -17,11 +17,11 @@ class CreateCountriesTable extends Migration
 			
             $table->increments('country_id');
             $table->string('full_name');
-            $table->string('short_name')->nullable();
 			$table->integer('region_id')->nullable();
 			$table->boolean('is_active')->default(0);
-            $table->timestamps();
-		});
+            $table->dateTime('updated_at');
+
+        });
 	}
 
     /**

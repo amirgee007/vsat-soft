@@ -39,8 +39,8 @@
             </div>
         </header>
         @if(isset($survey->questions))
-            @foreach($survey->questions as $question)
             <div id="question_panel">
+            @foreach($survey->questions as $question)
                 <div class="panel-body">
                     @if($loop->iteration!=1)
                     <a class="btn btn-danger pull-right removeQuestion" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a><hr><div class=clearfix></div>
@@ -95,8 +95,8 @@
                     </select>
                 </div>
             </div>
-            </div>
             @endforeach
+            </div>
         @else
             <div id="question_panel">
                 <div class="panel-body">
@@ -158,7 +158,7 @@
 @section('footer_scripts')
     <script>
         $(function () {
-            var totalQs = "{{count($survey->questions)}}";
+            var totalQs = "{{count(@$survey->questions)+1}}";
             var addQuestion = $('#add-question'); //Add button selector
             var wrapper = $('#question_panel'); //Input field wrapper
             var question = totalQs >0 ? totalQs : 1;

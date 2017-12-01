@@ -17,10 +17,11 @@ class CreateCitiesTable extends Migration
 			$table->increments('city_id');
             $table->string('city_name');
 			$table->integer('country_id');
-			$table->float('latitude')->nullable();
-			$table->float('longitude')->nullable();
+            $table->string('nationality');
+            $table->string('lati')->nullable();
+			$table->string('longi')->nullable();
             $table->boolean('is_active')->default(0);
-            $table->timestamps();
+            $table->dateTime('updated_at');
 			});
     }
 

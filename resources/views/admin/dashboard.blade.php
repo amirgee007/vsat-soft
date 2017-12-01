@@ -432,17 +432,11 @@
     </div>
 </section>
 <!--main content end-->
-
 @stop
-
 @section('footer_scripts')
 
-    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
-
     <script>
-
         $(function () {
-
             //all jquery code here
         });
 

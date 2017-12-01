@@ -18,10 +18,9 @@ class CreateRegionsTable extends Migration
             $table->increments('region_id');
             $table->string('name');
             $table->boolean('is_active')->default(0);
-            $table->timestamps();
+            $table->dateTime('updated_at');
         });
     }
-
     /**
      * Reverse the migrations.
      *

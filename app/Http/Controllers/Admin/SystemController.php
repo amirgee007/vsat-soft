@@ -13,7 +13,7 @@ class SystemController extends Controller
 
 
         if($request->ajax()){
-            $cities = City::where('country_id',$request->country_id)->where('is_active' ,1)->pluck("city_name","city_id")->all();
+            $cities = City::where('country_id',$request->country_id)->pluck("city_name","city_id")->all();
 
             $data = view('admin.layouts.partials.ajax-cities-options',compact('cities'))->render();
             return response()->json(['options'=>$data]);
