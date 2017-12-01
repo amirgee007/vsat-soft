@@ -440,8 +440,11 @@
                 <section class="panel">
                     <header class="panel-heading">
                         Assets
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+                        </div>
                     </header>
-                    <div class="panel-body">
+                    <div class="panel-body" id="add-assets">
                         <label class="col-lg-2 control-label">Add a Part</label>
                         <div class="col-sm-4">
                             <select class="form-control m-bot15">
@@ -492,3 +495,6 @@
             </div>
         </div>
     </div>
+@section('footer_scripts')
+    @include('admin.common.add-assets')
+@stop
