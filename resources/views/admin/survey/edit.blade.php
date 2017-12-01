@@ -23,7 +23,7 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Edit New Survey</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('survey.store') }}" method="post" >
+                            <form class="form-horizontal" role="form" action="{{ route('survey.post.update') }}" method="post" >
                                 <input type="hidden" name="survey_id" value="{{$survey->survey_id}}">
                                 @include('admin.survey.form')
                                 <div class="form-group">

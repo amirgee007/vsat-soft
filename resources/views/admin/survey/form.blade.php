@@ -38,11 +38,13 @@
                 </a>
             </div>
         </header>
+        @forelse($survey->questions as $question)
         <div id="question_panel">
-        <div class="panel-body">
+            <div class="panel-body">
+                <a class="btn btn-danger pull-right removeQuestion" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a><hr><div class=clearfix></div>
             <label class="col-lg-2 col-xs-3 control-label">Question</label>
             <div class="col-sm-10 col-xs-9">
-                <input type="text" required name="question_name[0]" placeholder="Type Your Question Here !" class="form-control">
+                <input type="text" required value="{{$question->question_name}}" name="question_name[0]" placeholder="Type Your Question Here !" class="form-control">
                 <br />
             </div>
             <label class="col-lg-2 col-xs-3 control-label">Options</label>
@@ -59,22 +61,22 @@
                     <tbody>
                     <tr style="cursor: initial;">
                         <td >1</td>
-                        <td ><input required type="text"  name="questions_options[0][]" value="" class="form-control">
+                        <td ><input required value="{{$question->option_1}}" type="text"  name="questions_options[0][]" class="form-control">
                         </td>
                     </tr>
                     <tr style="cursor: initial;">
                         <td >2</td>
-                        <td ><input required type="text" name="questions_options[0][]"  class="form-control">
+                        <td ><input required value="{{$question->option_2}}" type="text" name="questions_options[0][]"  class="form-control">
                         </td>
                     </tr>
                     <tr style="cursor: initial;">
                         <td >3</td>
-                        <td ><input required type="text"  name="questions_options[0][]"  class="form-control">
+                        <td ><input required value="{{$question->option_3}}" type="text"  name="questions_options[0][]"  class="form-control">
                         </td>
                     </tr>
                     <tr style="cursor: initial;">
                         <td >4</td>
-                        <td ><input required type="text"  name="questions_options[0][]"  class="form-control">
+                        <td ><input required value="{{$question->option_4}}" type="text"  name="questions_options[0][]"  class="form-control">
                         </td>
                     </tr>
                     </tbody>
@@ -83,14 +85,69 @@
             <label class="col-lg-2 col-xs-3 control-label">Select Correct Answer</label>
             <div class="col-sm-10 col-xs-9">
                 <select required name="correct_answer[0]" id="" class="form-control">
-                    <option value="1">1st Answer is Correct</option>
-                    <option value="2">2nd Answer is Correct</option>
-                    <option value="3">3rd Answer is Correct</option>
-                    <option value="4">4th Answer is Correct</option>
+                    <option @if($question->option_4=='1') selected @endif value="1">1st Answer is Correct</option>
+                    <option @if($question->option_4=='2') selected @endif value="2">2nd Answer is Correct</option>
+                    <option @if($question->option_4=='3') selected @endif value="3">3rd Answer is Correct</option>
+                    <option @if($question->option_4=='4') selected @endif value="4">4th Answer is Correct</option>
                 </select>
             </div>
         </div>
         </div>
+        @empty
+        <div id="question_panel">
+            <div class="panel-body">
+                <label class="col-lg-2 col-xs-3 control-label">Question</label>
+                <div class="col-sm-10 col-xs-9">
+                    <input type="text" required name="question_name[0]" placeholder="Type Your Question Here !" class="form-control">
+                    <br />
+                </div>
+                <label class="col-lg-2 col-xs-3 control-label">Options</label>
+                <div class="col-sm-10 col-xs-9">
+                    <table class="table table-bordered table-hover survey-answers-table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                Possible answers
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style="cursor: initial;">
+                            <td >1</td>
+                            <td ><input required type="text"  name="questions_options[0][]" value="" class="form-control">
+                            </td>
+                        </tr>
+                        <tr style="cursor: initial;">
+                            <td >2</td>
+                            <td ><input required type="text" name="questions_options[0][]"  class="form-control">
+                            </td>
+                        </tr>
+                        <tr style="cursor: initial;">
+                            <td >3</td>
+                            <td ><input required type="text"  name="questions_options[0][]"  class="form-control">
+                            </td>
+                        </tr>
+                        <tr style="cursor: initial;">
+                            <td >4</td>
+                            <td ><input required type="text"  name="questions_options[0][]"  class="form-control">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <label class="col-lg-2 col-xs-3 control-label">Select Correct Answer</label>
+                <div class="col-sm-10 col-xs-9">
+                    <select required name="correct_answer[0]" id="" class="form-control">
+                        <option value="1">1st Answer is Correct</option>
+                        <option value="2">2nd Answer is Correct</option>
+                        <option value="3">3rd Answer is Correct</option>
+                        <option value="4">4th Answer is Correct</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        @endforelse
     </section>
 </div>
 @section('footer_scripts')
