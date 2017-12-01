@@ -44,7 +44,7 @@
                 <a class="btn btn-danger pull-right removeQuestion" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a><hr><div class=clearfix></div>
             <label class="col-lg-2 col-xs-3 control-label">Question</label>
             <div class="col-sm-10 col-xs-9">
-                <input type="text" required value="{{$question->question_name}}" name="question_name[0]" placeholder="Type Your Question Here !" class="form-control">
+                <input type="text" required value="{{$question->question_name}}" name="question_name[{{$loop->iteration}}]" placeholder="Type Your Question Here !" class="form-control">
                 <br />
             </div>
             <label class="col-lg-2 col-xs-3 control-label">Options</label>
@@ -61,22 +61,22 @@
                     <tbody>
                     <tr style="cursor: initial;">
                         <td >1</td>
-                        <td ><input required value="{{$question->option_1}}" type="text"  name="questions_options[0][]" class="form-control">
+                        <td ><input required value="{{$question->option_1}}" type="text"  name="questions_options[{{$loop->iteration}}][]" class="form-control">
                         </td>
                     </tr>
                     <tr style="cursor: initial;">
                         <td >2</td>
-                        <td ><input required value="{{$question->option_2}}" type="text" name="questions_options[0][]"  class="form-control">
+                        <td ><input required value="{{$question->option_2}}" type="text" name="questions_options[{{$loop->iteration}}][]"  class="form-control">
                         </td>
                     </tr>
                     <tr style="cursor: initial;">
                         <td >3</td>
-                        <td ><input required value="{{$question->option_3}}" type="text"  name="questions_options[0][]"  class="form-control">
+                        <td ><input required value="{{$question->option_3}}" type="text"  name="questions_options[{{$loop->iteration}}][]"  class="form-control">
                         </td>
                     </tr>
                     <tr style="cursor: initial;">
                         <td >4</td>
-                        <td ><input required value="{{$question->option_4}}" type="text"  name="questions_options[0][]"  class="form-control">
+                        <td ><input required value="{{$question->option_4}}" type="text"  name="questions_options[{{$loop->iteration}}][]"  class="form-control">
                         </td>
                     </tr>
                     </tbody>
@@ -84,7 +84,7 @@
             </div>
             <label class="col-lg-2 col-xs-3 control-label">Select Correct Answer</label>
             <div class="col-sm-10 col-xs-9">
-                <select required name="correct_answer[0]" id="" class="form-control">
+                <select required name="correct_answer[{{$loop->iteration}}]" id="" class="form-control">
                     <option @if($question->option_4=='1') selected @endif value="1">1st Answer is Correct</option>
                     <option @if($question->option_4=='2') selected @endif value="2">2nd Answer is Correct</option>
                     <option @if($question->option_4=='3') selected @endif value="3">3rd Answer is Correct</option>

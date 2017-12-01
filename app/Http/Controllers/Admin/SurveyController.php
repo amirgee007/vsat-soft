@@ -63,13 +63,13 @@ class SurveyController extends Controller
     public function update(Request $request)
     {
         $survey = Survey::where('survey_id',$request->survey_id)->first();
-        
+
         $inputs = $request->all();
         $survey->update($request->except(['_token' ,'survey_id','question_name', 'questions_options' ,'correct_answer']));
         $survey->questions()->delete();
 
         if($survey)
-            for($i = 0; $i < count($request->question_name) ; $i++)
+            for($i = 1; $i <=count($request->question_name) ; $i++)
             {
                 $data ['survey_id'] = $survey->survey_id;
                 $data ['question_name'] = $inputs['question_name'][$i];
