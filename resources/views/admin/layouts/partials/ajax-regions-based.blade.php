@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
     $("#region").change(function(){
         var region_id = $(this).val();
@@ -8,8 +7,9 @@
             method: 'POST',
             data: {region_id:region_id, _token:token},
             success: function(data) {
-                $("select[id='country']").html('');
                 $("select[id='country']").html(data.options);
+                $("#sites-table").html(data.sites);
+                $("#total-sties").html(data.total_sites);
             }
         });
     });

@@ -85,7 +85,7 @@
                             <div class="btn-group" style="width: 33%; float: left">
                                 <div style="width: 80%; float: left;">
                                     <select name="region_id" id="region" class="form-control custom-select">
-                                        <option>Select Region</option>
+                                        <option >Select Region</option>
                                         @foreach($regions as $region)
                                             <option value="{{$region->region_id}}">{{$region->name}}</option>
                                         @endforeach
@@ -155,165 +155,8 @@
                                 <th>Site Status</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>Bahrain</td>
-                                <td>Naval Base Mina Salman</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">10</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="96" aria-valuemin="0" aria-valuemax="100" style="width: 96%">
-                                            <span>4%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100" style="width: 4%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">4%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>Iraq</td>
-                                <td>TQ near Fallujah</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">15</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="93" style="width: 93%">
-                                            <span>7%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">7%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>Iraq</td>
-                                <td>Al Qayyarah</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">30</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
-                                            <span>13%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100" style="width: 13%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">13%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">4</td>
-                                <td>Iraq</td>
-                                <td>Zawita</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">20</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" style="width: 91%">
-                                            <span>9%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" style="width: 9%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">9%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">5</td>
-                                <td>Jordan</td>
-                                <td>King Faisal Airbase</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">30</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
-                                            <span>13%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100" style="width: 13%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">13%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">6</td>
-                                <td>Kuwait</td>
-                                <td>Camp Arifjan</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">40</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100" style="width: 83%">
-                                            <span>17%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100" style="width: 17%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">17%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">7</td>
-                                <td>Qatar</td>
-                                <td>Al Udeid Airbase</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">15</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
-                                            <span>7%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">7%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">8</td>
-                                <td>United Arab Emirates</td>
-                                <td>Al Minhad Airbase near Dubai</td>
-                                <td class="text-center">4</td>
-                                <td class="text-center">50</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%">
-                                            <span>22%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">22%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">9</td>
-                                <td>United Arab Emirates</td>
-                                <td>Zayed Military City near Abu Dhabi</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">20</td>
-                                <td>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" style="width: 91%">
-                                            <span>9%</span>
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100" style="width: 9%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">9%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th colspan="3" class="text-center">Total</th>
-                                <th class="text-center">16</th>
-                                <th class="text-center">230</th>
-                            </tr>
+                            <tbody id="sites-table">
+
                             </tbody>
                         </table>
                     </div>
@@ -325,17 +168,14 @@
             <div>
                 <div class="col-md-3">
                     <div class="social-box facebook">
-                        <i>Sites</i>
+                        <i>Total Sites</i>
                         <ul>
-                            <li>
-                                <strong>2</strong>
-                                <span>Sites</span>
+                            <li style="text-align: center">
+                                <strong id="total-sties">0</strong>
                             </li>
                             <li>
-                                <strong>UAE</strong>
-
+                                <strong>Sites</strong>
                             </li>
-
                         </ul>
                     </div>
                     <!--/social-box-->
@@ -401,8 +241,7 @@
 <!--main content end-->
 @stop
 @section('footer_scripts')
-
     @include('admin.layouts.partials.ajax-regions-based')
     @include('admin.layouts.partials.ajax-country-based')
-
+    @include('admin.layouts.partials.ajax-city-based-sites')
 @stop
