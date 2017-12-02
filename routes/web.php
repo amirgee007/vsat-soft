@@ -466,6 +466,37 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'DocumentController@projectIndex'
         ]);
 
+        Route::get('/project/add', [
+            'as' => 'document.project.create',
+            'uses' => 'DocumentController@projectCreate'
+        ]);
+
+        Route::post('/project/add', [
+            'as' => 'document.project.store',
+            'uses' => 'DocumentController@projectStore'
+        ]);
+
+        Route::get('/project/edit/{id}', [
+            'as' => 'document.project.edit',
+            'uses' => 'DocumentController@projectEdit'
+        ])->where('id', '[0-9]+');
+
+
+        Route::post('/project/edit', [
+            'as' => 'document.project.update',
+            'uses' => 'DocumentController@projectUpdate'
+        ]);
+
+        Route::get('/project/ajax', [
+            'as' => 'document.project.ajax',
+            'uses' => 'DocumentController@projectAjax'
+        ]);
+
+        Route::get('/project/delete/{id}', [
+            'as' => 'document.project.delete',
+            'uses' => 'DocumentController@projectDelete'
+        ])->where('id', '[0-9]+');
+
         Route::get('/general', [
             'as' => 'document.general.index',
             'uses' => 'DocumentController@generalIndex'

@@ -1,10 +1,7 @@
 @extends('admin/layouts/default')
 
 @section('pageTitle', 'Dashboard')
-
 @section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
-
     <style>
         .custom-select{
             color:white;
