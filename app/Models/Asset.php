@@ -13,7 +13,7 @@ class Asset extends Model
     protected $dates = ['created_at' , 'updated_at'];
 
     public function sites(){
-        return $this->belongsToMany(Site::class ,'asset_site' ,'asset_id','site_id' );
+        return $this->belongsToMany(Site::class ,'asset_site' ,'asset_id','site_id')->withPivot('quantity');
     }
 
 }

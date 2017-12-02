@@ -38,4 +38,14 @@ class Site extends Model
     {
        return $this->country->full_name;
     }
+
+    public function assets(){
+        return $this->belongsToMany(Asset::class ,'asset_site' ,'site_id','asset_id')->withPivot('quantity');
+    }
+
+
+    public function relatedAssets(){
+        return $this->assets()->pluck('name' ,'branch_id')->toArray();
+    }
+
 }

@@ -23,7 +23,6 @@ class SiteController extends Controller
 
     public function create()
     {
-
         $site_id = Site::getMaxSiteId();
         $branches = Branch::all();
         $assets = Asset::all();
@@ -65,7 +64,7 @@ class SiteController extends Controller
             $count++;
         }
 
-        unset($data['antenna_mount_loc'] ,$data['site_branches']);
+        unset($data['antenna_mount_loc'] ,$data['site_branches'] ,$data['relates_assets'] ,$data['relates_assets_qty']);
         $site =  Site::create($data);
 
         if ($site){
