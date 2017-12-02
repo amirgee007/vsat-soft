@@ -53,13 +53,13 @@ class AssetController extends Controller
     public function update(Request $request)
     {
         $input = $request->all();
-        $asset_obj = Asset::where('asset_id' ,$request->asset_id)->first();
+        $assetObj = Asset::where('asset_id' ,$request->asset_id)->first();
 
-        $fileName = '';
+        $fileName = $assetObj->bar_code_img;
         if ($request->hasFile('bar_code_img')) {
             if($request->file('bar_code_img')->isValid()) {
                 $destinationPath = public_path().'/uploads/assets/';
-                File::delete($destinationPath.$asset_obj->bar_code_img);
+                File::delete($destinationPath.$assetObj->bar_code_img);
                 $file = $request->file('bar_code_img');
                 $fileName = str_slug($input['asset_name']).'-'.time() . '.' . $file->getClientOriginalExtension();
                 $request->file('bar_code_img')->move("uploads/assets", $fileName);
@@ -71,7 +71,7 @@ class AssetController extends Controller
         $input['added_by'] = Auth::user()->id;
 
         unset($input['asset_id']);
-        $assets = $asset_obj->update($input);
+        $assets = $assetObj->update($input);
 
         if ($assets){
             session()->flash('app_message', 'Asset Has Been Updated Successfully!');
