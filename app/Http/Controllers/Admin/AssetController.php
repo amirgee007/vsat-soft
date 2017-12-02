@@ -99,4 +99,5 @@ class AssetController extends Controller
 
         return redirect()->route('asset.index');
     }
+
 }

@@ -13,9 +13,9 @@
 
 use App\Models\Region;
 
-Route::get('admin/test' ,function (){
+Route::get('/admin/test' ,function (){
 
-    $region = Region::IsActive()->first();
+
 });
 
 
@@ -285,6 +285,10 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'SiteController@delete'
         ])->where('id', '[0-9]+');
 
+        Route::get('/ajax-assets', [
+            'as' => 'asset.ajax.request',
+            'uses' => 'SiteController@ajaxRequestAssets'
+        ]);
     });
 
     # Tickets Management
@@ -340,6 +344,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'as' => 'asset.delete',
             'uses' => 'AssetController@delete'
         ])->where('id', '[0-9]+');
+
 
     });
 

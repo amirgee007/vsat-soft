@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Asset;
 use App\Models\Country;
 use  App\Models\Site;
 use App\Models\Branch;
@@ -16,17 +17,7 @@ class SiteController extends Controller
 
     public function index()
     {
-
-        Log::emergency("Hello World");
-        Log::alert("Hello World");
-        Log::critical("Hello World");
-        Log::error("Hello World");
-        Log::warning("Hello World");
-        Log::notice("Hello World");
-        Log::info("Hello World");
-        Log::debug("Hello World");
         $sites = Site::all();
-
         return view('admin.site.index' ,compact('sites'));
     }
 
@@ -35,10 +26,11 @@ class SiteController extends Controller
 
         $site_id = Site::getMaxSiteId();
         $branches = Branch::all();
+        $assets = Asset::all();
         $selected_branches = [];
         $countries = Country::IsActive()->get();
 
-        return view('admin.site.create', compact('countries','site_id' ,'branches' ,'selected_branches'));
+        return view('admin.site.create', compact('assets','countries','site_id' ,'branches' ,'selected_branches'));
     }
 
     private function uploadImage($file ,$name){
@@ -82,7 +74,6 @@ class SiteController extends Controller
         }
 
         return redirect()->route('site.index');
-
     }
 
     public function edit($id)
@@ -168,6 +159,12 @@ class SiteController extends Controller
         return redirect()->route('site.index');
     }
 
+    public function ajaxRequestAssets(){
+
+        $assets = Asset::pluck("asset_name","asset_id")->all();
+        $data = view('admin.site.partials.assets-options',compact('assets'))->render();
+        return response()->json(['aaData'=>$data]);
+    }
 
 
 }

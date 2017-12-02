@@ -442,31 +442,18 @@
                     <div class="panel-body" id="add-assets">
                         <label class="col-lg-2 control-label">Add a Part</label>
                         <div class="col-sm-4">
-                            <select class="form-control m-bot15">
-                                    <option>Antennas</option>
-                                    <option>BUC</option>
-                                    <option>LNB</option>
-                                    <option>Modem</option>
-                                    <option>Antenna Mounts</option>
-                                    <option>Router</option>
-                                    <option>Switch</option>
-                                    <option>Servers</option>
-                                    <option>Hotspot</option>
-                                    <option>Wireless Controller</option>
-                                    <option>WAPs</option>
-                                    <option>VoIP Phones</option>
-                                    <option>Thin Clients</option>
-                                    <option>Webcam</option>
-                                    <option>UPS</option>
-                                    <option>Rack</option>
-                                    <option>Headset</option>
-                                    <option>Cisco</option>
+
+                            <select class="form-control m-bot15" name="relates_assets[]">
+                                <option value="">Select Asset</option>
+                                @foreach($assets as $asset)
+                                    <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-sm-4">
                             <label class="col-sm-2 control-label">QTY</label>
                             <span class="col-sm-8">
-                                <input type="number" class="form-control">
+                                <input required name="relates_assets_qty[]" type="number" class="form-control">
                             </span>
                         </div>
                     </div>
