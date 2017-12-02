@@ -8,6 +8,7 @@ class Site extends Model
 {
     protected $table = 'sites';
     protected $guarded = [];
+    protected $appends = ['country_name'];
     protected $primaryKey = 'site_id';
     protected $dates = ['created_at'];
 
@@ -25,10 +26,16 @@ class Site extends Model
         return $this->belongsToMany(Branch::class ,'branch_site' ,'site_id','branch_id' );
     }
 
+    public function country(){
+        return $this->hasOne(Country::class ,'country_id' ,'country_id' );
+    }
 
     public function relatedBranches(){
         return $this->branches->pluck('name' ,'branch_id')->toArray();
     }
 
-
+    public function getCountryNameAttribute()
+    {
+       return $this->country->full_name;
+    }
 }

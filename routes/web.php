@@ -48,6 +48,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
         'uses' => 'SystemController@regionCountryAjax'
     ]);
 
+    Route::get('/cities-sites-ajax', [
+        'as' => 'cities-sites-ajax',
+        'uses' => 'SystemController@cityAjax'
+    ]);
+
 
     # Location Management
     Route::group(array('prefix' => 'location'), function () {
