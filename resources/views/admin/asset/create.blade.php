@@ -1,5 +1,9 @@
 @extends('admin/layouts/default')
 @section('pageTitle', 'Create Asset')
+
+@section('header_styles')
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
+@stop
 @section('content')
     <!--main content start-->
     <section id="main-content">
@@ -20,7 +24,7 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Asset</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('asset.create') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" role="form" action="{{ route('post.asset.store') }}" method="post" enctype="multipart/form-data">
                                 @include('admin.asset.form')
                                 <div class="clearfix"></div>
                                 <div class="form-group" style="margin-top: 50px !important;">

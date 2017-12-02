@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Country;
 use  App\Models\Site;
 use App\Models\Branch;
 use Illuminate\Http\Request;
@@ -24,7 +25,9 @@ class SiteController extends Controller
         $site_id = Site::getMaxSiteId();
         $branches = Branch::all();
         $selected_branches = [];
-        return view('admin.site.create', compact('site_id' ,'branches' ,'selected_branches'));
+        $countries = Country::IsActive()->get();
+
+        return view('admin.site.create', compact('countries','site_id' ,'branches' ,'selected_branches'));
     }
 
     private function uploadImage($file ,$name){

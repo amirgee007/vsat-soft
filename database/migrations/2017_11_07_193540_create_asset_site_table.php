@@ -17,7 +17,7 @@ class CreateAssetSiteTable extends Migration
 
             $table->integer('asset_id');
             $table->integer('site_id');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(1);
         });
     }
 

@@ -46,7 +46,8 @@
 @section('footer_scripts')
     <link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
     <script src="{{asset('assets/select2-4.0.4/select2.min.js') }}"></script>
-
+    @include('admin.common.add-assets')
+    @include('admin.layouts.partials.ajax-country-based')
     <script>
         $(function () {
             $('#add_branch').select2({

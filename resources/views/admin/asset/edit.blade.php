@@ -1,5 +1,8 @@
 @extends('admin/layouts/default')
 @section('pageTitle', 'Edit Asset')
+@section('header_styles')
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
+@stop
 @section('content')
     <!--main content start-->
     <section id="main-content">
@@ -20,7 +23,8 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Edit Asset</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('post.site.create') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" role="form" action="{{ route('post.asset.update') }}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" value="{{$asset->asset_id}}" name="asset_id">
                                 @include('admin.asset.form')
                                 <div class="clearfix"></div>
                                 <div class="form-group" style="margin-top: 50px !important;">

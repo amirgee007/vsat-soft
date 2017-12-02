@@ -15,27 +15,31 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
 			$table->increments('asset_id');
-			$table->integer('part_id');
-            $table->integer('part_code');
+			$table->integer('asset_code');
             $table->string('serial_number');
-            $table->string('barcode');
-            $table->string('part_name');
+            $table->string('bar_code_img');
+            $table->string('asset_name');
             $table->string('description');
-            $table->datetime('purchase_date');
-            $table->string('part_type');
+            $table->date('purchase_date');
+            $table->string('asset_part_type');
+            $table->float('cost_price');
+            $table->float('selling_price');
             $table->string('warranty_status1');
             $table->string('warranty_status2');
             $table->boolean('extended_warranty');
-            $table->datetime('extended_warranty_date');
-            $table->integer('cost_price');
-            $table->integer('selling_price');
-            $table->integer('supplier_id');
-            $table->integer('vendor_id');
-            $table->integer('site_id');
+            $table->date('extended_warranty_date');
+            $table->string('supplier_name');
+            $table->string('supplier_email');
+            $table->string('supplier_cell');
+            $table->string('vendor_name');
+            $table->string('vendor_email');
+            $table->string('vendor_cell');
             $table->integer('added_by');
             $table->timestamps();
 			});
     }
+
+
 
     /**
      * Reverse the migrations.

@@ -20,12 +20,13 @@ class CreateSitesTable extends Migration
             $table->string('org_name');
             $table->string('site_map_presentation');
             $table->string('presentation_of_ins_area');
+            $table->string('country_id');
+            $table->string('city_id');
+
             $table->string('street');
             $table->string('area');
-            $table->string('city');
             $table->string('state');
             $table->string('zip_code');
-            $table->string('country');
             $table->string('latitude');
             $table->string('longitude');
             $table->string('tech_name');

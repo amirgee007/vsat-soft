@@ -15,13 +15,7 @@ use App\Models\Region;
 
 Route::get('admin/test' ,function (){
 
-
-    $region = Region::first();
-
-    $cities = $region->cities()->update(['cities.is_active' => true]);
-    dd($cities);
-    dd($region->countries);
-
+    $region = Region::IsActive()->first();
 });
 
 
@@ -317,14 +311,19 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'AssetController@index'
         ]);
 
-        Route::get('/add', [
+        Route::get('/create', [
             'as' => 'asset.create',
             'uses' => 'AssetController@create'
         ]);
 
-        Route::post('/add', [
-            'as' => 'asset.create',
+        Route::post('/store', [
+            'as' => 'post.asset.store',
             'uses' => 'AssetController@store'
+        ]);
+
+        Route::post('/update', [
+            'as' => 'post.asset.update',
+            'uses' => 'AssetController@update'
         ]);
 
         Route::get('/edit/{id}', [

@@ -46,39 +46,40 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">Site Address Auto</label>
-                <span class="col-sm-10">
-                    <input id="autocomplete" placeholder="Street ,city ,state ,country autocomplete" class="form-control" type="text">
-                </span>
-            </div>
+                <label class="col-sm-2 col-xs-3 control-label">Site Address</label>
+                <div class="col-sm-10 col-xs-9">
+                    <label class="col-sm-2 col-xs-3 control-label">Country {{@$site->country}}</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <select required name="country_id" class="form-control m-bot15 country" id="country">
+                            <option>Select Country</option>
+                            @foreach($countries as $country)
+                                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label"></label>
-                <div class="col-sm-10">
-                    <label class="col-sm-2 control-label">Street</label>
+                    <label class="col-sm-2 col-xs-3 control-label">City {{@$site->city}}</label>
+                    <div class="col-sm-4 col-xs-3">
+                        <select required name="city_id" id="city" class="form-control m-bot15 city"></select>
+                    </div>
+
+                    <label class="col-sm-2 col-xs-3 control-label">Street</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Street" name="street" value="{{@$site->street}}" id="street_number">
+                        <input type="text" required name="street" class="form-control" value="{{@$site->street}}" placeholder="Street">
                     </span>
+
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$site->area}}" id="route">
+                        <input required type="text" class="form-control" placeholder="Area" name="area" value="{{@$site->area}}">
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">City</label>
-                    <div class="col-sm-4 col-xs-3">
-                        <input required type="text" class="form-control" placeholder="City" name="city" id="locality" value="{{@$site->city}}">
-                    </div>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$site->state}}" id="administrative_area_level_1">
+                        <input required type="text" class="form-control" placeholder="State" name="state" value="{{@$site->state}}">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                         <input class="form-control field" name="zip_code" value="{{@$site->zip_code}}" placeholder="Zip Code" id="postal_code">
+                        <input class="form-control field" name="zip_code" value="{{@$site->zip_code}}" placeholder="Zip Code" >
                     </span>
-                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
-                    <span class="col-sm-4">
-                        <input class="form-control field" name="country" placeholder="country" value="{{@$site->country}}" id="country">
-                   </span>
                     <label class="col-sm-2 control-label">Latitude</label>
                     <span class="col-sm-4">
                         <input required type="text" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}" id="longitude">
@@ -445,7 +446,7 @@
                         </div>
                     </header>
                     <div class="panel-body" id="add-assets">
-                        <label class="col-lg-2 control-label">Add a Part</label>
+                        <label class="col-lg-2 control-label">Add a Part (pending)</label>
                         <div class="col-sm-4">
                             <select class="form-control m-bot15">
                                     <option>Antennas</option>
@@ -495,6 +496,3 @@
             </div>
         </div>
     </div>
-@section('footer_scripts')
-    @include('admin.common.add-assets')
-@stop

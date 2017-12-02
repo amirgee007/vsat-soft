@@ -56,9 +56,11 @@
 
 @section('footer_scripts')
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeU39v4go-9ToGgad0c4ZXHDj-k2XO6tc&libraries=places"></script>
-
     <link src="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
     <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
+
+    @include('admin.common.add-assets')
+    @include('admin.layouts.partials.ajax-country-based')
     <script>
         $(function () {
             $('#add_branch').select2({
