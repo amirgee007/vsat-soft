@@ -9,12 +9,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class SiteController extends Controller
 {
 
     public function index()
     {
+
+        Log::emergency("Hello World");
+        Log::alert("Hello World");
+        Log::critical("Hello World");
+        Log::error("Hello World");
+        Log::warning("Hello World");
+        Log::notice("Hello World");
+        Log::info("Hello World");
+        Log::debug("Hello World");
         $sites = Site::all();
 
         return view('admin.site.index' ,compact('sites'));
@@ -22,6 +32,7 @@ class SiteController extends Controller
 
     public function create()
     {
+
         $site_id = Site::getMaxSiteId();
         $branches = Branch::all();
         $selected_branches = [];

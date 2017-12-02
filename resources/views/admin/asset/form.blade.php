@@ -62,13 +62,13 @@
         <div class="form-group">
             <label class="col-sm-2 control-label" for="">Cost Price $</label>
             <div class="col-sm-10">
-                <input required type="text" value="{{@$asset->cost_price}}" name="cost_price" class="form-control"  placeholder="Cost Price" >
+                <input required type="number" value="{{@$asset->cost_price}}" name="cost_price" class="form-control"  placeholder="Cost Price" >
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="">Selling Price $</label>
             <div class="col-sm-10">
-                <input required type="text" value="{{@$asset->selling_price}}" name="selling_price" class="form-control"  placeholder="Selling Price" >
+                <input required type="number" value="{{@$asset->selling_price}}" name="selling_price" class="form-control"  placeholder="Selling Price" >
             </div>
         </div>
         <!-- Site Contact start-->

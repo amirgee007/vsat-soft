@@ -381,12 +381,6 @@
                         <label class="col-lg-2 control-label">Pole size</label>
                         <div class="col-lg-10">
                             <select required class="form-control m-bot15" name="pole_size">
-                                <option value="6.35 cm">6.35 cm</option>
-                                <option value="8.89 cm"> 8.89 cm</option>
-                                <option value="15.23 cm">15.23 cm</option>
-                                <option value="25.4 cm">25.4 cm</option>
-                                <option value="Others">Others</option>
-
                                 <option {{@$site->antenna_size== '6.35 cm'? 'selected' : ''}} value="6.35 cm">6.35 cm</option>
                                 <option {{@$site->antenna_size== '8.89 cm'? 'selected' : ''}} value="8.89 cm">6.89 cm</option>
                                 <option {{@$site->antenna_size== '15.23 cm'? 'selected' : ''}} value="15.23 cm">15.23 cm</option>
@@ -446,7 +440,7 @@
                         </div>
                     </header>
                     <div class="panel-body" id="add-assets">
-                        <label class="col-lg-2 control-label">Add a Part (pending)</label>
+                        <label class="col-lg-2 control-label">Add a Part</label>
                         <div class="col-sm-4">
                             <select class="form-control m-bot15">
                                     <option>Antennas</option>
