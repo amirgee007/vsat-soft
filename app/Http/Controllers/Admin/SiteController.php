@@ -64,11 +64,23 @@ class SiteController extends Controller
             $count++;
         }
 
-        unset($data['antenna_mount_loc'] ,$data['site_branches'] ,$data['relates_assets'] ,$data['relates_assets_qty']);
+        unset($data['antenna_mount_loc'] ,$data['site_branches'] ,$data['related_assets'] ,$data['related_assets_qty']);
         $site =  Site::create($data);
+
+        ////////////////////////logic for pivot table extra columns
+         $site_assets = $request->related_assets;
+        $site_assets_qty = $request->related_assets_qty;
+
+        $sync_data = [];
+        for($i = 0; $i < count($site_assets); $i++)
+            $sync_data[$site_assets[$i]] = ['quantity' => $site_assets_qty[$i]];
+
+
 
         if ($site){
             $site->branches()->attach($site_branches);
+            $site->assets()->attach($sync_data);
+
             session()->flash('app_message', 'New Site Has Been Added Successfully!');
         }
 
@@ -80,8 +92,10 @@ class SiteController extends Controller
         $site = Site::where('site_id' ,$id)->first();
         $branches = Branch::all();
         $selected_branches = $site->relatedBranches();
+        $countries = Country::IsActive()->get();
+        $assets = Asset::all();
 
-        return view('admin.site.edit' ,compact('site' ,'branches' ,'selected_branches'));
+        return view('admin.site.edit' ,compact('assets','countries','site' ,'branches' ,'selected_branches'));
     }
 
     private function updateImage($file ,$name ,$unlink ){
@@ -131,8 +145,18 @@ class SiteController extends Controller
         unset($data['antenna_mount_loc'] ,$data['site_branches']);
         $is_update =  $site->update($data);
 
+        ////////////////////////logic for pivot table extra columns
+        $site_assets = $request->related_assets;
+        $site_assets_qty = $request->related_assets_qty;
+
+        $sync_data = [];
+        for($i = 0; $i < count($site_assets); $i++)
+            $sync_data[$site_assets[$i]] = ['quantity' => $site_assets_qty[$i]];
+
+
         if ($is_update){
             $site->branches()->sync($site_branches);
+            $site->assets()->sync($sync_data);
             session()->flash('app_message', 'Site Has Been Updated Successfully!');
             return redirect()->route('site.index');
         }

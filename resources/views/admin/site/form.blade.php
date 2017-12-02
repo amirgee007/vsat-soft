@@ -443,7 +443,7 @@
                         <label class="col-lg-2 control-label">Add a Part</label>
                         <div class="col-sm-4">
 
-                            <select class="form-control m-bot15" name="relates_assets[]">
+                            <select class="form-control m-bot15" name="related_assets[]">
                                 <option value="">Select Asset</option>
                                 @foreach($assets as $asset)
                                     <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
@@ -453,7 +453,7 @@
                         <div class="col-sm-4">
                             <label class="col-sm-2 control-label">QTY</label>
                             <span class="col-sm-8">
-                                <input required name="relates_assets_qty[]" type="number" class="form-control">
+                                <input required name="related_assets_qty[]" type="number" class="form-control">
                             </span>
                         </div>
                     </div>

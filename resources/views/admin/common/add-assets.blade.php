@@ -13,11 +13,9 @@
                 dataType: "json",
                 success: function (data) {
                     var  asset = '<div class="asset-div"><label class="col-lg-2 control-label labelrem" style="clear:both;">Add a Part</label>' +
-                        '<div class="col-sm-4 divselect"><select required class="form-control m-bot15">'
                         +data.aaData
                         +'</select></div>' +
                         '<div class="col-sm-4 divbutton"><label class="col-sm-2 control-label">QTY</label>' +
-                        '<span class="col-sm-8"><input type="number" class="form-control"></span>' +
                         '<a class="btn btn-danger removeasset" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a></div></div>';
                     wrapper.append(asset);
                 }
