@@ -164,9 +164,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         PrettyRoutes\ServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +233,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

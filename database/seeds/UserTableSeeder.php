@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             0 =>
                 array (
                     'id' => 1,
-                    'user_name' => 'seersol',
+                    'username' => 'seersol',
                     'email' => 'seersol@gmail.com',
                     'password' => bcrypt('123456'),
                     'created_at' => '2017-11-07 20:32:41',

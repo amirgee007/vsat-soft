@@ -13,11 +13,11 @@
             <input required type="text" class="form-control" value="{!! @$user->last_name ?? old('last_name') !!}" name="last_name" id="l-name" placeholder="Last Name">
         </div>
     </div>
-    <div class="form-group {{ $errors->first('user_name', 'has-error') }}">
+    <div class="form-group {{ $errors->first('username', 'has-error') }}">
         <label class="col-lg-2 control-label">User Name *</label>
         <div class="col-lg-10">
-            <input required type="text" class="form-control" value="{!! @$user->user_name ?? old('user_name') !!}" name="user_name" id="u-name" placeholder="User Name">
-            {!! $errors->first('user_name', '<span class="help-block">:message</span>') !!}
+            <input required type="text" class="form-control" value="{!! @$user->username ?? old('username') !!}" name="username" id="u-name" placeholder="User Name">
+            {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
 
         </div>
     </div>
@@ -49,6 +49,19 @@
             {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label" >Role *</label>
+        <div class="col-lg-10">
+            <select class="form-control " title="Select role" name="roles[]" id="role" required multiple>
+                <option value="">Select</option>
+                @foreach(@$roles as $role)
+                    <option {{array_key_exists($role->name , $selected_roles) ? 'selected' : ''}} value="{{ $role->id }}" >{{ $role->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     <div class="form-group">
         <label class="col-lg-2 control-label">Cell</label>
         <div class="col-lg-10">
@@ -1271,5 +1284,5 @@
         </section>
         <!-- Reports Permissions End-->
 
-    </div>
+    {{--</div>--}}
     <!-- Permissions Form-Group End-->

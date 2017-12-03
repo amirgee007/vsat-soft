@@ -16,19 +16,12 @@ use Session;
 class PermissionController extends Controller
 {
 
-    public function __construct() {
-        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
-    }
+    public function index()
+    {
+        $role = Permission::where('id' , '2')->first();
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index() {
-        $permissions = Permission::all(); //Get all permissions
-
-        return view('permissions.index')->with('permissions', $permissions);
+        $permissions=Permission::all();
+        return view('admin.permissions.index' ,compact('permissions'));
     }
 
     /**
@@ -36,10 +29,11 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        $roles = Role::get(); //Get all roles
+    public function create()
+    {
 
-        return view('permissions.create')->with('roles', $roles);
+        return view('admin.permissions.create');
+
     }
 
     /**
@@ -48,31 +42,36 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        $this->validate($request, [
-            'name'=>'required|max:40',
-        ]);
+    public function store(Request $request)
+    {
 
-        $name = $request['name'];
-        $permission = new Permission();
-        $permission->name = $name;
+        try{
 
-        $roles = $request['roles'];
+            //todo:ID not autoincrement
 
-        $permission->save();
+            $permission = new Permission();
 
-        if (!empty($request['roles'])) { //If one or more role is selected
-            foreach ($roles as $role) {
-                $r = Role::where('id', '=', $role)->firstOrFail(); //Match input role to db record
+            $permission->name = $request->name;
+            $permission->slug = $request->slug;
+            $permission->description = $request->description;
 
-                $permission = Permission::where('name', '=', $name)->first(); //Match input //permission to db record
-                $r->givePermissionTo($permission);
+            $isSaved = $permission->save();
+
+            if ($isSaved){
+                session()->flash('app_info', 'Permission added successfully.');
+                return Redirect::route('permissions.index');
+
+
+            }else {
+                session()->flash('error', 'Error in insertion');
+                return redirect()->back();
             }
-        }
 
-        return redirect()->route('permissions.index')
-            ->with('flash_message',
-                'Permission'. $permission->name.' added!');
+
+        } catch (\Exception $ex) {
+            session()->flash('app_error', $ex->getMessage());
+            return redirect()->back();
+        }
 
     }
 
@@ -82,8 +81,10 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        return redirect('permissions');
+    public function show($id)
+    {
+        dd('show');
+
     }
 
     /**
@@ -92,10 +93,13 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        $permission = Permission::findOrFail($id);
+    public function edit($id)
+    {
 
-        return view('permissions.edit', compact('permission'));
+        $permission=Permission::where('id',$id)->first();
+
+        return view('admin.permissions.edit', compact( 'permission'));
+
     }
 
     /**
@@ -105,17 +109,38 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        $permission = Permission::findOrFail($id);
-        $this->validate($request, [
-            'name'=>'required|max:40',
-        ]);
-        $input = $request->all();
-        $permission->fill($input)->save();
+    public function update(Request $request, $id)
+    {
 
-        return redirect()->route('permissions.index')
-            ->with('flash_message',
-                'Permission'. $permission->name.' updated!');
+        try{
+
+            $name = $request->name;
+            $slug = $request->slug;
+            $description = $request->description;
+
+            $isUpdate = Permission::where('id' ,$id )->update([
+
+                'name' => $name ,
+                'slug' => $slug ,
+                'description' => $description
+
+            ]);
+
+            if ($isUpdate){
+                session()->flash('app_info', 'Permission updated successfully.');
+                return Redirect::route('permissions.index');
+
+
+            }else {
+                session()->flash('error', 'Error in updating');
+                return redirect()->back();
+            }
+
+
+        } catch (\Exception $ex) {
+            session()->flash('app_error', $ex->getMessage());
+            return redirect()->back();
+        }
 
     }
 
@@ -125,21 +150,28 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        $permission = Permission::findOrFail($id);
+    public function destroy($id)
+    {
 
-        //Make it impossible to delete this specific permission
-        if ($permission->name == "Administer roles & permissions") {
-            return redirect()->route('permissions.index')
-                ->with('flash_message',
-                    'Cannot delete this Permission!');
+        $perm= Permission::firstOrCreate([
+            'id' => $id
+        ]);
+
+        $perm->roles()->sync([]);
+        $isDelete = $perm->delete();
+
+
+        if ($isDelete){
+            return response()->json([
+                'status' => 'true'
+            ]);
+
+        } else {
+            return response()->json([
+                'status' => 'false'
+            ]);
+
         }
-
-        $permission->delete();
-
-        return redirect()->route('permissions.index')
-            ->with('flash_message',
-                'Permission deleted!');
 
     }
 

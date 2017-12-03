@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App\Models\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
 
+    use EntrustUserTrait;
     protected $appends = ['name'];
     use Notifiable;
 
@@ -17,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_name', 'email', 'password','first_name' ,'last_name','cell_num' ,'phone_num' ,'country' ,'date_of_birth' ,'profession','profile_pic'
+        'username', 'email', 'password','first_name' ,'last_name','cell_num' ,'phone_num' ,'country' ,'date_of_birth' ,'profession','profile_pic'
     ];
 
     /**
@@ -40,7 +43,17 @@ class User extends Authenticatable
 
     public function getNameAttribute()
     {
-     return $this->user_name;
-
+     return $this->username;
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class , 'role_user' ,'user_id','role_id');
+    }
+
+    public function relatedRoles(){
+        return $this->roles->pluck('id' ,'name')->toArray();
+    }
+
 }
+

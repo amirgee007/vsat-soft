@@ -3,7 +3,7 @@
 @section('pageTitle', 'Edit User')
 
 @section('header_styles')
-    {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 
 @section('content')
@@ -45,6 +45,21 @@
 @stop
 
 @section('footer_scripts')
+
+    <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
+    <link href="{{asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{asset('assets/select2-4.0.4/select2.min.js')}}"></script>
+    <script>
+
+        $('#role').select2({
+            placeholder: "Select Role",
+            width: '100%',
+            allowClear: true
+        });
+
+        $('.dropify').dropify();
+
+    </script>
 
     <script>
 

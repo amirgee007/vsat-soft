@@ -7,7 +7,7 @@
             {{ $project->file_name }}
         </td>
         <td><a href="#">{{ $project->created_at ? $project->created_at->format('m-d-Y') : 'N/A' }}</a></td>
-        <td>{{ $project->user->user_name }}</td>
+        <td>{{ $project->user->username }}</td>
         <td>
             <div class="btn-group">
                 <a class="btn btn-primary col-sm-4 col-xs-4 text-center"

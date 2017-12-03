@@ -216,7 +216,45 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'UserController@profileUpdate'
         ]);
 
+
+        # Role Management
+        Route::group(array('prefix' => 'roles'), function () {
+
+            Route::get('/', [
+                'as' => 'people.roles.index',
+                'uses' => 'RoleController@index'
+            ]);
+
+            Route::get('/create', [
+                'as' => 'people.roles.create',
+                'uses' => 'RoleController@create'
+            ]);
+
+            Route::post('/store', [
+                'as' => 'people.roles.store',
+                'uses' => 'RoleController@store'
+            ]);
+
+            Route::get('/edit/{id}', [
+                'as' => 'people.roles.edit',
+                'uses' => 'RoleController@edit'
+            ])->where('id', '[0-9]+');
+
+            Route::get('/delete/{id}', [
+                'as' => 'people.roles.delete',
+                'uses' => 'RoleController@delete'
+            ])->where('id', '[0-9]+');
+
+
+        });
+
+        Route::resource('permissions', 'PermissionController');
+
+
     });
+
+
+
 
 
     # Branches Management
@@ -578,8 +616,6 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'as' => 'survey.submit.survey',
             'uses' => 'SurveyController@submitSurveyResult'
         ]);
-
-
 
         Route::get('/edit/{id}', [
             'as' => 'get.survey.edit',

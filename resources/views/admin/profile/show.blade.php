@@ -30,7 +30,7 @@
                                 <div class="follow-ava">
                                     <img height="34px" width="34px" src="{{asset('uploads/users/'.$user->profile_pic)}}" alt="">
                                 </div>
-                                <h6>{{$user->user_name}}</h6>
+                                <h6>{{$user->username}}</h6>
                             </div>
                             <div class="col-lg-4 col-sm-4 follow-info">
                                 <table class="row">

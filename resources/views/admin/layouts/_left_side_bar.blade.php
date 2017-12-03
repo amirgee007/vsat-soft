@@ -39,6 +39,8 @@
                     <li class="{{ Request::segment(2)=='clients' ? 'active' : '' }}"><a class="" href="{{route('people.clients.index')}}">Clients</a></li>
                     <li class="{{ Request::segment(2)=='support-staff' ? 'active' : '' }}"><a class="" href="{{route('people.supportStaff.index')}}">Support Staff</a></li>
                     <li class="{{ Request::segment(2)=='users' ? 'active' : '' }}"><a class="" href="{{route('people.users.index')}}">Users</a></li>
+                    <li class="{{ Request::segment(2)=='roles' ? 'active' : '' }}"><a class="" href="{{route('people.roles.index')}}">Roles</a></li>
+                    <li class="{{ Request::segment(2)=='permissions' ? 'active' : '' }}"><a class="" href="{{route('permissions.index')}}">Permissions</a></li>
                 </ul>
             </li>
             <li class="{{Request::is('branch') ? 'active' : ''}}">

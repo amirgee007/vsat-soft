@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProfileFormPost;
 use App\Models\Country;
+use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,8 +12,6 @@ use App\Http\Controllers\Controller;
 //Importing laravel-permission models
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 //Enables us to output flash messaging
 use Session;
@@ -55,7 +54,6 @@ class UserController extends Controller
         else
             session()->flash('app_error', 'Profile info has not been successfully updated');
 
-
         return back();
     }
 
@@ -67,14 +65,16 @@ class UserController extends Controller
 
     public function create() {
 
-        return view('admin.people.users.create');
+        $roles = Role::all();
+        $selected_roles = [];
+        return view('admin.people.users.create' ,compact('roles' ,'selected_roles'));
     }
 
 
     public function store(Request $request) {
 
         $this->validate($request, [
-            'user_name'=>'required|max:20',
+            'username'=>'required|max:20',
             'email'=>'required|email|unique:users',
             'password'=>'required|min:6|confirmed'
         ]);
@@ -84,12 +84,14 @@ class UserController extends Controller
         if ($request->hasFile('profile_pic')) {
             if($request->file('profile_pic')->isValid()) {
                 $file = $request->file('profile_pic');
-                $data['profile_pic'] = str_slug($request->user_name).'-'.time() . '.' . $file->getClientOriginalExtension();
+                $data['profile_pic'] = str_slug($request->username).'-'.time() . '.' . $file->getClientOriginalExtension();
                 $request->file('profile_pic')->move("uploads/users", $data['profile_pic']);
             }
         }
 
         $user = User::create($data);
+
+        $user->roles()->attach($request->roles);
 
         if($user){
             session()->flash('app_message', 'User Added successfully!');
@@ -109,12 +111,16 @@ class UserController extends Controller
 
 
     public function edit($id) {
+
         $user = User::findOrFail($id);
-        return view('admin.people.users.edit', compact('user'));
+        $roles = Role::all();
+        $selected_roles = $user->relatedRoles();
+
+        return view('admin.people.users.edit', compact('user','roles','selected_roles'));
     }
 
     public function update(Request $request) {
-        $user = User::findOrFail($request->user_id);
+        $userObj = User::findOrFail($request->user_id);
 
         $data  = $request->except('password_confirmation','_token');
 
@@ -128,14 +134,15 @@ class UserController extends Controller
         if ($request->hasFile('profile_pic')) {
             if($request->file('profile_pic')->isValid()) {
                 $file = $request->file('profile_pic');
-                $data['profile_pic'] = str_slug($request->user_name).'-'.time() . '.' . $file->getClientOriginalExtension();
+                $data['profile_pic'] = str_slug($request->username).'-'.time() . '.' . $file->getClientOriginalExtension();
                 $request->file('profile_pic')->move("uploads/users", $data['profile_pic']);
-                File::delete("uploads/users/".$user->profile_pic);
+                File::delete("uploads/users/".$userObj->profile_pic);
             }
         }
 
 
-        $user = $user->update($data);
+        $user = $userObj->update($data);
+        $userObj->roles()->sync($request->roles);
 
         if($user){
             session()->flash('app_message', 'User Updated successfully!');

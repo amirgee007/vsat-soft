@@ -11,8 +11,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "spatie/laravel-permission": "^2.7",
-        "yajra/laravel-datatables-oracle": "^8.3"
+        "yajra/laravel-datatables-oracle": "^8.3",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -38,7 +38,7 @@
                                         {{ $doc->file_name }}
                                     </td>
                                     <td><a href="#">{{ $doc->created_at ? $doc->created_at->format('m-d-Y') : 'N/A' }}</a></td>
-                                    <td>{{ $doc->user->user_name }}</td>
+                                    <td>{{ $doc->user->username }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-primary col-sm-4 col-xs-4 text-center"

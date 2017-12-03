@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-use Auth;
-//Importing laravel-permission models
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 use Session;
 
 class RoleController extends Controller
 {
 
-    public function __construct() {
-        $this->middleware(['auth', 'isAdmin']);//isAdmin middleware lets only users with a //specific permission permission to access these resources
-    }
 
     /**
      * Display a listing of the resource.
@@ -25,9 +19,8 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $roles = Role::all();//Get all roles
-
-        return view('roles.index')->with('roles', $roles);
+        $roles = Role::all();
+        return view('admin.people.users.roles.index',compact('roles'));
     }
 
     /**
@@ -37,8 +30,7 @@ class RoleController extends Controller
      */
     public function create() {
         $permissions = Permission::all();//Get all permissions
-
-        return view('roles.create', ['permissions'=>$permissions]);
+        return view('admin.people.users.roles.create',compact('permissions'));
     }
 
     /**
@@ -48,42 +40,23 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //Validate name and permissions field
+
         $this->validate($request, [
                 'name'=>'required|unique:roles|max:10',
                 'permissions' =>'required',
             ]
         );
 
-        $name = $request['name'];
-        $role = new Role();
-        $role->name = $name;
 
-        $permissions = $request['permissions'];
+       $role =  Role::create($request->except('_token' ,'permissions','role_id'));
 
-        $role->save();
-        //Looping thru selected permissions
-        foreach ($permissions as $permission) {
-            $p = Permission::where('id', '=', $permission)->firstOrFail();
-            //Fetch the newly created role and assign permission
-            $role = Role::where('name', '=', $name)->first();
-            $role->givePermissionTo($p);
-        }
+       $role->permissions()->attach($request['permissions']);
 
-        return redirect()->route('roles.index')
-            ->with('flash_message',
-                'Role'. $role->name.' added!');
+        session()->flash('app_info', 'Roles added successfully.');
+
+        return redirect()->route('	people.roles.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-        return redirect('roles');
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,7 +68,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
 
-        return view('roles.edit', compact('role', 'permissions'));
+        return view('admin.people.users.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -129,6 +102,8 @@ class RoleController extends Controller
             $role->givePermissionTo($p);  //Assign permission to role
         }
 
+        session()->flash('app_info', 'Roles/Permission updated successfully.');
+
         return redirect()->route('roles.index')
             ->with('flash_message',
                 'Role'. $role->name.' updated!');
@@ -140,14 +115,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $role = Role::findOrFail($id);
-        $role->delete();
+        $role = Role::where('id' ,$id)->delete();
 
-        return redirect()->route('roles.index')
-            ->with('flash_message',
-                'Role deleted!');
+        session()->flash('app_success', 'Roles Deleted successfully.');
+
+        return redirect()->route('people.roles.index');
 
     }
 }

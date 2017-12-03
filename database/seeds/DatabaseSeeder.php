@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
         $this->call(UserTableSeeder::class);
+        $this->call(RolePermissionsTableSeeder::class);
 
         //code to automatic run the sql file and import all location
         //run php artisan db:Seed
