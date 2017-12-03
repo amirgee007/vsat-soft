@@ -35,7 +35,13 @@
             </div>
 
             <div class="form-group">
+                <label class="col-sm-2 col-xs-3 control-label">Related Site</label>
                 <div class="col-sm-10 col-xs-9">
+                    <select required class="form-control" name="site_id">
+                        <option value="">Select Site</option>
+                    @foreach($sites as $site)
+                            <option value="{{$site->site_id}}">{{$site->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
