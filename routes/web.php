@@ -299,7 +299,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'TicketController@index'
         ]);
 
-        Route::get('/add', [
+        Route::get('/create', [
             'as' => 'ticket.create',
             'uses' => 'TicketController@create'
         ]);

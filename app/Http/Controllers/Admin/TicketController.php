@@ -17,10 +17,8 @@ class TicketController extends Controller
     }
 
     public function create() {
-        $users = User::all(['id','first_name', 'last_name' , 'user_name']);
         $sites = Site::all();
-        $related_user = [];
-        return view('admin.ticket.create', compact('users','sites' , 'related_user'));
+        return view('admin.ticket.create', compact('sites'));
     }
     public function show() {
         return view('admin.ticket.show');
