@@ -23,7 +23,8 @@
     <label class="col-lg-2 control-label">Site Name</label>
     <div class="col-lg-10">
         <select required name="site_id" class="form-control m-bot15">
-            @foreach($sites as $site)
+            <option value="">Select Site</option>
+        @foreach($sites as $site)
                 <option @if(@$maintenance_log->site_id==$site->site_id) selected @endif value="{{$site->site_id}}">{{$site->name}}</option>
             @endforeach
         </select>
