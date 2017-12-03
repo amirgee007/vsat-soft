@@ -12,7 +12,7 @@ class TicketController extends Controller
 {
 
     public function index() {
-        $tickets = Ticket::all();
+        //$tickets = Ticket::all();
         return view('admin.ticket.index');
     }
 
