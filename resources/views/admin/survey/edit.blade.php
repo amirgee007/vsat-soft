@@ -28,7 +28,7 @@
                                 @include('admin.survey.form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                         <button type="button" class="btn btn-danger">Cancel</button>
                                     </div>
                                 </div>
