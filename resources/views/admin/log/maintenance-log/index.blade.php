@@ -30,8 +30,8 @@
                             <th><i class="fa fa-gears"></i> Job Number</th>
                             <th><i class="icon_calendar"></i> Maintenance Date</th>
                             <th><i class="icon_pin"></i> Site Name</th>
+                            <th><i class="icon_building"></i> Country</th>
                             <th><i class="icon_building"></i> City</th>
-                            <th><i class="icon_flowchart_alt"></i> Branch</th>
                             <th><i class="icon_question"></i> Status</th>
                             <th><i class="icon_cogs"></i> Action</th>
                         </tr>
@@ -42,10 +42,9 @@
                             <td class="text-center">{{$maintenance_log->maintenance_log_id}}</td>
                             <td><a href="#">{{$maintenance_log->job_number}}</a></td>
                             <td><a href="#">{{$maintenance_log->repair_start_date}}</a></td>
-                                {{--todo: which date--}}
-                            <td><a href="#">{{$maintenance_log->site_id}}</a></td>
-                            <td><a href="#">{{$maintenance_log->city_id}}</a></td>
-                            <td><a href="#">Branches multiple</a></td>
+                            <td><a href="#">{{$maintenance_log->site->name}}</a></td>
+                            <td><a href="#">{{$maintenance_log->country->full_name}}</a></td>
+                            <td><a href="#">{{$maintenance_log->city->city_name}}</a></td>
                             <td>
                                 <div class="btn-group col-sm-10 col-xs-12">
                                     <a class="btn btn-success btn-sm col-xs-12 disabled" href="#">Closed</a>
@@ -53,9 +52,9 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-success col-sm-4 col-xs-4" href="{{ route('log.maintenance.edit', $maintenance_log->maintenance_log_id) }}"><i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-danger col-sm-4 col-xs-4 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('log.maintenance.delete', $maintenance_log->maintenance_log_id) }}"><i class="fa fa-close"></i></a>
-                                    <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_installation_log.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
+                                    <a class="btn btn-success col-sm-6 col-xs-6" href="{{ route('log.maintenance.edit', $maintenance_log->maintenance_log_id) }}"><i class="fa fa-edit"></i></a>
+                                    <a class="btn btn-danger col-sm-6 col-xs-6 text-center" onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('log.maintenance.delete', $maintenance_log->maintenance_log_id) }}"><i class="fa fa-close"></i></a>
+                                    <!--<a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_installation_log.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>-->
                                 </div>
                             </td>
                         </tr>

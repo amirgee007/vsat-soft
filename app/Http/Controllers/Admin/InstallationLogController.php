@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Asset;
 use App\Models\Branch;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\InstallationLog;
 use App\Models\Site;
@@ -45,11 +46,12 @@ class InstallationLogController extends Controller
         $input = $request->except('_token' ,'installation_log_id' ,'related_branches' ,'related_staff');
 
         $input['added_by'] = Auth::user()->id;
+        unset($input['related_assets'], $input['related_assets_qty']);
         $input['job_number'] = InstallationLog::getMaxJobNumber();
         $inst_log = InstallationLog::create($input);
 
         ////////////////////////logic for pivot table extra columns
-        $inst_log_assets = $request->related_assets;
+        $inst_log_assets = array_unique($request->related_assets);
         $inst_log_assets_qty = $request->related_assets_qty;
 
         $sync_data = [];
@@ -74,12 +76,13 @@ class InstallationLogController extends Controller
         $staffs = SupportStaff::all();
         $sites =  Site::all();
         $countries = Country::Isactive()->get();
+        $cities = City::isactive()->get();
         $installation_log = InstallationLog::where('installation_log_id' ,$id)->first();
         $selected_branches = $installation_log->relatedBranches();
         $selected_staffs = $installation_log->relatedStaffs();
 
         if (!is_null($installation_log)){
-            return view('admin.log.installation-log.edit' ,compact(  'selected_staffs','countries','selected_branches','installation_log','branches' ,'assets' ,'sites' ,'staffs'));
+            return view('admin.log.installation-log.edit' ,compact(  'selected_staffs','cities','countries','selected_branches','installation_log','branches' ,'assets' ,'sites' ,'staffs'));
         }
         else{
             session()->flash('app_warning', 'No, Installation log Found!');
@@ -89,23 +92,18 @@ class InstallationLogController extends Controller
 
     public function update(Request $request)
     {
-        $installation_log = InstallationLog::find($request->installation_log_id);
-        $input = $request->except('_token' ,'installation_log_id' ,'related_branches' ,'related_staff');
-
+        $installation_log = InstallationLog::where(['installation_log_id' => $request->installation_log_id])->first();
+        $input = $request->except('_token' ,'installation_log_id', 'related_assets_qty', 'related_assets' ,'related_branches' ,'related_staff');
         $installation_log->update($input);
-
-        ////////////////////////logic for pivot table extra columns
-        $inst_log_assets = $request->related_assets;
+        $inst_log_assets = array_unique($request->related_assets);
         $inst_log_assets_qty = $request->related_assets_qty;
-
         $sync_data = [];
-        for($i = 0; $i < count($inst_log_assets); $i++)
-            $sync_data[$inst_log_assets [$i]] = ['quantity' => $inst_log_assets_qty[$i]];
-
-
+            foreach ($inst_log_assets AS $key => $value):
+            $sync_data[$key] = ['quantity' => $inst_log_assets_qty[$key]];
+            endforeach;
         if ($installation_log ){
-            $installation_log ->staffs()->sync($request->related_staff);
-            $installation_log ->branches()->sync($request->related_branches);
+            $installation_log->staffs()->sync($request->related_staff);
+            $installation_log->branches()->sync($request->related_branches);
             $installation_log->assets()->sync($sync_data);
             session()->flash('app_message', 'Installation Log Has Been update Successfully!');
         }

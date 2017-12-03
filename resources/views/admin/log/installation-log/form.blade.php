@@ -23,7 +23,7 @@
     <label class="col-lg-2 control-label">Site Name</label>
     <div class="col-lg-10">
         <select required name="site_id" class="form-control m-bot15">
-            <option value="">Select Site</option>
+            <option selected hidden>Select Site</option>
             @foreach($sites as $site)
                 <option @if(@$installation_log->site_id==$site->site_id) selected @endif value="{{$site->site_id}}">{{$site->name}}</option>
             @endforeach
@@ -35,9 +35,10 @@
     <label class="col-lg-2 control-label">Country</label>
     <div class="col-lg-10">
         <select required name="country_id" class="form-control m-bot15" id="country">
-            <option>Select Country</option>
+            <option selected hidden>Select Country</option>
             @foreach($countries as $country)
-                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                <option value="{{$country->country_id}}" @if(@$installation_log->country_id && @$country->country_id == $installation_log->country_id) selected @endif>
+                    {{$country->full_name}}</option>
             @endforeach
         </select>
     </div>
@@ -47,14 +48,17 @@
     <label class="col-lg-2 control-label">City</label>
     <div class="col-lg-10">
         <select required name="city_id" id="city" class="form-control m-bot15 city">
-            <option>Select City</option>
+            <option selected hidden>Select City</option>
+            @if(@$installation_log->city_id && !empty($installation_log->city_id))
+                @foreach($cities as $city)
+                    <option value="{{$city->city_id}}" @if(@$installation_log->city_id && $city->city_id == $installation_log->city_id) selected @endif>{{$city->city_name}}</option>
+                @endforeach
+            @endif
         </select>
 
     </div>
 </div>
-
 @if(isset($installation_log->assets))
-    @foreach($installation_log->assets as $ass)
         <div class="form-group">
             <section class="panel">
                 <header class="panel-heading">
@@ -64,31 +68,35 @@
                     </div>
                 </header>
                 <div class="panel-body" id="add-assets">
-                    <label class="col-lg-2 control-label">Add a Part</label>
-                    <div class="col-sm-4">
-                        <select class="form-control m-bot15" name="related_assets[]">
-                            <option value="">Select Asset</option>
-                            @foreach($assets as $asset)
-                                <option @if($asset->asset_id==$ass->asset_id) selected
-                                        @endif value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="col-sm-2 control-label">QTY</label>
-                        <span class="col-sm-8">
-                                <input required name="related_assets_qty[]" type="number"
-                                       value="{{$ass->pivot->quantity}}" class="form-control">
-                            </span>
-                        @if($loop->iteration!=1)
-                            <a class="btn btn-danger removeasset" href="javascript:void(0)"><i
-                                        class="fa fa-minus-square"></i></a>
-                        @endif
-                    </div>
+                    @foreach($installation_log->assets as $ass)
+                        <div class="asset-div">
+                        <label class="col-lg-2 control-label">Add a Part</label>
+                        <div class="col-sm-4">
+                            <select class="form-control m-bot15 assets" name="related_assets[{{$loop->iteration}}]">
+                                <option value="">Select Asset</option>
+                                @foreach($assets as $asset)
+                                    <option @if($asset->asset_id==$ass->asset_id) selected @endif value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-2 control-label">QTY</label>
+                            <span class="col-sm-8">
+                                    <input required name="related_assets_qty[{{$loop->iteration}}]" type="number"
+                                           value="{{$ass->pivot->quantity}}" class="form-control">
+                                </span>
+                            @if($loop->iteration!=1)
+                                <a class="btn btn-danger removeasset" href="javascript:void(0)"><i
+                                            class="fa fa-minus-square"></i></a>
+                            @endif
+                        </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    @endforeach
                 </div>
             </section>
         </div>
-    @endforeach
+
 @else
     <div class="form-group">
         <section class="panel">
@@ -101,8 +109,8 @@
             <div class="panel-body" id="add-assets">
                 <label class="col-lg-2 control-label">Add a Part</label>
                 <div class="col-sm-4">
-                    <select class="form-control m-bot15" name="related_assets[]">
-                        <option value="">Select Asset</option>
+                    <select class="form-control m-bot15 assets" name="related_assets[]" >
+                        <option value="" hidden selected>Select Asset</option>
                         @foreach($assets as $asset)
                             <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
                         @endforeach
@@ -137,7 +145,7 @@
                 <select required name="related_branches[]"  class="form-control m-bot15" multiple="multiple" id="add_branch">
                 @foreach($branches AS $branch)
                     <option {{array_key_exists($branch->branch_id , $selected_branches) ? 'selected' : ''}} value="{{$branch->branch_id}}">{{ $branch->name }}</option>
-                    @endforeach
+                 @endforeach
                 </select>
             </div>
         </div>

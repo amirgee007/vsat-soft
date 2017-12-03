@@ -26,6 +26,17 @@ class MaintenanceLog extends Model
         return $this->belongsToMany(Branch::class ,'branch_maintenance_log' ,'maintenance_log_id','branch_id' );
     }
 
+    public function site(){
+        return $this->belongsTo(Site::class ,'site_id' ,'site_id' );
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class ,'country_id' ,'country_id' );
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class ,'city_id' ,'city_id' );
+    }
 
     public function relatedBranches(){
         return $this->branches->pluck('name' ,'branch_id')->toArray();
@@ -33,18 +44,16 @@ class MaintenanceLog extends Model
     }
 
     public function staffs(){
-        return $this->belongsToMany(SupportStaff::class ,'maintenance_log_staff' ,'maintenance_log_id','support_staff_id' );
+        return $this->belongsToMany(SupportStaff::class ,'installation_log_staff' ,'installation_log_id','support_staff_id' );
     }
 
-
     public function relatedStaffs(){
-        return $this->staffs->pluck('name' ,'support_staff_id')->toArray();
+        return $this->staffs->pluck('first_name' ,'support_staff_id')->toArray();
     }
 
     public function assets(){
         return $this->belongsToMany(Asset::class ,'asset_maintenance_log' ,'maintenance_log_id','asset_id')->withPivot('quantity');
     }
-
 
     public function relatedAssets(){
         return $this->assets()->pluck('name' ,'branch_id')->toArray();

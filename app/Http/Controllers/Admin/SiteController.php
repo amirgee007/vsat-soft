@@ -184,10 +184,13 @@ class SiteController extends Controller
         return redirect()->route('site.index');
     }
 
-    public function ajaxRequestAssets(){
+    public function ajaxRequestAssets(Request $request){
 
-        $assets = Asset::pluck("asset_name","asset_id")->all();
-        $data = view('admin.site.partials.assets-options',compact('assets'))->render();
+        $input = $request->all();
+        $data  = '';
+        $options =  (!empty($input['options']))? explode(',', $input['options']) : [];
+        $assets = Asset::whereNotIn('asset_id', $options)->pluck('asset_name','asset_id');
+        $data = view('admin.site.partials.assets-options', compact('assets'))->render();
         return response()->json(['aaData'=>$data]);
     }
 

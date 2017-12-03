@@ -104,7 +104,7 @@ class SurveyController extends Controller
          reset($answers);
          $surveyId = key($answers);
          $answers = $answers[$surveyId];
-         $survey = Survey::where('survey_id', $surveyId)->first();
+                 $survey = Survey::where('survey_id', $surveyId)->first();
          $correctAnswers = $survey->answers();
          if ( count($answers) == count($correctAnswers) )
          {

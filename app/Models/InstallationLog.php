@@ -26,6 +26,17 @@ class InstallationLog extends Model
         return $this->belongsToMany(Branch::class ,'branch_installation_log' ,'installation_log_id','branch_id' );
     }
 
+    public function site(){
+        return $this->belongsTo(Site::class ,'site_id' ,'site_id' );
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class ,'country_id' ,'country_id' );
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class ,'city_id' ,'city_id' );
+    }
 
     public function relatedBranches(){
         return $this->branches->pluck('name' ,'branch_id')->toArray();
@@ -38,7 +49,7 @@ class InstallationLog extends Model
 
 
     public function relatedStaffs(){
-        return $this->staffs->pluck('name' ,'support_staff_id')->toArray();
+        return $this->staffs->pluck('first_name' ,'support_staff_id')->toArray();
     }
 
 
