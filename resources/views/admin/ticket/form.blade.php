@@ -46,12 +46,20 @@
                     <textarea name="survey_des" class="form-control" id="" cols="20" rows="10"></textarea>
                 </div>
             </div>
+            <label class="col-lg-2 control-label">Related Site</label>
+            <div class="col-lg-10">
+                <select id="related_site" name="related_site[]" class="form-control m-bot15" multiple="multiple">
+                    @foreach($sites as $site)
+                        <option {{array_key_exists($site->site_id , $related_user) ? 'selected' : ''}} value="{{$site->site_id}}">{{$site->name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <label class="col-lg-2 control-label">Select Users</label>
             <div class="col-lg-10">
-                <select required class="form-control m-bot15" multiple="multiple" name="related_site" id="related_site">
-                    <option value="">Select User</option>
-                    <option value="a">User A</option>
-                    <option value="b">User B</option>
+                <select id="related_user" name="related_user[]" class="form-control m-bot15" multiple="multiple">
+                    @foreach($users as $user)
+                        <option {{array_key_exists($user->user_id , $related_user) ? 'selected' : ''}} value="{{$user->id}}">{{$user->user_name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -62,11 +70,19 @@
     <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
     <script>
         $(function () {
-            $('#related_site').select2({
+            $('#related_user').select2({
                 placeholder: "Select Related Users",
                 width: '100%',
                 allowClear: true
             });
+
+            $('#related_site').select2({
+                placeholder: "Select Related Sites",
+                width: '100%',
+                allowClear: true
+            });
         });
+
+
     </script>
 @stop

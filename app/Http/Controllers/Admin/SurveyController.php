@@ -81,7 +81,7 @@ class SurveyController extends Controller
                 SurveyQuestion::create($data);
             }
 
-        session()->flash('app_message', 'survey Has Been Updated Successfully!');
+        session()->flash('app_message', 'Survey Has Been Updated Successfully!');
 
         if($survey->type=='site')
             return redirect()->route('survey.site.index');
@@ -111,7 +111,12 @@ class SurveyController extends Controller
              array_unshift($correctAnswers,"");
              unset($correctAnswers[0]);
              $result = array_diff_assoc($correctAnswers, $answers);
-             dd('Number of Wrong Answers:'.count($result));
+             session()->flash('app_message', 'Survey Has Been Saved Successfully!');
+             //dd('Number of Wrong Answers:'.count($result));
+             if($survey->type=='site')
+                 return redirect()->route('survey.site.index');
+             else
+                 return redirect()->route('survey.performance.index');
 
          }
 
