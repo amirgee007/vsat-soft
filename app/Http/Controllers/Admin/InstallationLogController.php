@@ -49,8 +49,12 @@ class InstallationLogController extends Controller
         $inst_log = InstallationLog::create($input);
 
         ////////////////////////logic for pivot table extra columns
+        $inst_log_assets = $request->related_assets;
+        $inst_log_assets_qty = $request->related_assets_qty;
 
         $sync_data = [];
+        for($i = 0; $i < count($inst_log_assets); $i++)
+            $sync_data[$inst_log_assets [$i]] = ['quantity' => $inst_log_assets_qty[$i]];
 
         if ($inst_log){
             $inst_log->staffs()->attach($request->related_staff);
