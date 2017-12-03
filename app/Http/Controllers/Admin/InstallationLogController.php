@@ -94,9 +94,19 @@ class InstallationLogController extends Controller
 
         $installation_log->update($input);
 
+        ////////////////////////logic for pivot table extra columns
+        $inst_log_assets = $request->related_assets;
+        $inst_log_assets_qty = $request->related_assets_qty;
+
+        $sync_data = [];
+        for($i = 0; $i < count($inst_log_assets); $i++)
+            $sync_data[$inst_log_assets [$i]] = ['quantity' => $inst_log_assets_qty[$i]];
+
+
         if ($installation_log ){
             $installation_log ->staffs()->sync($request->related_staff);
             $installation_log ->branches()->sync($request->related_branches);
+            $installation_log->assets()->sync($sync_data);
             session()->flash('app_message', 'Installation Log Has Been update Successfully!');
         }
 

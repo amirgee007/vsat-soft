@@ -53,35 +53,72 @@
     </div>
 </div>
 
-{{--todo need js add rows functionality with qty --}}
-
-<div class="form-group">
-    <section class="panel">
-        <header class="panel-heading">
-            Assets
-            <div class="btn-group pull-right">
-                <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
-            </div>
-        </header>
-        <div class="panel-body" id="add-assets">
-            <label class="col-lg-2 control-label">Add a Part</label>
-            <div class="col-sm-4">
-                <select class="form-control m-bot15" name="related_assets[]">
-                    <option value="">Select Asset</option>
-                    @foreach($assets as $asset)
-                        <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <label class="col-sm-2 control-label">QTY</label>
-                <span class="col-sm-8">
+@if(isset($installation_log->assets))
+    @foreach($installation_log->assets as $ass)
+        <div class="form-group">
+            <section class="panel">
+                <header class="panel-heading">
+                    Assets
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+                    </div>
+                </header>
+                <div class="panel-body" id="add-assets">
+                    <label class="col-lg-2 control-label">Add a Part</label>
+                    <div class="col-sm-4">
+                        <select class="form-control m-bot15" name="related_assets[]">
+                            <option value="">Select Asset</option>
+                            @foreach($assets as $asset)
+                                <option @if($asset->asset_id==$ass->asset_id) selected
+                                        @endif value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-sm-2 control-label">QTY</label>
+                        <span class="col-sm-8">
+                                <input required name="related_assets_qty[]" type="number"
+                                       value="{{$ass->pivot->quantity}}" class="form-control">
+                            </span>
+                        @if($loop->iteration!=1)
+                            <a class="btn btn-danger removeasset" href="javascript:void(0)"><i
+                                        class="fa fa-minus-square"></i></a>
+                        @endif
+                    </div>
+                </div>
+            </section>
+        </div>
+    @endforeach
+@else
+    <div class="form-group">
+        <section class="panel">
+            <header class="panel-heading">
+                Assets
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+                </div>
+            </header>
+            <div class="panel-body" id="add-assets">
+                <label class="col-lg-2 control-label">Add a Part</label>
+                <div class="col-sm-4">
+                    <select class="form-control m-bot15" name="related_assets[]">
+                        <option value="">Select Asset</option>
+                        @foreach($assets as $asset)
+                            <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-sm-2 control-label">QTY</label>
+                    <span class="col-sm-8">
                     <input required name="related_assets_qty[]" type="number" class="form-control">
                 </span>
+                </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
+@endif
+
 <div class="form-group">
     <label class="col-sm-2 control-label">Engineer Comments</label>
     <div class="col-sm-10">
