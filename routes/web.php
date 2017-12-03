@@ -11,9 +11,9 @@
 |
 */
 
-use App\Models\Region;
 
-Route::get('/admin/test' ,function (){
+Route::get('/delete' ,function (){
+
 
 
 });

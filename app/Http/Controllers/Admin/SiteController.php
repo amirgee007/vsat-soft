@@ -173,6 +173,8 @@ class SiteController extends Controller
     {
         $site = Site::find($id);
         $site->branches()->detach();
+        $site ->assets()->detach();
+
         $is_delete = $site->delete();
         if($is_delete)
             session()->flash('app_message', 'Site Deleted Successfully!');

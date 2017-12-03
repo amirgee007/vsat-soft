@@ -40,9 +40,18 @@ class MaintenanceLogController extends Controller
         $input['job_number'] = MaintenanceLog::getMaxJobNumber();
         $main_log = MaintenanceLog::create($input);
 
+        ////////////////////////logic for pivot table extra columns
+        $maintenence_log_assets = $request->related_assets;
+        $maintenence_log_assets_qty = $request->related_assets_qty;
+
+        $sync_data = [];
+        for($i = 0; $i < count($maintenence_log_assets); $i++)
+            $sync_data[$maintenence_log_assets[$i]] = ['quantity' => $maintenence_log_assets_qty[$i]];
+
         if ($main_log){
             $main_log->staffs()->attach($request->related_staff);
             $main_log->branches()->attach($request->related_branches);
+            $main_log->assets()->attach($sync_data);
             session()->flash('app_message', 'New Maintenance Log Has Been Added Successfully!');
         }
 
@@ -91,6 +100,7 @@ class MaintenanceLogController extends Controller
         $log = MaintenanceLog::find($id);
         $log ->staffs()->detach();
         $log ->branches()->detach();
+        $log ->assets()->detach();
         $is_delete = $log->delete();
         if($is_delete)
             session()->flash('app_message', 'Maintenance Log Deleted Successfully!');

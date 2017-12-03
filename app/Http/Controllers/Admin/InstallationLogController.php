@@ -48,9 +48,14 @@ class InstallationLogController extends Controller
         $input['job_number'] = InstallationLog::getMaxJobNumber();
         $inst_log = InstallationLog::create($input);
 
+        ////////////////////////logic for pivot table extra columns
+
+        $sync_data = [];
+
         if ($inst_log){
             $inst_log->staffs()->attach($request->related_staff);
             $inst_log->branches()->attach($request->related_branches);
+            $inst_log->assets()->attach($sync_data);
             session()->flash('app_message', 'New installation Log Has Been Added Successfully!');
         }
 
@@ -99,6 +104,7 @@ class InstallationLogController extends Controller
         $log = InstallationLog::find($id);
         $log ->staffs()->detach();
         $log ->branches()->detach();
+        $log ->assets()->detach();
         $is_delete = $log->delete();
         if($is_delete)
             session()->flash('app_message', 'Installation Log Deleted Successfully!');

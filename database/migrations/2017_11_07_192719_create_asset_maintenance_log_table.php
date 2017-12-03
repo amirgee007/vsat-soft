@@ -17,6 +17,8 @@ class CreateAssetMaintenanceLogTable extends Migration
 
             $table->integer('asset_id');
             $table->integer('maintenance_log_id');
+            $table->integer('quantity')->default(1);
+
         });
     }
 

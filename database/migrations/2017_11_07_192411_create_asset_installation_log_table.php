@@ -17,6 +17,7 @@ class CreateAssetInstallationLogTable extends Migration
 
             $table->integer('asset_id');
             $table->integer('installation_log_id');
+            $table->integer('quantity')->default(1);
         });
     }
 

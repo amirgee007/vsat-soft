@@ -442,7 +442,6 @@
                     <div class="panel-body" id="add-assets">
                         <label class="col-lg-2 control-label">Add a Part</label>
                         <div class="col-sm-4">
-
                             <select class="form-control m-bot15" name="related_assets[]">
                                 <option value="">Select Asset</option>
                                 @foreach($assets as $asset)

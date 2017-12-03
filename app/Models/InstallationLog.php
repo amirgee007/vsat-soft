@@ -39,6 +39,19 @@ class InstallationLog extends Model
 
     public function relatedStaffs(){
         return $this->staffs->pluck('name' ,'support_staff_id')->toArray();
-
     }
+
+
+    public function assets(){
+        return $this->belongsToMany(Asset::class ,'asset_installation_log' ,'installation_log_id','asset_id')->withPivot('quantity');
+    }
+
+
+    public function relatedAssets(){
+        return $this->assets()->pluck('name' ,'branch_id')->toArray();
+    }
+
+
+
+
 }
