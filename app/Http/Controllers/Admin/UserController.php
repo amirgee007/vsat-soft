@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProfileFormPost;
+use App\Models\Country;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,6 +27,7 @@ class UserController extends Controller
 
     public function profile(){
         $user = Auth::user();
+        $countries = Country::all();
         return view('admin.profile.show' , compact('user'));
     }
 

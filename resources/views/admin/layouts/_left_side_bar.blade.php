@@ -67,7 +67,7 @@
                     <span>Ticketing</span>
                 </a>
             </li>
-            <li class="sub-menu {{Request::is('equipments/*') ? 'active' : ''}}">
+            <li class="sub-menu {{ (Request::is('equipments/*') || Request::is('equipments')) ? 'active' : ''}}">
                 <a href="javascript:;" class="">
                     <i class="icon_archive"></i>
                     <span>Equipments</span>
@@ -99,7 +99,7 @@
                 <ul class="sub">
                     <li><a class="" href="{{route('log.installation.index')}}">Installation Log</a></li>
                     <li><a class="" href="{{route('log.maintenance.index')}}">Maintenance Log</a></li>
-                    <li><a class="" href="{{ route('log.testCases.index') }}">Test Cases</a></li>
+                    <!--<li><a class="" href="{{  route('log.testCases.index') }}">Test Cases</a></li>-->
                 </ul>
             </li>
             <li class="sub-menu {{ Request::is('documents/*') ? 'active' : '' }}">

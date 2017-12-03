@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Asset;
 use App\Models\Branch;
+use App\Models\Country;
 use App\Models\InstallationLog;
 use App\Models\Site;
 use App\Models\SupportStaff;
@@ -17,7 +18,6 @@ class InstallationLogController extends Controller
     public function index()
     {
         $installationLogs = InstallationLog::all();
-
         return view('admin.log.installation-log.index' ,compact('installationLogs'));
     }
 
@@ -29,17 +29,15 @@ class InstallationLogController extends Controller
     public function create()
     {
         //////All countries cities will be ID based after deciding the loc tables
-
         $branches = Branch::all();
         $assets = Asset::all();
         $staffs = SupportStaff::all();
         $sites =  Site::all();
-
+        $countries = Country::Isactive()->get();
         $selected_branches = [] ;
         $selected_staffs = [] ;
         $job_number = InstallationLog::getMaxJobNumber();
-
-        return view('admin.log.installation-log.create' ,compact('job_number','branches' ,'assets' ,'sites' ,'staffs' ,'selected_staffs' ,'selected_branches'));
+        return view('admin.log.installation-log.create' ,compact('job_number','branches' ,'assets' ,'sites' ,'staffs' ,'selected_staffs' ,'selected_branches', 'countries'));
     }
 
     public function store(Request $request)
@@ -66,13 +64,13 @@ class InstallationLogController extends Controller
         $assets = Asset::all();
         $staffs = SupportStaff::all();
         $sites =  Site::all();
-
+        $countries = Country::Isactive()->get();
         $installation_log = InstallationLog::where('installation_log_id' ,$id)->first();
         $selected_branches = $installation_log->relatedBranches();
         $selected_staffs = $installation_log->relatedStaffs();
 
         if (!is_null($installation_log)){
-            return view('admin.log.installation-log.edit' ,compact(  'selected_staffs','selected_branches','installation_log','branches' ,'assets' ,'sites' ,'staffs'));
+            return view('admin.log.installation-log.edit' ,compact(  'selected_staffs','countries','selected_branches','installation_log','branches' ,'assets' ,'sites' ,'staffs'));
         }
         else{
             session()->flash('app_warning', 'No, Installation log Found!');

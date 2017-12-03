@@ -40,25 +40,3 @@
 </section>
 <!--main content end-->
 @stop
-@section('footer_scripts')
-
-    {{--todo: code repetaed 4 times ust foo select2 later on check these to minimize--}}
-
-    <link href="{{asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
-    <script src="{{asset('assets/select2-4.0.4/select2.min.js')}}"></script>
-
-    <script>
-
-        $('#add_support_staff').select2({
-            placeholder: "Select Staff",
-            width: '100%',
-            allowClear: true
-        });
-
-        $('#add_branch').select2({
-            placeholder: "Select Related Branches",
-            allowClear: true
-        });
-
-    </script>
-@stop

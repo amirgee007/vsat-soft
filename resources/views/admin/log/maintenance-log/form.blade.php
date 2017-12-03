@@ -23,7 +23,6 @@
     <label class="col-lg-2 control-label">Site Name</label>
     <div class="col-lg-10">
         <select required name="site_id" class="form-control m-bot15">
-            <option value="1">dummy value</option>
             @foreach($sites as $site)
                 <option @if(@$maintenance_log->site_id==$site->site_id) selected @endif value="{{$site->site_id}}">{{$site->name}}</option>
             @endforeach
@@ -31,19 +30,24 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-2 control-label">Country (id based)</label>
+    <label class="col-lg-2 control-label">Country</label>
     <div class="col-lg-10">
-        <select required name="country_id" class="form-control m-bot15">
-            <option @if(true) selected @endif value="1">Kuwait</option>
+        <select required name="country_id" class="form-control m-bot15" id="country">
+            <option selected hidden>Select Country</option>
+            @foreach($countries as $country)
+                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+            @endforeach
         </select>
     </div>
 </div>
+
 <div class="form-group">
-    <label class="col-lg-2 control-label">City (id based)</label>
+    <label class="col-lg-2 control-label">City</label>
     <div class="col-lg-10">
-        <select required name="city_id" class="form-control m-bot15">
-            <option @if(true) selected @endif value="1">sargodha</option>
+        <select required name="city_id" id="city" class="form-control m-bot15 city">
+            <option selected hidden>Select City</option>
         </select>
+
     </div>
 </div>
 <div class="form-group">
@@ -104,38 +108,26 @@
 <div class="form-group">
     <section class="panel">
         <header class="panel-heading">
-            Assets (pending)
+            Assets
+            <div class="btn-group pull-right">
+                <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+            </div>
         </header>
-        <div class="panel-body">
+        <div class="panel-body" id="add-assets">
             <label class="col-lg-2 control-label">Add a Part</label>
             <div class="col-sm-4">
                 <select class="form-control m-bot15">
-                    <option>Antennas</option>
-                    <option>BUC</option>
-                    <option>LNB</option>
-                    <option>Modem</option>
-                    <option>Antenna Mounts</option>
-                    <option>Router</option>
-                    <option>Router</option>
-                    <option>Switch</option>
-                    <option>Servers</option>
-                    <option>Hotspot</option>
-                    <option>Wireless Controller</option>
-                    <option>WAPs</option>
-                    <option>VoIP Phones</option>
-                    <option>Thin Clients</option>
-                    <option>Webcam</option>
-                    <option>UPS</option>
-                    <option>Rack</option>
-                    <option>Headset</option>
-                    <option>Cisco</option>
+                    <option value="" selected hidden>Select Asset</option>
+                    @foreach($assets as $asset)
+                        <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-sm-4">
                 <label class="col-sm-2 control-label">QTY</label>
                 <span class="col-sm-8">
-                      <input type="number" class="form-control">
-                      </span>
+                      <input type="number" class="form-control" value="1">
+                </span>
             </div>
         </div>
     </section>
@@ -156,10 +148,9 @@
             <label class="col-lg-2 control-label">Add Branch</label>
             <div class="col-lg-8">
                 <select required name="related_branches[]"  class="form-control m-bot15" multiple="multiple" id="add_branch">
-                    <option value="1">dummy</option>
                 @foreach($branches AS $branch)
                         <option {{array_key_exists($branch->branch_id , $selected_branches=[]) ? 'selected' : ''}} value="{{$branch->branch_id}}">{{ $branch->name }}</option>
-                    @endforeach
+                @endforeach
                 </select>
             </div>
         </div>
@@ -172,7 +163,6 @@
             <label class="col-lg-2 col-xs-3 control-label">Add Support Staff</label>
             <div class="col-lg-8 col-xs-7">
                 <select required name="related_staff[]"  class="form-control m-bot15" multiple="multiple" id="add_support_staff">
-                    <option value="1">dummy</option>
                     @foreach($staffs as $staff)
                         <option {{array_key_exists($staff->support_staff_id , $selected_staffs=[]) ? 'selected' : ''}} value="{{$staff->support_staff_id }}">{{ $staff->first_name  }}</option>
                     @endforeach
@@ -190,3 +180,25 @@
         </select>
     </div>
 </div>
+
+@section('footer_scripts')
+    <link href="{{asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{asset('assets/select2-4.0.4/select2.min.js')}}"></script>
+    @include('admin.layouts.partials.ajax-country-based')
+    @include('admin.common.add-assets')
+    <script>
+
+        $('#add_support_staff').select2({
+            placeholder: "Select Staff",
+            width: '100%',
+            allowClear: true
+        });
+
+        $('#add_branch').select2({
+            placeholder: "Select Related Branches",
+            allowClear: true
+        });
+
+        </script>
+
+@stop

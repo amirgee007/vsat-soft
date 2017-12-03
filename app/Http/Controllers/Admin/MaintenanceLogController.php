@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Asset;
 use App\Models\Branch;
+use App\Models\Country;
 use App\Models\MaintenanceLog;
 use App\Models\Site;
 use App\Models\SupportStaff;
@@ -21,17 +22,13 @@ class MaintenanceLogController extends Controller
 
     public function create()
     {
-        //////All countries cities will be ID based after deciding the loc tables
-
         $branches = Branch::all();
         $assets = Asset::all();
         $staffs = SupportStaff::all();
         $sites =  Site::all();
-
+        $countries = Country::Isactive()->get();
         $job_number = MaintenanceLog::getMaxJobNumber();
-
-        return view('admin.log.maintenance-log.create' ,compact('job_number','branches' ,'assets' ,'sites' ,'staffs' ,'selected_staffs' ,'selected_branches'));
-
+        return view('admin.log.maintenance-log.create' ,compact('job_number', 'countries','branches' ,'assets' ,'sites' ,'staffs' ,'selected_staffs' ,'selected_branches'));
     }
 
     public function store(Request $request)
@@ -59,13 +56,13 @@ class MaintenanceLogController extends Controller
         $assets = Asset::all();
         $staffs = SupportStaff::all();
         $sites =  Site::all();
-
+        $countries = Country::Isactive()->get();
         $maintenance_log = MaintenanceLog::where('maintenance_log_id' ,$id)->first();
         $selected_branches = $maintenance_log->relatedBranches();
         $selected_staffs = $maintenance_log->relatedStaffs();
 
         if (!is_null($maintenance_log)){
-            return view('admin.log.maintenance-log.edit' ,compact(  'selected_staffs','selected_branches','maintenance_log','branches' ,'assets' ,'sites' ,'staffs'));
+            return view('admin.log.maintenance-log.edit' ,compact(  'countries','selected_staffs','selected_branches','maintenance_log','branches' ,'assets' ,'sites' ,'staffs'));
         }
         else{
             session()->flash('app_warning', 'No, Maintenance log Found!');

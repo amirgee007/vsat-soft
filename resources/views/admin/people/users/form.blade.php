@@ -104,17 +104,17 @@
 
 
     <!-- Permissions Form-Group Start-->
-    <div class="form-group">
+   <!-- <div class="form-group">
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
                     <h3>Permissions:</h3>
                 </div>
             </div>
-        </section>
+        </section>-->
 
         <!-- Locations Permissions Start-->
-        <section class="panel">
+        <!--<section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
                     <header class="panel panel-heading col-sm-12 col-xs-12">
@@ -156,9 +156,7 @@
                 </div>
             </div>
         </section>
-        <!-- Locations Permissions End-->
 
-        <!-- Clients Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -224,9 +222,6 @@
                 </div>
             </div>
         </section>
-        <!-- Clients Permissions End-->
-
-        <!-- Support Staff Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -292,9 +287,7 @@
                 </div>
             </div>
         </section>
-        <!-- Support Staff Permissions End-->
 
-        <!-- Users Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -359,9 +352,7 @@
                 </div>
             </div>
         </section>
-        <!-- Users Permissions End-->
 
-        <!-- Branches Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -428,9 +419,7 @@
                 </div>
             </div>
         </section>
-        <!-- Branches Permissions End-->
 
-        <!-- Sites Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -497,9 +486,7 @@
                 </div>
             </div>
         </section>
-        <!-- Sites Permissions End-->
 
-        <!-- Tickets Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -566,9 +553,7 @@
                 </div>
             </div>
         </section>
-        <!-- Tickets Permissions End-->
 
-        <!-- Stock Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -635,9 +620,7 @@
                 </div>
             </div>
         </section>
-        <!-- Stock Permissions End-->
 
-        <!-- Tools Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -704,9 +687,7 @@
                 </div>
             </div>
         </section>
-        <!-- Tools Permissions End-->
 
-        <!-- Other Tools Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -773,9 +754,7 @@
                 </div>
             </div>
         </section>
-        <!-- Other Tools Permissions End-->
 
-        <!-- Site Survey Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -831,9 +810,7 @@
                 </div>
             </div>
         </section>
-        <!-- Site Survey Permissions End-->
 
-        <!-- Performance Survey Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -889,9 +866,7 @@
                 </div>
             </div>
         </section>
-        <!-- Performance Survey Permissions End-->
 
-        <!-- Installation Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -956,9 +931,7 @@
                 </div>
             </div>
         </section>
-        <!-- Installation Permissions End-->
 
-        <!-- Maintenance Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -1023,9 +996,7 @@
                 </div>
             </div>
         </section>
-        <!-- Maintenance Permissions End-->
 
-        <!-- Test Cases Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -1090,9 +1061,7 @@
                 </div>
             </div>
         </section>
-        <!-- Test Cases Permissions End-->
 
-        <!-- Project Documents Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -1157,9 +1126,7 @@
                 </div>
             </div>
         </section>
-        <!-- Project Documents Permissions End-->
 
-        <!-- General Documents Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
@@ -1224,9 +1191,7 @@
                 </div>
             </div>
         </section>
-        <!-- General Documents Permissions End-->
 
-        <!-- Reports Permissions Start-->
         <section class="panel">
             <div class="col-sm-12">
                 <div class="panel panel-primary">
