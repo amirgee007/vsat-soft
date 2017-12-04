@@ -29,7 +29,7 @@
                     </div>
                     <section class="panel">
                         <header class="panel-heading">
-                            Users
+                            Roles
                         </header>
 
                         <table class="table table-striped table-advance table-hover">

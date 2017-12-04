@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Auth;
-
-//Importing laravel-permission models
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 use Session;
 
@@ -18,10 +15,8 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $role = Permission::where('id' , '2')->first();
-
         $permissions=Permission::all();
-        return view('admin.permissions.index' ,compact('permissions'));
+        return view('admin.people.users.permissions.index' ,compact('permissions'));
     }
 
     /**
@@ -31,9 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-
-        return view('admin.permissions.create');
-
+        return view('admin.people.users.permissions.create');
     }
 
     /**
@@ -47,45 +40,23 @@ class PermissionController extends Controller
 
         try{
 
-            //todo:ID not autoincrement
-
-            $permission = new Permission();
-
-            $permission->name = $request->name;
-            $permission->slug = $request->slug;
-            $permission->description = $request->description;
-
-            $isSaved = $permission->save();
+            $isSaved = Permission::create($request->except('_token'));
 
             if ($isSaved){
-                session()->flash('app_info', 'Permission added successfully.');
-                return Redirect::route('permissions.index');
-
-
+                session()->flash('app_message', 'Permission added successfully.');
             }else {
-                session()->flash('error', 'Error in insertion');
-                return redirect()->back();
+                session()->flash('app_error', 'Error in insertion');
             }
+
+            return redirect()->route('permissions.index');
 
 
         } catch (\Exception $ex) {
             session()->flash('app_error', $ex->getMessage());
             return redirect()->back();
         }
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        dd('show');
-
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -98,7 +69,7 @@ class PermissionController extends Controller
 
         $permission=Permission::where('id',$id)->first();
 
-        return view('admin.permissions.edit', compact( 'permission'));
+        return view('admin.people.users.permissions.edit', compact( 'permission'));
 
     }
 
@@ -109,32 +80,47 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
         try{
 
-            $name = $request->name;
-            $slug = $request->slug;
-            $description = $request->description;
+            $permission_obj = Permission::where('id',$request->id)->first();
 
-            $isUpdate = Permission::where('id' ,$id )->update([
-
-                'name' => $name ,
-                'slug' => $slug ,
-                'description' => $description
-
-            ]);
+            $isUpdate = $permission_obj->update($request->except('_token','id'));
 
             if ($isUpdate){
-                session()->flash('app_info', 'Permission updated successfully.');
-                return Redirect::route('permissions.index');
-
-
+                session()->flash('app_message', 'Permission Updated successfully.');
             }else {
-                session()->flash('error', 'Error in updating');
-                return redirect()->back();
+                session()->flash('app_error', 'Error in insertion');
             }
+
+            return redirect()->route('permissions.index');
+
+
+        } catch (\Exception $ex) {
+            session()->flash('app_error', $ex->getMessage());
+            return redirect()->back();
+        }
+
+    }
+
+    public function show($id){
+
+        try{
+
+            $permission_obj = Permission::where('id',$id)->first();
+            $permission_obj->roles()->sync([]);
+
+            $isDelete = $permission_obj->delete();
+
+            if ($isDelete){
+                session()->flash('app_message', 'Permission Deleted successfully.');
+            }else {
+                session()->flash('app_error', 'Error in Deletion');
+            }
+
+            return redirect()->route('permissions.index');
 
 
         } catch (\Exception $ex) {
@@ -152,6 +138,8 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+
+        dd('delete');
 
         $perm= Permission::firstOrCreate([
             'id' => $id

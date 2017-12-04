@@ -1,136 +1,93 @@
 @extends('admin/layouts/default')
 
-{{-- Page title --}}
-@section('title')
-    Permissions List
-    @parent
-@stop
+@section('pageTitle', 'All Permissions')
 
-{{-- page level styles --}}
 @section('header_styles')
+
 @stop
 
-
-{{-- Page content --}}
 @section('content')
-    <section class="content-header">
-        <h1>Permissions</h1>
-        <ol class="breadcrumb">
-            <li>
-                <a href="{{ route('dashboard') }}">
-                    <i class="fa fa-fw fa-home"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li> Permissions</li>
-            <li>
-                <a href="{{ route('admin.permissions.index') }}">Permissions</a>
-            </li>
-        </ol>
-    </section>
 
-    <!-- Main content -->
-    <section class="content paddingleft_right15">
-        <div class="row">
-            <div class="col-lg-12">
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-users"></i> Permissions Management</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{route('index.dashboard')}}">Home</a></li>
+                        <li><i class="fa fa-users"></i>Permissions Management</li>
+                    </ol>
+                </div>
+            </div>
 
-                <div class="panel panel-primary ">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <i class="fa fa-fw fa-user"></i>
-                            Permissions list
-                        </h3>
-
+            <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <a class="btn btn-primary btn-lg" href="{{route('permissions.create')}}" title="Add permissions">Add New Permission</a>
                     </div>
-                    <div class="panel-body">
-                        <table class="table" id="table">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Permissions
+                        </header>
+
+                        <table class="table table-striped table-advance table-hover">
                             <thead>
-                            <tr class="filters">
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th>Description</th>
-                                <th>Created At</th>
-                                <th>Actions</th>
+                            <tr>
+                                <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> S/N</th>
+                                <th><i class="icon_profile"></i> Name</th>
+                                <th><i class="icon_profile"></i> Display Name</th>
+                                <th><i class="icon_calendar"></i> Description</th>
+                                <th><i class="icon_calendar"></i> Created Date</th>
+                                <th><i class="icon_cogs"></i> Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($permissions as $permission)
+
+                            @forelse($permissions as $permission)
                                 <tr>
-                                    <td>{!! $permission->id !!}</td>
+                                    <td class="text-center">{{$permission->id}}</td>
                                     <td>{!! $permission->name !!}</td>
-                                    <td>{!! $permission->slug !!}</td>
+                                    <td>{!! $permission->display_name !!}</td>
                                     <td>{!! $permission->description !!}</td>
-                                    <td>{!! $permission->created_at->diffForHumans() !!}</td>
-
+                                    <td>{{$permission->created_at->format('m-d-Y')}}</td>
                                     <td>
-
-
-                                        <a href="{{ route('admin.permissions.edit', $permission->id) }}"><i class="fa fa-fw fa-pencil text-warning"></i></a>
-                                        <a onclick="deletePermission({{$permission->id}});" href="javascript:void(0)"><i class="fa fa-fw fa-times text-danger"></i></a>
-                                        <a href="#"><i class="fa fa-fw fa-eye text-primary"></i></a>
-
-
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('permissions.edit' ,$permission->id)}}"><i class="fa fa-edit"></i></a>
+                                            <a onclick="return confirm('Are you sure you want to delete this record?')" href="<?php echo e(route('permissions.destroy', $permission->id)); ?>" class="btn btn-danger col-sm-6 col-xs-6 text-center">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                            {{--todo:delete via ajax request DELETE method call for resource--}}
+                                        </div>
                                     </td>
                                 </tr>
-
-                            @endforeach
-
+                            @empty
+                                <tr><td colspan="12" style="text-align: center">No, Permission Found!</td></tr>
+                            @endforelse
                             </tbody>
                         </table>
-                    </div>
+                    </section>
                 </div>
             </div>
-        </div>
+
+            <!-- page end-->
+        </section>
     </section>
+    <!--main content end-->
+
 @stop
 
-{{-- page level scripts --}}
 @section('footer_scripts')
 
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
-    <script type="text/javascript">
+    {{--<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>--}}
 
-        function deletePermission(id) {
+    <script>
 
-            swal({
-                    title: "Are you sure to delete?",
-                    text: "You will not be able to recover this imaginary file!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it!",
-                    closeOnConfirm: false
-                },
+        $(function () {
 
-                function(isConfirm){
-
-                    $.ajax({
-                        url: 'permissions/' + id,
-                        type: "delete",
-                        data: { "_token": "{{ csrf_token() }}" , "_method" : "destroy" },
-
-                        success: function(result) {
-
-                            if(result.status){
-                                swal("Deleted!", "Your permissions has been deleted.", "success");
-
-                                setTimeout(function(){
-                                    location.reload();
-                                }, 2000);
-                            }
-
-                            else {
-
-                                swal("Not Deleted!", "Error in deleting.", "error");
-
-                            }
-
-                        }
-                    });
-                })
-        }
+            //all jquery code here
+        });
 
     </script>
-
 @stop
