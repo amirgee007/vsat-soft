@@ -37,7 +37,9 @@
                             <tr>
                                 <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> S/N</th>
                                 <th><i class="icon_profile"></i> Name</th>
+                                <th><i class="icon_profile"></i> Display Name</th>
                                 <th><i class="icon_calendar"></i> Created Date</th>
+                                <th><i class="icon_calendar"></i> Updated Date</th>
                                 <th><i class="icon_cogs"></i> Action</th>
                             </tr>
                             </thead>
@@ -47,7 +49,9 @@
                                 <tr>
                                     <td class="text-center">{{$role->id}}</td>
                                     <td>{{$role->name}}</td>
+                                    <td>{{$role->display_name}}</td>
                                     <td>{{$role->created_at->format('m-d-Y')}}</td>
+                                    <td>{{$role->updated_at->format('m-d-Y')}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-primary col-sm-6 col-xs-6 text-center" href="{{route('people.roles.edit' ,$role->id)}}"><i class="fa fa-edit"></i></a>

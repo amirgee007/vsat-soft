@@ -29,6 +29,12 @@
                             <h1>Add New Role</h1>
                             <form class="form-horizontal" role="form" action="{{ route('people.roles.store') }}" method="post" enctype="multipart/form-data">
                                 @include('admin.people.users.roles.form')
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </section>

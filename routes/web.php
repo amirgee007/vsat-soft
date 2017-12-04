@@ -235,10 +235,16 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
                 'uses' => 'RoleController@store'
             ]);
 
+            Route::post('/update', [
+                'as' => 'people.roles.update',
+                'uses' => 'RoleController@update'
+            ]);
+
             Route::get('/edit/{id}', [
                 'as' => 'people.roles.edit',
                 'uses' => 'RoleController@edit'
             ])->where('id', '[0-9]+');
+
 
             Route::get('/delete/{id}', [
                 'as' => 'people.roles.delete',

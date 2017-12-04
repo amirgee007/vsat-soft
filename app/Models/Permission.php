@@ -11,4 +11,6 @@ class Permission extends EntrustPermission
     protected $primaryKey= 'id';
     protected $guarded = [];
     protected $dates = ['created_at' , 'updated_at'];
+
+
 }

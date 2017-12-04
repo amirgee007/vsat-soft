@@ -47,14 +47,13 @@ class RoleController extends Controller
             ]
         );
 
-
        $role =  Role::create($request->except('_token' ,'permissions','role_id'));
 
        $role->permissions()->attach($request['permissions']);
 
-        session()->flash('app_info', 'Roles added successfully.');
+        session()->flash('app_message', 'Roles added successfully.');
 
-        return redirect()->route('	people.roles.index');
+        return redirect()->route('people.roles.index');
     }
 
 
@@ -66,9 +65,10 @@ class RoleController extends Controller
      */
     public function edit($id) {
         $role = Role::findOrFail($id);
-        $permissions = Permission::all();
 
-        return view('admin.people.users.roles.edit', compact('role', 'permissions'));
+        $permissions = Permission::all();
+        $selected_perms = $role->relatedRoles();
+        return view('admin.people.users.roles.edit', compact('selected_perms','role', 'permissions'));
     }
 
     /**
@@ -78,35 +78,20 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request) {
 
-        $role = Role::findOrFail($id);//Get role with the given id
-        //Validate name and permission fields
-        $this->validate($request, [
-            'name'=>'required|max:10|unique:roles,name,'.$id,
-            'permissions' =>'required',
-        ]);
+        $role_obj = Role::findOrFail($request->role_id);
 
-        $input = $request->except(['permissions']);
-        $permissions = $request['permissions'];
-        $role->fill($input)->save();
+        $role =  $role_obj->update($request->except('_token' ,'permissions','role_id'));
 
-        $p_all = Permission::all();//Get all permissions
+        $role_obj->permissions()->sync($request['permissions']);
 
-        foreach ($p_all as $p) {
-            $role->revokePermissionTo($p); //Remove all permissions associated with role
-        }
+        if($role)
+            session()->flash('app_message', 'Roles Updated successfully.');
+        else
+        session()->flash('app_error', 'Roles Not Updated successfully.');
 
-        foreach ($permissions as $permission) {
-            $p = Permission::where('id', '=', $permission)->firstOrFail(); //Get corresponding form //permission in db
-            $role->givePermissionTo($p);  //Assign permission to role
-        }
-
-        session()->flash('app_info', 'Roles/Permission updated successfully.');
-
-        return redirect()->route('roles.index')
-            ->with('flash_message',
-                'Role'. $role->name.' updated!');
+        return redirect()->route('people.roles.index');
     }
 
     /**

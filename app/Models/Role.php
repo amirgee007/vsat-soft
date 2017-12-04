@@ -19,6 +19,6 @@ class Role extends EntrustRole
     }
 
     public function relatedRoles(){
-        return $this->roles->pluck('id' ,'name')->toArray();
+        return $this->permissions->pluck('id' ,'name')->toArray();
     }
 }
