@@ -18,9 +18,10 @@ class CreateTicketsTable extends Migration
             $table->string('subject');
             $table->longText('description');
             $table->string('type');
+            $table->string('priority');
             $table->enum('status', ['open','closed'])->default('open');
-            $table->integer('site_id')->index()->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('site_id')->index()->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->integer('added_by');
             $table->timestamps();

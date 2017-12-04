@@ -36,13 +36,14 @@
                     <h3 class="page-header"><i class="fa fa-plus-square"></i>Reply Ticket</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="{{ route('index.dashboard') }}">Home</a></li>
-                        <li><i class="fa fa-plus-square"></i>Reply Ticket</li>
+                        <li><i class="icon_tags"></i><a href="{{ route('ticket.index') }}">Ticket Management</a></li>
+                        <li><i class="fa fa-reply"></i>Reply Ticket</li>
                     </ol>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
-                    <h1>TICKET #473450</h1>
+                    <h1>TICKET #{{$ticket->ticket_id}}</h1>
                 </div>
                 <div class="col-md-12 ">
                     <div class="panel">
@@ -60,15 +61,15 @@
                                             </thead>
                                             <tr>
                                                 <th width="100">Ticket Status:</th>
-                                                <td>Open</td>
+                                                <td>{{ ucfirst($ticket->status) }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Department:</th>
-                                                <td>Support</td>
+                                                <th>Site:</th>
+                                                <td>@if(!empty($ticket->site_id)) {{ $ticket->site->name }} @else N/A @endif </td>
                                             </tr>
                                             <tr>
                                                 <th>Create Date:</th>
-                                                <td>11/28/17 5:23 PM</td>
+                                                <td>{{ $ticket->created_at }}</td>
                                             </tr>
                                         </table>
                                     </td>
@@ -83,15 +84,15 @@
                                             </thead>
                                             <tr>
                                                 <th width="100">Name:</th>
-                                                <td>Hadi</td>
+                                                <td>{{ $ticket->user->username }}</td>
                                             </tr>
                                             <tr>
                                                 <th width="100">Email:</th>
-                                                <td>seersol92@gmail.com</td>
+                                                <td>{{ $ticket->user->email }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Phone:</th>
-                                                <td>123456788</td>
+                                                <td>@if(!empty($ticket->user->phone_num)) {{ $ticket->user->phone_num }} @else N/A @endif </td>
                                             </tr>
                                         </table>
                                     </td>
@@ -106,7 +107,12 @@
                     </div>
                     <br>
                     <div class="subject">
-                        Ticket subject:  test
+                        <span class="pull-left">
+                            Ticket subject:  {{ $ticket->subject }}
+                        </span>
+                        <span class="pull-right">
+                            Ticket Priority:  {{ $ticket->priority }}
+                        </span>
                     </div>
                     <hr />
                     <div class="panel panel-default">
@@ -114,30 +120,37 @@
                             <b>Ticket Description</b>
                         </div>
                         <div class="panel-body">
-                            hi there :) <br>
-                            hi there :)<br>
-                            hi there :)<br>
-                            hi there :)<br>
+                            {{ $ticket->description }}
                         </div>
                     </div>
                     <div class="subject">
                         Ticket Conversation
                     </div>
+                    @forelse($comments AS $comment)
                     <div class="panel panel-default">
                         <div class="panel-heading mesg">
-                            <b>hadi</b>
+                            <b>{{ ucfirst($comment->user->username) }}</b>
                             <div class="pull-right">
-                                posted <time datetime="2017-11-29T10:33:36+00:00" title="Wednesday, November 29, 2017 3:33 PM">11/29/17 3:33 PM</time>            <span style="max-width:500px" class="faded title truncate"></span>
+                                posted <time datetime="" title="">{{ $comment->created_at }}</time>
+                                <span style="max-width:500px" class="faded title truncate"></span>
                             </div>
                         </div>
-                        <div class="panel-body">hi there :)</div>
+                        <div class="panel-body">{{  htmlspecialchars_decode(stripslashes($comment->content), ENT_QUOTES) }}</div>
                     </div>
+                    @empty
+                        <div class="alert alert-info">
+                          <i class="fa fa-hand-o-right"></i> <strong>Be, First To Comment!!</strong>
+                        </div>
+                    @endforelse
+                    @if($ticket->status != 'closed')
+                    <form action="{{ route('ticket.post.reply', $ticket->ticket_id) }}" method="post" accept-charset="utf-8">
+                        {{ csrf_field()}}
                     <div class="panel panel-default">
                         <div class="panel-heading reply">
                             <h3 class="panel-title"><b>Post a reply</b></h3>
                         </div>
                         <div class="panel-body">
-                            <textarea name="message" id="" cols="30" rows="10" ></textarea>
+                            <textarea name="comment" id="" cols="30" rows="10" ></textarea>
                         </div>
                     </div>
                     <section class="panel">
@@ -145,13 +158,19 @@
                             Change Ticket Status
                         </header>
                         <label class="col-lg-2 control-label">Mark Ticket As Solved</label>
-                        <div class="col-lg-8"><input type="checkbox" value="1">  &nbsp;&nbsp; Yes
+                        <div class="col-lg-8"><input type="checkbox" value="closed" name="ticket_status">  &nbsp;&nbsp; Yes
                         <br />
                         </div>
                     </section>
                     <hr />
                         <button type="submit" class="btn btn-primary">Send Reply</button>
-                    <button type="button" class="btn btn-danger">Go Back</button>
+                    <button type="button" class="btn btn-danger" onclick="window.history.go(-1)">Go Back</button>
+                    </form>
+                        @else
+                        <div class="alert alert-danger">
+                            <i class="fa fa-hand-o-right"></i> <strong>Ticket Is Closed!!</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -163,7 +182,7 @@
     <!-- todo: replace ck cdn -->
     <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'message' );
+        CKEDITOR.replace( 'comment' );
         $(function () {
             //all jquery code here
         });

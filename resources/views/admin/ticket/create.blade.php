@@ -20,7 +20,7 @@
                     <section class="panel">
                         <div class="panel-body bio-graph-info">
                             <h1>Add New Ticket</h1>
-                            <form class="form-horizontal" role="form" action="{{ route('index.dashboard') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" role="form" action="{{ route('ticket.store') }}" method="post" enctype="multipart/form-data">
                                 @include('admin.ticket.form')
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10 col-xs-9">

@@ -50,7 +50,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="info-box dark-bg">
                     <i class="fa fa-tags"></i>
-                    <div class="count">230</div>
+                    <div class="count">{{ count(@$tickets) }}</div>
                     <div class="title">Reported Issues</div>
                 </div>
                 <!--/.info-box-->

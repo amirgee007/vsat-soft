@@ -10,5 +10,12 @@ class Ticket extends Model
     protected $guarded = [];
     protected $primaryKey= 'ticket_id';
 
+    public function user(){
+        return $this->hasOne(\App\User::class , 'id' , 'added_by');
+    }
+
+    public function site(){
+        return $this->hasOne(Site::class, 'site_id' , 'site_id')->select('name');
+    }
 
 }

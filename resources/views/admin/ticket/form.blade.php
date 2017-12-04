@@ -1,4 +1,4 @@
-<input type="hidden" name="_token" value="h0LTNxMVzwhRfb84AbWfOCXbLJ9SNYN08bgok16t">
+{{ csrf_field() }}
 <div class="panel panel-primary form-group">
     <section class="panel">
         <div class="panel-content" style="clear: both;">
@@ -13,7 +13,7 @@
                 <label class="col-sm-2 col-xs-3 control-label">Ticket Type</label>
                 <div class="col-sm-10 col-xs-9">
                     <select class="form-control" name="type">
-                        <option value="">Select Type</option>
+                        <option selected hidden>Select Type</option>
                         <option value="technical">Technical</option>
                         <option value="billing">Billing</option>
                         <option value="customer_support">Customer Support</option>
@@ -26,9 +26,10 @@
                 <label class="col-sm-2 col-xs-3 control-label">Ticket Priority</label>
                 <div class="col-sm-10 col-xs-9">
                     <select class="form-control" name="priority">
-                        <option value="">Select Priority</option>
+                        <option selected hidden>Select Priority</option>
                         <option value="normal">Low</option>
                         <option value="urgent">Normal</option>
+                        <option value="high">High</option>
                         <option value="critical">Critical</option>
                     </select>
                 </div>
@@ -37,8 +38,8 @@
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">Related Site</label>
                 <div class="col-sm-10 col-xs-9">
-                    <select required class="form-control" name="site_id">
-                        <option value="">Select Site</option>
+                    <select  class="form-control" name="site_id">
+                        <option value="" selected hidden>Select Site</option>
                     @foreach($sites as $site)
                             <option value="{{$site->site_id}}">{{$site->name}}</option>
                         @endforeach

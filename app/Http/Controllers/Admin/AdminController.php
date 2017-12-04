@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Site;
@@ -37,8 +38,9 @@ class AdminController extends Controller
         $cities    = City::Isactive()->get();
         $regions   = Region::Isactive()->get();
         $countries = Country::Isactive()->get();
+        $tickets   = Ticket::all();
         $sites     = Site::where('added_by', $user)->get();
-        return view('admin.dashboard', compact('cities', 'regions', 'countries', 'sites'));
+        return view('admin.dashboard', compact('cities', 'tickets', 'regions', 'countries', 'sites'));
     }
 
 }

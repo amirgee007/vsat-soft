@@ -348,10 +348,20 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'TicketController@create'
         ]);
 
-        Route::get('/view', [
-            'as' => 'ticket.show',
-            'uses' => 'TicketController@show'
+        Route::post('/store', [
+            'as' => 'ticket.store',
+            'uses' => 'TicketController@store'
         ]);
+
+        Route::get('/reply/{id}', [
+            'as' => 'ticket.reply',
+            'uses' => 'TicketController@show'
+        ])->where('id', '[0-9]+');
+
+        Route::post('/reply/{id}', [
+            'as' => 'ticket.post.reply',
+            'uses' => 'TicketController@reply'
+        ])->where('id', '[0-9]+');
 
 
     });
