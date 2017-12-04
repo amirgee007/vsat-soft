@@ -3,6 +3,13 @@
 @section('pageTitle', 'Regions')
 
 @section('header_styles')
+    <style>
+        .region_table{
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+
     {{--<link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>--}}
 @stop
 
@@ -28,7 +35,7 @@
                         <header class="panel-heading">
                             Regions
                         </header>
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="region_table">
                             <thead>
                             <tr>
                                 <th class="text-center">S/N</th>
@@ -36,8 +43,7 @@
                                 <th class="text-center">Action</th>
                             </tr>
                             </thead>
-                            <tbody>
-
+                            <tbody >
                             @foreach($regions as $region)
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
@@ -47,11 +53,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            {{--<tr>--}}
-                                {{--<td>1</td>--}}
-                                {{--<td class="text-left">Africa</td>--}}
-                                {{--<td><input type="checkbox" class="" /></td>--}}
-                            {{--</tr>--}}
                             </tbody>
                         </table>
                     </section>
@@ -83,9 +84,13 @@
                 }else {
                     ischecked = 0
                 }
+
                 var data = {'is_active':ischecked , 'region_id' : region_id};
 
-                console.log(data);
+                toastr.warning("Related Countries,Cities Update started.", "Please Wait");
+                $("body").css("cursor", "wait");
+                $("#region_table").addClass("region_table");
+
                 var action = '{{route('post.region.status')}}';
                 $.ajax({
                     url: action,
@@ -96,6 +101,8 @@
                     },
                     success: function() {
                         toastr.success("Region with related Countries,Cities has been Updated.", "Info");
+                        $('html, body').css("cursor", "default");
+                        $("#region_table").removeClass("region_table");
                     },
                     type: 'POST'
                 });

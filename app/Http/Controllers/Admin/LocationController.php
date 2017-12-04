@@ -40,7 +40,6 @@ class LocationController extends Controller
         $country->is_active = $request->is_active;
         $country->save();
 
-
         $cities_update = $country->cities()->update(['is_active' => $request->is_active]);
         return $country;
     }
@@ -60,10 +59,12 @@ class LocationController extends Controller
 
         $region->is_active = $request->is_active;
         $region->save();
-        $countries_update = $region->countries()->update(['is_active' => $request->is_active]);
 
-        //todo:take too much time to update
-        $cities_update = $region->cities()->update(['cities.is_active' => $request->is_active]);
+        $region->countries()->update(['is_active' => $request->is_active]);
+
+        foreach ($region->countries as $country){
+            $country->cities()->update(['is_active' => $request->is_active]);
+        }
 
         return $region;
     }

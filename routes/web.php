@@ -12,9 +12,9 @@
 */
 
 
-Route::get('/delete' ,function (){
+use App\Models\Region;
 
-
+Route::get('/test' ,function (){
 
 });
 
