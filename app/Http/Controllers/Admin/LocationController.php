@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\DataTables;
 
 class LocationController extends Controller
 {
@@ -21,10 +22,23 @@ class LocationController extends Controller
 
     public function indexCountries()
     {
-
         $countries= Country::where('is_active' ,true)->paginate(20);
 
-        return view('admin.location.index-countries' , compact('countries'));
+        return view('admin.location.index-countries' ,compact('countries'));
+    }
+
+    public function CountriesData()
+    {
+        $countries= Country::where('is_active' ,true)->get();
+
+        return Datatables::of($countries)
+
+            ->addColumn('actions', function ($countries ) {
+                $actions = '<input type="checkbox" class="status"  />';
+                return $actions;
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
     }
 
     public function indexCities()

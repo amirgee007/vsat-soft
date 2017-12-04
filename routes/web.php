@@ -67,6 +67,11 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
             'uses' => 'LocationController@indexCountries'
         ]);
 
+        Route::get('/countries-data', [
+            'as' => 'location.countries.data',
+            'uses' => 'LocationController@CountriesData'
+        ]);
+
         Route::get('/cities', [
             'as' => 'location.cities.index',
             'uses' => 'LocationController@indexCities'
