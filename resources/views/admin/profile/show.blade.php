@@ -148,7 +148,7 @@
                                                     <div class="col-lg-6">
                                                         <select id="countries" name="country" class="form-control m-bot15" >
                                                             @foreach($countries AS $country)
-                                                                <option @if($country->country_id == $user->country) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
+                                                                <option @if($country->full_name == $user->country) selected @endif value="{{$country->full_name}}">{{$country->full_name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
