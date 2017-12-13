@@ -50,8 +50,8 @@
                                     <td class="text-center"> {{ $loop->iteration }} </td>
                                     <td><a href="#">{{ $client->org_name }}</a></td>
                                     <td><a href="#">{{ $client->created_at ? $client->created_at->format('m-d-Y') : 'n/a' }}</a></td>
-                                    <td><a href="#">{{ $client->country }}</a></td>
-                                    <td><a href="#">{{ $client->city }}</a></td>
+                                    <td><a href="#">{{ $client->country->full_name }}</a></td>
+                                    <td><a href="#">{{ $client->city->city_name }}</a></td>
                                     <td>
                                         <div class="btn-group col-sm-10 col-xs-12">
                                             <a class="btn btn-info btn-sm col-xs-12 disabled" href="#">
