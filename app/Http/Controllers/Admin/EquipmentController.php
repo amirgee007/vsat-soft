@@ -89,6 +89,10 @@ class EquipmentController extends Controller
                 $input['tool_img'] = $fileName;
                 $update = $tool->update($input);
                 if ( $update ) {
+                    if($isUploadAble)
+                    {
+                        $request->file('tool_img')->move("uploads/tools_equipments", $fileName);
+                    }
                     session()->flash('app_message', 'Tool Updated Successfully!');
                     return redirect()->route('equipments.index');
                 }

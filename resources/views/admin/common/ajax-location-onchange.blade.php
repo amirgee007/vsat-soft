@@ -2,6 +2,8 @@
     $(function () {
         var region = $("#region");
         var country = $("#country");
+        var city = $("#city");
+        var project = $("#project");
         var search_pro =  $('#search_project');
         region.change(function(){
             var region_id = $(this).val();
@@ -28,14 +30,16 @@
                 }
             });
         });
-
+        city.change(function(){
+            project.prop('disabled', false);
+        });
         search_pro.on('click',function (e) {
             var selected_region = $('#region :selected').val();
             var selected_country = $('#country :selected').val();
             var selected_city = $('#city :selected').val();
             var selected_pro =  $('#project :selected').val();
 
-            if(selected_region !='' && selected_country !='' && selected_city !='' && selected_pro !='' )
+            if(selected_region )
             {
                 var token = $("input[name='_token']").val();
                 $.ajax({
@@ -54,7 +58,7 @@
                 });
 
             } else {
-                toastr.success("Please Select Options From Filter!!", "Info");
+                toastr.success("You must have to select region!!", "Info");
             }
         });
     });

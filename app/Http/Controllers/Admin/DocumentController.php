@@ -126,14 +126,23 @@ class DocumentController extends Controller
 
     public function projectAjax(Request $request)
     {
-        if($request->ajax())
-        {
+        if($request->ajax()) {
+            $where = array();
             $input = $request->all();
-            $region_id = $input['region'];
-            $country_id = $input['country'];
-            $city_id = $input['city'];
-            $project_id = $input['project'];
-            $project = Project::where(['document_id'=>$project_id, 'region_id' =>$region_id, 'country_id'=>$country_id, 'city_id'=>$city_id])->first();
+            $where['region_id'] = $input['region'];
+            if (!empty($input['country']))
+            {
+                $where['country_id'] = $input['country'];
+            }
+            if (!empty($input['city']))
+            {
+                $where['city_id'] = $input['city'];
+            }
+            if (!empty($input['project']))
+            {
+                $where['document_id'] = $input['project'];
+            }
+            $project = Project::where($where)->first();
             $data = view('admin.document.project.ajax-based-project',compact('project'))->render();
             return response()->json([ 'project'=>$data]);
         }
@@ -167,7 +176,7 @@ class DocumentController extends Controller
             }
         }
         $input['file_upload_name'] = $fileName;
-        $input['type'] = 'general';
+        $input['type'] = "general";
         $input['added_by'] = Auth::user()->id;
         $doc = Document::create($input);
         if ($doc)

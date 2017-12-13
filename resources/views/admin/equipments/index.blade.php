@@ -1,5 +1,15 @@
 @extends('admin/layouts/default')
 @section('pageTitle', 'TOOLS & EQUIPMENT')
+@section('header_styles')
+<style>
+    .transition {
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+</style>
+@stop
 @section('content')
     <!--main content start-->
     <section id="main-content">
@@ -42,7 +52,7 @@
                                     <td>{{ $tool->tool_type }}</td>
                                     <td>{{ $tool->description }}</td>
                                     <td class="text-center">
-                                        <img class="img-zoom"  src="{{asset('uploads/tools_equipments/'.$tool->tool_img)}}" width="250" height="250" />
+                                        <img class="img-zoom" style="width: 250px;height: 250px;"  src="{{asset('uploads/tools_equipments/'.$tool->tool_img)}}"  />
                                     </td>
                                     <td>
                                         <div class="btn-group">
@@ -72,6 +82,12 @@
     <script>
         $(function () {
             //all jquery code here
+            $('.img-zoom').hover(function() {
+                $(".img-zoom").addClass('transition');
+
+            }, function() {
+                $(".img-zoom").removeClass('transition');
+            });
         });
     </script>
 @stop

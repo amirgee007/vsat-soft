@@ -3,7 +3,7 @@
 @section('header_styles')
     <style>
         .custom-select{
-            color:white;
+            color:#b1b0b0;
             background-color:#005370;
         }
     </style>
@@ -39,7 +39,7 @@
                                 {{csrf_field()}}
                                 <div class="btn-group col-sm-3 col-xs-3">
                                     <select name="region_id" id="region" class="form-control custom-select">
-                                        <option selected hidden>Select Region</option>
+                                        <option selected hidden value="">Select Region</option>
                                         @foreach($regions as $region)
                                             <option value="{{$region->region_id}}">{{$region->name}}</option>
                                         @endforeach
@@ -60,7 +60,7 @@
                                 </div>
                                 <!-- /btn-group -->
                                 <div class="btn-group col-sm-3 col-xs-3">
-                                    <select required name="project_id"  class="form-control custom-select" id="project">
+                                    <select required name="project_id"  class="form-control custom-select" id="project" disabled>
                                         <option selected hidden value="">Select Project</option>
                                         @foreach($projects AS $project)
                                             <option value="{{$project->document_id}}">{{$project->project_name}}</option>
