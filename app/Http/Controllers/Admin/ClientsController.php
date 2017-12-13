@@ -18,7 +18,7 @@ class ClientsController extends Controller
     public function createClients()
     {
         $data['client_no'] = Client::getMaxClientId();
-        $users = User::all(['id','first_name', 'last_name']);
+        $users = User::all();
         $countries = Country::IsActive()->get();
         $related_user = [];
         return view('admin.people.clients.create', compact('countries','data' ,'users' ,'related_user'));
@@ -26,7 +26,7 @@ class ClientsController extends Controller
 
     public function save(Request $request)
     {
-        $input = $request->all();
+        $input = $request->except('related_user');
         $fileName = '';
         if ($request->hasFile('client_logo')) {
             if($request->file('client_logo')->isValid()) {
@@ -41,7 +41,7 @@ class ClientsController extends Controller
         $client = Client::create($input);
 
         if ($client){
-
+            $client->users()->attach($request->related_user);
             session()->flash('app_message', 'New Client Has Been Added Successfully!');
         }
 
@@ -53,8 +53,10 @@ class ClientsController extends Controller
     public function edit($id)
     {
         $client = Client::where('client_id', $id)->first();
+        $users = User::all();
         $countries = Country::IsActive()->get();
-        return view('admin.people.clients.edit', compact('countries','client'));
+        $related_user = $client->relatedUser();
+        return view('admin.people.clients.edit', compact('countries','client' ,'users' ,'related_user'));
     }
 
     public function update (Request $request)
@@ -72,7 +74,7 @@ class ClientsController extends Controller
                 }
             }
             $input['client_logo'] = $fileName;
-            unset($input['_token'], $input['client_no']);
+            unset($input['_token'], $input['client_no'] ,$input['related_user']);
             if ($client->update($input)):
                 session()->flash('app_message', 'Client Has Been Updated Successfully!');
             else:
@@ -87,6 +89,8 @@ class ClientsController extends Controller
     public function delete($id)
     {
         $client = Client::find($id);
+        $client->users()->detach();
+
         if($client->delete())
             session()->flash('app_message', 'Client Deleted Successfully!');
         else
