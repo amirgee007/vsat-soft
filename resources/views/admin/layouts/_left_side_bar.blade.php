@@ -10,6 +10,7 @@
                 </a>
             </li>
 
+            @permission('location')
             <li class="sub-menu {{Request::is('location/*') ? 'active' : ''}} ">
                 <a href="javascript:;" class="">
                     <i class="fa fa-map"></i>
@@ -22,13 +23,18 @@
                     <li class="{{ Request::segment(2)=='cities' ? 'active' : '' }}"><a class="" href="{{route('location.cities.index')}}">Cities</a></li>
                 </ul>
             </li>
+            @endpermission
 
+            @permission('my-profile')
             <li class="{{Request::is('my-profile') ? 'active' : ''}}" >
                 <a class="" href="{{route('profile.show')}}">
                     <i class="icon_profile"></i>
                     <span>My Profile</span>
                 </a>
             </li>
+            @endpermission
+
+            @permission('people')
             <li class="sub-menu {{Request::is('people/*') ? 'active' : ''}}">
                 <a href="javascript:;" class="">
                     <i class="fa fa-users"></i>
@@ -43,32 +49,49 @@
                     <li class="{{ Request::segment(2)=='permissions' ? 'active' : '' }}"><a class="" href="{{route('permissions.index')}}">Permissions</a></li>
                 </ul>
             </li>
+            @endpermission
+
+
+            @permission('branch')
             <li class="{{Request::is('branch') ? 'active' : ''}}">
                 <a class="" href="{{route('branch.index')}}">
                     <i class="icon_flowchart_alt"></i>
                     <span>Branches</span>
                 </a>
             </li>
+            @endpermission
+
+            @permission('site')
             <li class="{{Request::is('site') ? 'active' : ''}}">
                 <a class="" href="{{route('site.index')}}">
                     <i class="icon_pin"></i>
                     <span>Sites</span>
                 </a>
             </li>
+            @endpermission
+
+
+            @permission('asset')
             <li class="{{ ( Request::is('asset/*') || Request::is('asset') ) ? 'active' : ''}}">
                 <a class="" href="{{route('asset.index')}}">
                     <i class="icon_archive"></i>
                     <span>Assets</span>
                 </a>
             </li>
+            @endpermission
 
+            @permission('ticket')
             <li class="{{( Request::is('ticket/*') || Request::is('ticket') ) ? 'active' : ''}}">
                 <a
-                   href="{{route('ticket.index')}}">
+                        href="{{route('ticket.index')}}">
                     <i class="icon_tags"></i>
                     <span>Ticketing</span>
                 </a>
             </li>
+            @endpermission
+
+
+            @permission('equipments')
             <li class="sub-menu {{ (Request::is('equipments/*') || Request::is('equipments')) ? 'active' : ''}}">
                 <a href="javascript:;" class="">
                     <i class="icon_archive"></i>
@@ -80,6 +103,9 @@
                     <li><a class="" href="{{route('equipments.index')}}">Tools & Equipments</a></li>
                 </ul>
             </li>
+            @endpermission
+
+            @permission('survey')
             <li class="sub-menu {{Request::is('survey/*') ? 'active' : ''}}">
                 <a href="javascript:;" class="">
                     <i class="fa fa-file-text-o"></i>
@@ -92,6 +118,9 @@
                     <li class="{{ Request::segment(2)=='performance' ? 'active' : '' }}"><a class="" href="{{ route('survey.performance.index') }}">Performance Survey</a></li>
                 </ul>
             </li>
+            @endpermission
+
+            @permission('log')
             <li class="sub-menu {{Request::is('log/*') ? 'active' : ''}}">
                 <a href="javascript:;" class="">
                     <i class="fa fa-history"></i>
@@ -101,9 +130,13 @@
                 <ul class="sub">
                     <li><a class="" href="{{route('log.installation.index')}}">Installation Log</a></li>
                     <li><a class="" href="{{route('log.maintenance.index')}}">Maintenance Log</a></li>
-                    <!--<li><a class="" href="{{  route('log.testCases.index') }}">Test Cases</a></li>-->
+                <!--<li><a class="" href="{{  route('log.testCases.index') }}">Test Cases</a></li>-->
                 </ul>
             </li>
+            @endpermission
+
+
+            @permission('documents')
             <li class="sub-menu {{ Request::is('documents/*') ? 'active' : '' }}">
                 <a href="javascript:;" class="">
                     <i class="fa fa-file"></i>
@@ -122,13 +155,18 @@
                     </li>
                 </ul>
             </li>
+            @endpermission
+
+            @permission('reports')
             <li class="{{ Request::is('reports') ? 'active' : '' }}">
                 <a class="" href="{{ route('report.index') }}">
                     <i class="icon_datareport_alt"></i>
                     <span>Reports</span>
                 </a>
             </li>
+            @endpermission
 
+            @permission('settings')
             <li class="sub-menu">
                 <a href="javascript:;" class="">
                     <i class="fa fa-file"></i>
@@ -140,6 +178,9 @@
                     <li><a class="" target="_blank" href="{{url('/log-viewer/logs/')}}">Site Logs</a></li>
                 </ul>
             </li>
+            @endpermission
+
+
         </ul>
         <!-- sidebar menu end-->
     </div>

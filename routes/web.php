@@ -38,7 +38,7 @@ Auth::routes();
 //////// Main Logged In User routes /////////
 Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
 
-    # Dashboard Managment
+    # Dashboard Management
     Route::get('/dashboard', array(
         'as' => 'index.dashboard',
         'uses' => 'AdminController@showHome'));
@@ -98,6 +98,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
         ]);
 
     });
+
 
     # profile Management
     Route::group(array('prefix' => 'my-profile'), function () {
@@ -265,9 +266,7 @@ Route::group(['namespace' =>'Admin' ,'middleware' => ['auth']] , function(){
     });
 
 
-
-
-
+    
     # Branches Management
     Route::group(array('prefix' => 'branch'), function () {
 

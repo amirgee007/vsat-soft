@@ -30,7 +30,8 @@ class RoleController extends Controller
      */
     public function create() {
         $permissions = Permission::all();//Get all permissions
-        return view('admin.people.users.roles.create',compact('permissions'));
+        $selected_perms = [];
+        return view('admin.people.users.roles.create',compact('selected_perms','permissions'));
     }
 
     /**
@@ -66,8 +67,8 @@ class RoleController extends Controller
     public function edit($id) {
         $role = Role::findOrFail($id);
 
-        $permissions = Permission::all();
-        $selected_perms = $role->relatedRoles();
+        $permissions = Permission::all();//Get all permissions
+        $selected_perms = $role->relatedPermissions();
         return view('admin.people.users.roles.edit', compact('selected_perms','role', 'permissions'));
     }
 

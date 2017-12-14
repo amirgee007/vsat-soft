@@ -14,11 +14,6 @@ class RolePermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        $owner = new Role();
-        $owner->name         = 'owner';
-        $owner->display_name = 'Project Owner'; // optional
-        $owner->description  = 'User is the owner of a given project'; // optional
-        $owner->save();
 
         $admin = new Role();
         $admin->name         = 'admin';
@@ -26,32 +21,18 @@ class RolePermissionsTableSeeder extends Seeder
         $admin->description  = 'User is allowed to manage and edit other users'; // optional
         $admin->save();
 
-
         $user = User::where('username', '=', 'seersol')->first();
 
 // role attach alias
         $user->attachRole($admin); // parameter can be an Role object, array, or id
 
-
-        $createPost = new Permission();
-        $createPost->name         = 'create-post';
-        $createPost->display_name = 'Create Posts'; // optional
-// Allow a user to...
-        $createPost->description  = 'create new blog posts'; // optional
-        $createPost->save();
-
-        $editUser = new Permission();
-        $editUser->name         = 'edit-user';
-        $editUser->display_name = 'Edit Users'; // optional
-// Allow a user to...
-        $editUser->description  = 'edit existing users'; // optional
-        $editUser->save();
-
-        $admin->attachPermission($createPost);
-// equivalent to $admin->perms()->sync(array($createPost->id));
-
-        $owner->attachPermissions(array($createPost, $editUser));
-// equivalent to $owner->perms()->sync(array($createPost->id, $editUser->id));
+        $all_perms = Permission::permissionsByRouteGroups();
+        foreach ($all_perms as $all_perm){
+            $editPerm = new Permission();
+            $editPerm->name = $all_perm;
+            $editPerm->save();
+            $admin->attachPermission($editPerm); // parameter can be an Role object, array, or id
+        }
 
         echo $user->hasRole('owner');   // false
         echo $user->hasRole('admin');   // true
