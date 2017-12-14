@@ -23,7 +23,7 @@
             <select required name="country_id" class="form-control m-bot15 country" id="country">
                 <option>Select Country</option>
                 @foreach($countries as $country)
-                    <option @if($branch->country_id == $country->country_id) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
+                    <option @if(@$branch->country_id == $country->country_id) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
                 @endforeach
             </select>
         </div>
