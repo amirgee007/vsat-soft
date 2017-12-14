@@ -34,33 +34,41 @@
                 <label class="col-lg-2 control-label">Site Map Presentation</label>
                 <div class="col-lg-offset-2 col-lg-10">
                     <img class="imges" src="{{asset(@$site->site_map_presentation ? 'uploads/sites/'.$site->site_map_presentation : 'img/noimage.gif')}}" alt="Site Map Presentation" />
-                    <input required class="btn btn-default image-type" type="file" accept="image/*" name="site_map_presentation">
+                    <input  class="btn btn-default image-type" type="file" accept="image/*" name="site_map_presentation">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Schematic Presentation of the Installation Area</label>
                 <div class="col-lg-offset-2 col-lg-10">
                     <img class="imges" src="{{asset(@$site->presentation_of_ins_area ? 'uploads/sites/'.$site->presentation_of_ins_area : 'img/noimage.gif')}}" alt="Site Map Presentation" />
-                    <input required class="btn btn-default image-type" type="file" accept="image/*" name="presentation_of_ins_area">
+                    <input  class="btn btn-default image-type" type="file" accept="image/*" name="presentation_of_ins_area">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">Site Address</label>
                 <div class="col-sm-10 col-xs-9">
-                    <label class="col-sm-2 col-xs-3 control-label">Country {{@$site->country}}</label>
+                    <label class="col-sm-2 col-xs-3 control-label">Country</label>
                     <div class="col-sm-4 col-xs-3">
                         <select required name="country_id" class="form-control m-bot15 country" id="country">
-                            <option>Select Country</option>
+                            <option selected hidden value="">Select Country</option>
                             @foreach($countries as $country)
-                                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                                <option @if(@$site->country_id == $country->country_id) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <label class="col-sm-2 col-xs-3 control-label">City {{@$site->city}}</label>
+                    <label class="col-sm-2 col-xs-3 control-label">City </label>
                     <div class="col-sm-4 col-xs-3">
-                        <select required name="city_id" id="city" class="form-control m-bot15 city"></select>
+                        <select required name="city_id" id="city" class="form-control m-bot15 city">
+                            <option selected hidden value="">Select City</option>
+                        @if(isset($cities))
+                                @foreach($cities as $city)
+                                    <option @if($site->city_id == $city->city_id) selected @endif value="{{$city->city_id}}">{{$city->city_name}}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
                     </div>
 
                     <label class="col-sm-2 col-xs-3 control-label">Street</label>
@@ -82,11 +90,11 @@
                     </span>
                     <label class="col-sm-2 control-label">Latitude</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}" id="longitude">
+                        <input required type="number" class="form-control" placeholder="Latitude" name="latitude" value="{{@$site->latitude}}" id="longitude">
                     </span>
                     <label class="col-sm-2 control-label">Longitude</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Longitude" name="longitude" value="{{@$site->longitude}}" id="latitude">
+                        <input required type="number" class="form-control" placeholder="Longitude" name="longitude" value="{{@$site->longitude}}" id="latitude">
                     </span>
                 </div>
             </div>
@@ -105,7 +113,7 @@
                             </span>
                             <label class="col-sm-2 control-label">Cell</label>
                             <span class="col-sm-4">
-                                <input required type="tel" class="form-control" placeholder="Cell" name="tech_cell" value="{{@$site->tech_cell}}">
+                                <input required type="number" class="form-control" placeholder="Cell" name="tech_cell" value="{{@$site->tech_cell}}">
                             </span>
                             <label class="col-sm-2 control-label">Email</label>
                             <span class="col-sm-4">
@@ -122,7 +130,7 @@
                             </span>
                             <label class="col-sm-2 control-label">Cell</label>
                             <span class="col-sm-4">
-                                <input required type="tel" class="form-control" placeholder="Cell" name="proj_coordinator_cell" value="{{@$site->proj_coordinator_cell}}">
+                                <input required type="number" class="form-control" placeholder="Cell" name="proj_coordinator_cell" value="{{@$site->proj_coordinator_cell}}">
                             </span>
                             <label class="col-sm-2 control-label">Email</label>
                             <span class="col-sm-4">
@@ -139,7 +147,7 @@
                             </span>
                             <label class="col-sm-2 control-label">Cell</label>
                             <span class="col-sm-4">
-                                <input required type="tel" class="form-control" placeholder="Cell" name="proj_manager_cell" value="{{@$site->proj_manager_cell}}">
+                                <input required type="number" class="form-control" placeholder="Cell" name="proj_manager_cell" value="{{@$site->proj_manager_cell}}">
                             </span>
                             <label class="col-sm-2 control-label">Email</label>
                             <span class="col-sm-4">
@@ -161,11 +169,11 @@
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">Days</label>
                             <span class="col-sm-4">
-                                <input required type="text" class="form-control" placeholder="Days" name="working_days" value="{{@$site->working_days}}">
+                                <input required type="number" class="form-control" placeholder="Days" name="working_days" value="{{@$site->working_days}}">
                             </span>
                             <label class="col-sm-2 control-label">Hours</label>
                             <span class="col-sm-4">
-                                <input required type="text" class="form-control" placeholder="Hours" name="working_hours" value="{{@$site->working_hours}}">
+                                <input required type="number" class="form-control" placeholder="Hours" name="working_hours" value="{{@$site->working_hours}}">
                             </span>
                         </div>
                     </div>
@@ -179,7 +187,7 @@
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
-                                <input {{@$site->is_access_normal=='0' ? 'checked' : ''}} type="radio" class="" name="is_access_normal" value="0">
+                                <input {{@$site->is_access_normal=='0' ? 'checked' : ''}} @if(empty($site->is_access_normal)) checked @endif type="radio" class="" name="is_access_normal" value="0">
                             </div>
                         </div>
                     </div>
@@ -188,11 +196,11 @@
                         <div class="col-sm-6 col-xs-6">
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">Yes</label>
-                                <input {{@$site->is_access_normal==1 ? 'checked' :''}} type="radio" class="" name="is_access_during_week" value="1">
+                                <input {{@$site->is_access_during_week == 1 ? 'checked' :''}} type="radio" class="" name="is_access_during_week" value="1">
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <label class="control-label">No</label>
-                                <input {{@$site->is_access_normal==0 ? 'checked' :''}} type="radio" class="" name="is_access_during_week" value="0">
+                                <input {{@$site->is_access_during_week == 0 ? 'checked' :''}} type="radio" @if(empty($site->is_access_during_week)) checked @endif class="" name="is_access_during_week" value="0">
                             </div>
                         </div>
                     </div>
@@ -284,23 +292,23 @@
                         <div class="col-lg-offset-2 col-lg-10">
                             <span class="col-sm-4">
                             <img class="imges" src="{{asset(@$site->antenna_mount_loc1 ? 'uploads/sites/'.$site->antenna_mount_loc1 : 'img/noimage.gif')}}" alt="Antenna Mount Location" />
-                            <input required class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
+                            <input  class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
                             </span>
                             <span class="col-sm-4">
                             <img class="imges" src="{{asset(@$site->antenna_mount_loc2 ? 'uploads/sites/'.$site->antenna_mount_loc2 : 'img/noimage.gif')}}" alt="Antenna Mount Location" />
-                            <input required class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
+                            <input  class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
                             </span>
                             <span class="col-sm-4">
                             <img class="imges" src="{{asset(@$site->antenna_mount_loc3 ? 'uploads/sites/'.$site->antenna_mount_loc3 : 'img/noimage.gif')}}" alt="Antenna Mount Location" />
-                            <input required class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
+                            <input  class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
                             </span>
                             <span class="col-sm-4">
                             <img class="imges" src="{{asset(@$site->antenna_mount_loc4 ? 'uploads/sites/'.$site->antenna_mount_loc4 : 'img/noimage.gif')}}" alt="Antenna Mount Location" />
-                            <input required class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
+                            <input  class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
                             </span>
                             <span class="col-sm-4">
                             <img class="imges" src="{{asset(@$site->antenna_mount_loc5 ? 'uploads/sites/'.$site->antenna_mount_loc5 : 'img/noimage.gif')}}" alt="Antenna Mount Location" />
-                            <input required class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
+                            <input  class="btn btn-default form-control image-type" type="file" accept="image/*" name="antenna_mount_loc[]">
 
                             </span>
                         </div>
@@ -335,7 +343,7 @@
                         <label class="col-sm-2 control-label">Method of transporting dish to the roof</label>
                         <div class="col-lg-10">
                             <select required class="form-control m-bot15" name="method_of_transporting">
-                                <option value="">Select Method</option>
+                                <option value="" selected hidden>Select Method</option>
                                 <option {{@$site->method_of_transporting== 'By hands'? 'selected' : ''}} value="By hands">By hands</option>
                                 <option {{@$site->method_of_transporting== 'Elevator'? 'selected' : ''}} value="Elevator">Elevator</option>
                                 <option {{@$site->method_of_transporting== 'Crane'? 'selected' : ''}} value="Crane">Crane</option>
@@ -431,33 +439,75 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Assets
-                        <div class="btn-group pull-right">
-                            <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+            @if(isset($relateAssets))
+                <div class="form-group">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Assets
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+                            </div>
+                        </header>
+                        <div class="panel-body" id="add-assets">
+
+                            @foreach($relateAssets as $ass)
+                                <div class="asset-div">
+                                    <label class="col-lg-2 control-label">Add a Part</label>
+                                    <div class="col-sm-4">
+                                        <select class="form-control m-bot15 assets" name="related_assets[{{$loop->iteration}}]">
+                                            <option value="">Select Asset</option>
+                                            @foreach($assets as $asset)
+                                                <option @if($asset->asset_id==$ass->asset_id) selected @endif value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="col-sm-2 control-label">QTY</label>
+                                        <span class="col-sm-8">
+                                    <input required name="related_assets_qty[{{$loop->iteration}}]" type="number"
+                                           value="{{$ass->pivot->quantity}}" class="form-control">
+                                </span>
+                                        @if($loop->iteration!=1)
+                                            <a class="btn btn-danger removeasset" href="javascript:void(0)"><i
+                                                        class="fa fa-minus-square"></i></a>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            @endforeach
                         </div>
-                    </header>
-                    <div class="panel-body" id="add-assets">
-                        <label class="col-lg-2 control-label">Add a Part</label>
-                        <div class="col-sm-4">
-                            <select class="form-control m-bot15" name="related_assets[]">
-                                <option value="">Select Asset</option>
-                                @foreach($assets as $asset)
-                                    <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
-                                @endforeach
-                            </select>
+                    </section>
+                </div>
+
+            @else
+                <div class="form-group">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Assets
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default addasset" href="javascript:void(0)"><i class="fa fa-plus-square"></i></a>
+                            </div>
+                        </header>
+                        <div class="panel-body" id="add-assets">
+                            <label class="col-lg-2 control-label">Add a Part</label>
+                            <div class="col-sm-4">
+                                <select class="form-control m-bot15 assets" name="related_assets[]" >
+                                    <option value="" hidden selected>Select Asset</option>
+                                    @foreach($assets as $asset)
+                                        <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-sm-2 control-label">QTY</label>
+                                <span class="col-sm-8">
+                    <input required name="related_assets_qty[]" type="number" class="form-control">
+                </span>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <label class="col-sm-2 control-label">QTY</label>
-                            <span class="col-sm-8">
-                                <input required name="related_assets_qty[]" type="number" class="form-control">
-                            </span>
-                        </div>
-                    </div>
-                </section>
-            </div>
+                    </section>
+                </div>
+            @endif
             <div class="form-group">
                 <section class="panel">
                     <header class="panel-heading">

@@ -1,3 +1,7 @@
+@section('header_styles')
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
+@stop
 <!-- General Info start-->
 {{ csrf_field() }}
 <div class="panel panel-primary form-group">
@@ -16,7 +20,7 @@
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label" for="S-cell">Cell Number</label>
                 <div class="col-sm-10 col-xs-9">
-                    <input name="cell_number" value="{{@$staff->cell_number}}" type="tel" class="form-control" id="S-cell" placeholder="Cell Number">
+                    <input name="cell_number" value="{{@$staff->cell_number}}" type="number" required class="form-control" id="S-cell" placeholder="Cell Number">
                 </div>
             </div>
             <div class="form-group">
@@ -24,27 +28,27 @@
                 <div class="col-sm-10 col-xs-9">
                     <label class="col-sm-2 col-xs-4 control-label">First Name</label>
                     <span class="col-sm-4 col-xs-8">
-               <input name="first_name" value="{{@$staff->first_name}}" type="text" class="form-control" placeholder="First Name">
+               <input name="first_name" required value="{{@$staff->first_name}}" type="text" class="form-control" placeholder="First Name">
                </span>
                     <label class="col-sm-2 col-xs-4 control-label">Father's Name</label>
                     <span class="col-sm-4 col-xs-8">
-               <input name="father_name" value="{{@$staff->father_name}}" type="text" class="form-control" placeholder="Father's Name">
+               <input name="father_name" required value="{{@$staff->father_name}}" type="text" class="form-control" placeholder="Father's Name">
                </span>
                     <label class="col-sm-2 col-xs-4 control-label">Middle Name</label>
                     <span class="col-sm-4 col-xs-8">
-               <input name="middle_name" value="{{@$staff->middle_name}}" type="text" class="form-control" placeholder="Middle Name">
+               <input name="middle_name" required value="{{@$staff->middle_name}}" type="text" class="form-control" placeholder="Middle Name">
                </span>
                     <label class="col-sm-2 col-xs-4 control-label">Mother's Name</label>
                     <span class="col-sm-4 col-xs-8">
-               <input name="mother_name" value="{{@$staff->mother_name}}" type="text" class="form-control" placeholder="Mother's Name">
+               <input name="mother_name" required value="{{@$staff->mother_name}}" type="text" class="form-control" placeholder="Mother's Name">
                </span>
                     <label class="col-sm-2 col-xs-4 control-label">Last Name</label>
                     <span class="col-sm-4 col-xs-8">
-               <input name="last_name" value="{{@$staff->last_name}}" type="text" class="form-control" placeholder="Last Name">
+               <input name="last_name" required value="{{@$staff->last_name}}" type="text" class="form-control" placeholder="Last Name">
                </span>
                     <label class="col-sm-2 col-xs-4 control-label">Maiden Name</label>
                     <span class="col-sm-4 col-xs-8">
-               <input name="maiden_name" value="{{@$staff->maiden_name}}" type="text" class="form-control" placeholder="Maiden Name">
+               <input name="maiden_name" required value="{{@$staff->maiden_name}}" type="text" class="form-control" placeholder="Maiden Name">
                </span>
                 </div>
             </div>
@@ -56,48 +60,55 @@
                     <label class="col-sm-2 col-xs-3 control-label">Country {{@$staff->country}}</label>
                     <div class="col-sm-4 col-xs-3">
                         <select required name="local_country_id" class="form-control m-bot15 country" id="country">
-                            <option>Select Country</option>
+                            <option selected hidden value="">Select Country </option>
                             @foreach($countries as $country)
-                                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                                <option @if($staff->local_country_id == $country->country_id ) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
                             @endforeach
+
                         </select>
                     </div>
 
                     <label class="col-sm-2 col-xs-3 control-label">City {{@$staff->city}}</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select required name="local_city_id" id="city" class="form-control m-bot15 city"></select>
+                        <select required name="local_city_id" id="city" class="form-control m-bot15 city">
+                            @if(isset($localCities))
+                            @foreach($localCities as $city)
+                                    <option @if($staff->local_city_id == $city->city_id) selected @endif value="{{$city->city_id}}">{{$city->city_name}}</option>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
 
                     <label class="col-sm-2 col-xs-3 control-label">Street</label>
                     <span class="col-sm-10 col-xs-9">
-                        <input type="text" required name="local_street" class="form-control" value="{{@$staff->street}}" placeholder="Street">
+                        <input type="text" required name="local_street" class="form-control" value="{{@$staff->local_street}}" placeholder="Street">
                     </span>
 
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" name="local_area" class="form-control" placeholder="Area" value="{{@$staff->area}}">
+                        <input required type="text" name="local_area" class="form-control" placeholder="Area" value="{{@$staff->local_area}}">
                     </span>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" name="local_state" class="form-control" placeholder="State" value="{{@$staff->state}}">
+                        <input required type="text" name="local_state" class="form-control" placeholder="State" value="{{@$staff->local_state}}">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input class="form-control field" name="local_zip_code" value="{{@$staff->zip_code}}" placeholder="Zip Code" >
+                        <input class="form-control field" name="local_zip_code" value="{{@$staff->local_zip_code}}" placeholder="Zip Code" >
                     </span>
 
                     <label class="col-sm-2 control-label">P.O.Box</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="P.O.Box" name="local_po_box" value="{{ @$staff->po_box }}">
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="local_po_box" value="{{ @$staff->local_po_box }}">
                     </span>
                     <label class="col-sm-2 control-label">Office phone</label>
                     <span class="col-sm-4">
-                        <input type="tel" class="form-control" placeholder="Office phone" name="local_official_tel" value="{{ @$staff->local_official_tel }}">
+                        <input type="number" class="form-control" placeholder="Office phone" name="local_official_tel" value="{{ @$staff->local_official_tel }}">
                     </span>
 
                     <label class="col-sm-2 col-xs-3 control-label">Home Tel</label>
                     <span class="col-sm-4 col-xs-3">
-                        <input name="local_home_tel" value="{{@$staff->local_home_tel}}" type="tel" class="form-control" placeholder="Home Telephone">
+                        <input name="local_home_tel" value="{{@$staff->local_home_tel}}" type="number" class="form-control" placeholder="Home Telephone">
                     </span>
                 </div>
             </div>
@@ -110,39 +121,47 @@
                     <label class="col-sm-2 col-xs-3 control-label">Country {{@$staff->country}}</label>
                     <div class="col-sm-4 col-xs-3">
                         <select required name="permanent_country_id" class="form-control m-bot15 country" id="country2">
-                            <option>Select Country</option>
+                            <option selected hidden value="">Select Country</option>
                             @foreach($countries as $country)
-                                <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                                <option @if($staff->permanent_country_id == $country->country_id ) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <label class="col-sm-2 col-xs-3 control-label">City {{@$staff->city}}</label>
                     <div class="col-sm-4 col-xs-3">
-                        <select required name="permanent_city_id"  id="city2" class="form-control m-bot15 city"></select>
+                        <select required name="permanent_city_id"  id="city2" class="form-control m-bot15 city">
+                            <option value="" selected hidden>Select City</option>
+                            @if(isset($permanentCities))
+                                @foreach($permanentCities as $city)
+                                    <option @if($staff->permanent_city_id == $city->city_id) selected @endif value="{{$city->city_id}}">{{$city->city_name}}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
                     </div>
 
                     <label class="col-sm-2 col-xs-3 control-label">Street</label>
                     <span class="col-sm-10 col-xs-9">
-                        <input type="text" required name="permanent_street" class="form-control" value="{{@$staff->street}}" placeholder="Street">
+                        <input type="text" required name="permanent_street" class="form-control" value="{{@$staff->permanent_street}}" placeholder="Street">
                     </span>
 
                     <label class="col-sm-2 control-label">Area</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="Area" name="permanent_area" value="{{@$staff->area}}">
+                        <input required type="text" class="form-control" placeholder="Area" name="permanent_area" value="{{@$staff->permanent_area}}">
                     </span>
                     <label class="col-sm-2 control-label">State</label>
                     <span class="col-sm-4">
-                        <input required type="text" class="form-control" placeholder="State" name="permanent_state" value="{{@$staff->state}}">
+                        <input required type="text" class="form-control" placeholder="State" name="permanent_state" value="{{@$staff->permanent_state}}">
                     </span>
                     <label class="col-sm-2 control-label">Zip Code</label>
                     <span class="col-sm-4">
-                        <input class="form-control field" name="permanent_zip_code" value="{{@$staff->zip_code}}" placeholder="Zip Code" >
+                        <input class="form-control field" name="permanent_zip_code" value="{{@$staff->permanent_zip_code}}" placeholder="Zip Code" >
                     </span>
 
                     <label class="col-sm-2 control-label">P.O.Box</label>
                     <span class="col-sm-4">
-                        <input type="text" class="form-control" placeholder="P.O.Box" name="permanent_po_box" value="{{ @$staff->po_box }}">
+                        <input type="text" class="form-control" placeholder="P.O.Box" name="permanent_po_box" value="{{ @$staff->permanent_po_box }}">
                     </span>
 
                     <label class="col-sm-2 col-xs-3 control-label">Contact Name</label>
@@ -310,7 +329,7 @@
             <div class="form-group">
                 <label class="col-lg-6 control-label">Staff Photo</label>
                 <div class="col-lg-offset-2 col-lg-6">
-                    <input   id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @endif name="visa_staff_photo" class="dropify"/>
+                    <input   id="input-file-now" type="file" @if(@$staff->visa_staff_photo) data-default-file="{{asset('uploads/support_staff/'.$staff->visa_staff_photo)}}" @else required @endif accept="image/x-png,image/gif,image/jpeg" name="visa_staff_photo" class="dropify"/>
                     <br />
                 </div>
             </div>
@@ -341,3 +360,27 @@
         </select>
     </div>
 </div>
+@section('footer_scripts')
+    <link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
+
+    <script>
+
+        $(function () {
+
+            $('#related_user').select2({
+                placeholder: "Select Related Users",
+                width: '100%',
+                allowClear: true
+            });
+
+            $('.dropify').dropify();
+
+        });
+
+    </script>
+
+    @include('admin.layouts.partials.ajax-country-based')
+    @include('admin.people.support-staff.aax-country2-based')
+@stop

@@ -46,9 +46,9 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">City</label>
     <div class="col-lg-10">
-        <select required name="city_id" id="city" class="form-control m-bot15 city">
+        <select  name="city_id" id="city" class="form-control m-bot15 city">
             <option selected hidden>Select City</option>
-            @if(@$maintenance_log->city_id && !empty($maintenance_log->city_id))
+            @if(@$cities)
                 @foreach($cities as $city)
                     <option value="{{$city->city_id}}" @if(@$maintenance_log->city_id && $city->city_id == $maintenance_log->city_id) selected @endif>{{$city->city_name}}</option>
                 @endforeach

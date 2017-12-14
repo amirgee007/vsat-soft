@@ -47,7 +47,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">City</label>
     <div class="col-lg-10">
-        <select required name="city_id" id="city" class="form-control m-bot15 city">
+        <select  name="city_id" id="city" class="form-control m-bot15 city">
             <option selected hidden>Select City</option>
             @if(@$installation_log->city_id && !empty($installation_log->city_id))
                 @foreach($cities as $city)

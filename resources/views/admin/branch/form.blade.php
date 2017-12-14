@@ -10,7 +10,7 @@
 <div class="form-group">
     <label class="col-sm-2 control-label" for="B-name">Branch Name</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="B-name" placeholder="Branch Name" name="name"
+        <input type="text" class="form-control" id="B-name" required placeholder="Branch Name" name="name"
                value="{{ @$branch->name }}">
     </div>
 </div>
@@ -23,19 +23,25 @@
             <select required name="country_id" class="form-control m-bot15 country" id="country">
                 <option>Select Country</option>
                 @foreach($countries as $country)
-                    <option value="{{$country->country_id}}">{{$country->full_name}}</option>
+                    <option @if($branch->country_id == $country->country_id) selected @endif value="{{$country->country_id}}">{{$country->full_name}}</option>
                 @endforeach
             </select>
         </div>
 
         <label class="col-sm-2 col-xs-3 control-label">City {{@$branch->city}}</label>
         <div class="col-sm-4 col-xs-3">
-            <select required name="city_id" id="city" class="form-control m-bot15 city"></select>
+            <select required name="city_id" id="city" class="form-control m-bot15 city">
+                @if(isset($cities))
+                    @foreach($cities as $city)
+                        <option @if($branch->city_id == $city->city_id) selected @endif value="{{$city->city_id}}">{{$city->city_name}}</option>
+                    @endforeach
+                @endif
+            </select>
         </div>
 
         <label class="col-sm-2 col-xs-3 control-label">Street</label>
         <span class="col-sm-10 col-xs-9">
-            <input type="text" required name="street" class="form-control" value="{{@$branch->street}}" placeholder="Street">
+            <input type="text" required name="street"  class="form-control" value="{{@$branch->street}}" placeholder="Street">
         </span>
 
         <label class="col-sm-2 control-label">Area</label>
@@ -48,39 +54,39 @@
         </span>
         <label class="col-sm-2 control-label">Zip Code</label>
         <span class="col-sm-4">
-            <input class="form-control field" name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" >
+            <input class="form-control field" required name="zip_code" value="{{@$branch->zip_code}}" placeholder="Zip Code" >
         </span>
 
         <label class="col-sm-2 control-label">P.O.Box</label>
         <span class="col-sm-4">
-            <input type="text" class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
+            <input type="text" required class="form-control" placeholder="P.O.Box" name="po_box" value="{{ @$branch->po_box }}">
         </span>
 
         <label class="col-sm-2 control-label">Office Tel</label>
         <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Office Tel" name="office_tel"
+      <input type="number" required class="form-control" placeholder="Office Tel" name="office_tel"
              value="{{ @$branch->office_tel }}">
       </span>
         <label class="col-sm-2 control-label">Fax No</label>
         <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Fax No" name="fax_no" value="{{ @$branch->fax_no }}">
+      <input type="text" required class="form-control" placeholder="Fax No" name="fax_no" value="{{ @$branch->fax_no }}">
       </span>
         <label class="col-sm-2 control-label">Email</label>
         <span class="col-sm-4">
-      <input type="email" class="form-control" placeholder="Email" name="email" value="{{ @$branch->email }}">
+      <input type="email" required class="form-control" placeholder="Email" name="email" value="{{ @$branch->email }}">
       </span>
         <label class="col-sm-2 control-label">Website</label>
         <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Website" name="website" value="{{ @$branch->website }}">
+      <input type="text" required class="form-control" placeholder="Website" name="website" value="{{ @$branch->website }}">
       </span>
         <label class="col-sm-2 control-label">Working Days</label>
         <span class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Working Days" name="working_days"
+      <input type="number" required class="form-control" placeholder="Working Days" name="working_days"
              value="{{ @$branch->working_days }}">
       </span>
         <label class="col-sm-2 control-label">Working Times</label>
         <span class="col-sm-4">
-      <input type="tel" class="form-control" placeholder="Working Times" name="working_times"
+      <input type="number" required class="form-control"  placeholder="Working Times" name="working_times"
              value="{{ @$branch->working_times }}">
       </span>
     </div>
@@ -89,7 +95,7 @@
 <div class="form-group">
     <label class="col-lg-6 control-label">Profile Image</label>
     <div class="col-lg-offset-2 col-lg-6">
-        <input  id="input-file-now" type="file" @if(@$branch->branch_logo) data-default-file="{{asset('uploads/branches/'.$branch->branch_logo)}}" @endif name="branch_logo" class="dropify"/>
+        <input  id="input-file-now"  type="file" accept="image/x-png,image/gif,image/jpeg" @if(@$branch->branch_logo) data-default-file="{{asset('uploads/branches/'.$branch->branch_logo)}}" @else required @endif name="branch_logo" class="dropify"/>
         <br />
     </div>
 </div>

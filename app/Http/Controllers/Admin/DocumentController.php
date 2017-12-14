@@ -65,7 +65,7 @@ class DocumentController extends Controller
         $project = Project::where(['document_id'=>$id ])->first();
         $regions   = Region::Isactive()->get();
         $countries = Country::Isactive()->get();
-        $cities    = City::Isactive()->get();
+        $cities    = City::where('country_id', $project->country_id)->get();
         if(!is_null($project)):
             return view('admin.document.project.edit', compact('project','countries', 'regions', 'cities'));
         else:

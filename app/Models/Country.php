@@ -14,6 +14,8 @@ class Country extends Model
         return $this->hasMany( City::class , 'country_id' , 'country_id');
     }
 
+
+
     public function scopeIsActive($query)
     {
         return $query->where('is_active', 1);

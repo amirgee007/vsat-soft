@@ -40,7 +40,6 @@
                                 <th><i class="icon_pin"></i> Site Name</th>
                                 <th><i class="icon_calendar"></i> Created Date</th>
                                 <th><i class="fa fa-flag"></i> Country</th>
-                                <th><i class="icon_building"></i> City</th>
                                 <th><i class="fa fa-location-arrow"></i> Coordinates</th>
                                 <th><i class="icon_question"></i> Status</th>
                                 <th><i class="icon_cogs"></i> Action</th>
@@ -52,8 +51,7 @@
                                 <td class="text-center">{{$site->site_id}}</td>
                                 <td><a href="#">{{$site->name}}</a></td>
                                 <td><a href="#">{{!is_null($site->created_at) ? $site->created_at->format('m-d-Y') : 'n/a'}}</a></td>
-                                <td><a href="#">{{$site->country}}</a></td>
-                                <td><a href="#">{{$site->city}}</a></td>
+                                <td><a href="#">{{$site->country->full_name}}</a></td>
                                 <td><a href="#">{{$site->latitude}} , {{$site->longitude}}</a></td>
                                 <td>
                                     <div class="btn-group col-sm-10 col-xs-12">
@@ -62,13 +60,10 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_site.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>
-                                        <a class="btn btn-success col-sm-4 col-xs-4 text-center" href="{{route('site.edit' ,$site->site_id)}}"><i class="fa fa-edit"></i></a>
-
-
+                                       <!-- <a class="btn btn-primary col-sm-4 col-xs-4 text-center" href="#" onclick="window.open('print_site.html', 'newwindow', 'width=800, height=600');"><i class="fa fa-print"></i></a>-->
+                                        <a class="btn btn-success col-sm-6 col-xs-6 text-center" href="{{route('site.edit' ,$site->site_id)}}"><i class="fa fa-edit"></i></a>
                                         {{--todo: sweet alert for all the confirmation boxes--}}
-
-                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="<?php echo e(route('site.delete', $site->site_id)); ?>" class="btn btn-danger col-sm-4 col-xs-4 text-center">
+                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="<?php echo e(route('site.delete', $site->site_id)); ?>" class="btn btn-danger col-sm-6 col-xs-6 text-center">
                                             <i class="fa fa-close"></i>
                                         </a>
 

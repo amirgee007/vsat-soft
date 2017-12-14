@@ -145,7 +145,7 @@
                   </span>
                         <label class="col-sm-2 control-label">Cell</label>
                         <span class="col-sm-4">
-                  <input required value="{{@$asset->supplier_cell}}" class="form-control" placeholder="Cell" name="supplier_cell">
+                  <input type="number"  required value="{{@$asset->supplier_cell}}" class="form-control" placeholder="Cell" name="supplier_cell">
                   </span>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                   </span>
                         <label class="col-sm-2 control-label">Cell</label>
                         <span class="col-sm-4">
-                  <input required class="form-control" value="{{@$asset->vendor_cell}}" placeholder="Cell" name="vendor_cell">
+                  <input required type="number" class="form-control" value="{{@$asset->vendor_cell}}" placeholder="Cell" name="vendor_cell">
                   </span>
                     </div>
                 </div>

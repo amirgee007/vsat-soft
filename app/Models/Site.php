@@ -45,7 +45,7 @@ class Site extends Model
 
 
     public function relatedAssets(){
-        return $this->assets()->pluck('name' ,'branch_id')->toArray();
+        return $this->assets()->pluck('site_id' ,'asset_name')->toArray();
     }
 
 }

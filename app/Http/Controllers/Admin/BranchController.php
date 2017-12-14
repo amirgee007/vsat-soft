@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Branch;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\SupportStaff;
 use Illuminate\Http\Request;
@@ -61,10 +62,10 @@ class BranchController extends Controller
         $staffs = SupportStaff::all();
         $related_staff = $branch->relatedStaff();
         $countries = Country::IsActive()->get();
-
+        $cities = City::where('country_id', $branch->country_id)->get();
         if (!is_null($branch))
         {
-            return view('admin.branch.edit' , compact('countries','branch' ,'related_staff','staffs'));
+            return view('admin.branch.edit' , compact('cities','countries','branch' ,'related_staff','staffs'));
         } else
         {
             session()->flash('app_warning', 'No, Branch Found!');
@@ -79,15 +80,16 @@ class BranchController extends Controller
         if (!is_null($branch)){
             $fileName = $branch->branch_logo;
             $input = $request->all();
-            $input['related_staff'] = implode(',', $input['related_staff']);
+            if (!empty($input['related_staff']))
+                $input['related_staff'] = implode(',', $input['related_staff']);
             if ($request->hasFile('branch_logo')) {
                 if ($request->file('branch_logo')->isValid()) {
                     $file = $request->file('branch_logo');
-                    $fileName = $input['name'] . '-' . time() . '.' . $file->getClientOriginalExtension();
+                    $fileName = str_slug($input['name']).'-'.time() . '.' . $file->getClientOriginalExtension();
                     $request->file('branch_logo')->move("uploads/branches", $fileName);
                 }
             }
-            $input['branch_logo'] = str_slug($fileName);
+            $input['branch_logo'] = $fileName;
             unset($input['_token'] , $input['related_staff']);
             $update = $branch->update($input);
             if ($update) {

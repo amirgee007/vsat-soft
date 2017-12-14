@@ -39,7 +39,6 @@
                             <tr>
                                 <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> S/N</th>
                                 <th><i class="icon_flowchart_alt"></i> Branch Name</th>
-                                <th><i class="icon_building"></i> City</th>
                                 <th><i class="icon_mail_alt"></i> Email</th>
                                 <th><i class="icon_phone "></i> Office Tel.</th>
                                 <th><i class="icon_calendar"></i> Created Date</th>
@@ -52,7 +51,6 @@
                             <tr>
                                 <td class="text-center"> {{ $loop->iteration }} </td>
                                 <td><a href="#">{{ $branch->name }}</a></td>
-                                <td><a href="#">{{ $branch->city }}</a></td>
                                 <td><a href="#">{{ $branch->email }}</a></td>
                                 <td><a href="#">{{ $branch->office_tel }}</a></td>
                                 <td><a href="#">{{ $branch->created_at ? $branch->created_at->format('m-d-Y') : 'n/a' }}</a></td>

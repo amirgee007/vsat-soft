@@ -1,12 +1,5 @@
 @extends('admin/layouts/default')
-
 @section('pageTitle', 'Edit Staff')
-
-
-@section('header_styles')
-    <link href="{{ asset('assets/dropify/dist/css/dropify.min.css') }}" rel="stylesheet" type="text/css"/>
-@stop
-
 @section('content')
     <!--main content start-->
     <section id="main-content">
@@ -45,30 +38,5 @@
         <!-- page end-->
     </section>
     <!--main content end-->
-@stop
-
-
-@section('footer_scripts')
-    <link href="{{ asset('assets/select2-4.0.4/select2.min.css') }}" rel="stylesheet"/>
-    <script src="{{ asset('assets/select2-4.0.4/select2.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/dropify/dist/js/dropify.min.js') }}"></script>
-
-    <script>
-
-        $(function () {
-
-            $('#related_user').select2({
-                placeholder: "Select Related Users",
-                width: '100%',
-                allowClear: true
-            });
-
-            $('.dropify').dropify();
-
-        });
-
-        @include('admin.layouts.partials.ajax-country-based')
-        @include('admin.people.support-staff.aax-country2-based')
-    </script>
 @stop
 

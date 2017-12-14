@@ -23,7 +23,7 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Tool Image</label>
     <div class="col-sm-10">
-        <input  type="file" name="tool_img"  id="input-file-now"  @if(@$tool->tool_img) data-default-file="{{asset('uploads/tools_equipments/'.$tool->tool_img)}}" @endif  class="dropify" accept="image/x-png,image/gif,image/jpeg"/>
+        <input required type="file" name="tool_img"  id="input-file-now"  @if(@$tool->tool_img) data-default-file="{{asset('uploads/tools_equipments/'.$tool->tool_img)}}" @endif  class="dropify" accept="image/x-png,image/gif,image/jpeg"/>
     </div>
 </div>
 

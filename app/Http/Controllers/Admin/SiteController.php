@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Asset;
+use App\Models\City;
 use App\Models\Country;
 use  App\Models\Site;
 use App\Models\Branch;
@@ -93,9 +94,10 @@ class SiteController extends Controller
         $branches = Branch::all();
         $selected_branches = $site->relatedBranches();
         $countries = Country::IsActive()->get();
+        $cities = City::where('country_id', $site->country_id )->get();
         $assets = Asset::all();
-
-        return view('admin.site.edit' ,compact('assets','countries','site' ,'branches' ,'selected_branches'));
+        $relateAssets = $site->assets;
+        return view('admin.site.edit' ,compact('assets', 'relateAssets','countries', 'cities','site' ,'branches' ,'selected_branches'));
     }
 
     private function updateImage($file ,$name ,$unlink ){
@@ -142,7 +144,7 @@ class SiteController extends Controller
         }
 
 
-        unset($data['antenna_mount_loc'] ,$data['site_branches']);
+        unset($data['antenna_mount_loc'] ,$data['site_branches'], $data['related_assets'], $data['related_assets_qty']);
         $is_update =  $site->update($data);
 
         ////////////////////////logic for pivot table extra columns
@@ -150,7 +152,7 @@ class SiteController extends Controller
         $site_assets_qty = $request->related_assets_qty;
 
         $sync_data = [];
-        for($i = 0; $i < count($site_assets); $i++)
+        for($i = 1; $i <= count($site_assets); $i++)
             $sync_data[$site_assets[$i]] = ['quantity' => $site_assets_qty[$i]];
 
 

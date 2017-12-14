@@ -66,8 +66,8 @@ class MaintenanceLogController extends Controller
         $staffs = SupportStaff::all();
         $sites =  Site::all();
         $countries = Country::Isactive()->get();
-        $cities = City::isactive()->get();
         $maintenance_log = MaintenanceLog::where('maintenance_log_id' ,$id)->first();
+        $cities = City::where('country_id', $maintenance_log->country_id)->get();
         $selected_branches = $maintenance_log->relatedBranches();
         $selected_staffs = $maintenance_log->relatedStaffs();
         if (!is_null($maintenance_log)){

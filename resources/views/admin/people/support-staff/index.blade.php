@@ -42,7 +42,6 @@
                             <th class="text-center"><i class="fa fa-sort-numeric-asc"></i> S/N</th>
                             <th><i class="icon_profile"></i> Employee Name</th>
                             <th><i class="icon_calendar"></i> Created Date</th>
-                            <th><i class="icon_mail_alt"></i>Country</th>
                             <th><i class="icon_mobile"></i> Cell</th>
                             <th><i class="icon_question"></i> Status</th>
                             <th><i class="icon_cogs"></i> Action</th>
@@ -54,7 +53,6 @@
                                 <td class="text-center"> {{ $loop->iteration }} </td>
                                 <td><a href="#">{{ $staff->first_name }}</a></td>
                                 <td><a href="#">{{ $staff->created_at ? $staff->created_at->format('m-d-Y') : 'N/A' }}</a></td>
-                                <td><a href="#">{{ $staff->local_country }}</a></td>
                                 <td><a href="#">{{ $staff->cell_number }}</a></td>
                                 <td>
                                     <div class="btn-group col-sm-10 col-xs-12">

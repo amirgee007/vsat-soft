@@ -76,8 +76,8 @@ class InstallationLogController extends Controller
         $staffs = SupportStaff::all();
         $sites =  Site::all();
         $countries = Country::Isactive()->get();
-        $cities = City::isactive()->get();
         $installation_log = InstallationLog::where('installation_log_id' ,$id)->first();
+        $cities = City::where('country_id', $installation_log->country_id)->get();
         $selected_branches = $installation_log->relatedBranches();
         $selected_staffs = $installation_log->relatedStaffs();
 

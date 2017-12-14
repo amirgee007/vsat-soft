@@ -5,13 +5,13 @@
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">File Name</label>
                 <div class="col-sm-10 col-xs-9">
-                    <input type="text" maxlength="40" name="file_name" value="{{ @$doc->file_name  }}" class="form-control" placeholder="iDirect Web iSite User Guide iDX 33 RevC.pdf">
+                    <input required type="text" maxlength="40" name="file_name" value="{{ @$doc->file_name  }}" class="form-control" placeholder="iDirect Web iSite User Guide iDX 33 RevC.pdf">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 col-xs-3 control-label">File Upload</label>
                 <div class="col-sm-10 col-xs-9">
-                    <input type="file" class="btn btn-default" name="file_upload_name" placeholder="Select File">
+                    <input type="file" @if(!isset($doc))  required @endif class="btn btn-default" name="file_upload_name" placeholder="Select File">
                 </div>
             </div>
         </div>

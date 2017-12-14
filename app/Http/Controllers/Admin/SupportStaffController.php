@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\City;
 use App\Models\Country;
 use App\User;
 use Illuminate\Http\Request;
@@ -63,7 +64,9 @@ class SupportStaffController extends Controller
         $users = User::all(['id','first_name', 'last_name']);
         $relatedUser = $staff->relatedUser();
         $countries = Country::IsActive()->get();
-        return view('admin.people.support-staff.edit', compact('countries','staff', 'users', 'relatedUser'));
+        $localCities = City::where('country_id', $staff->local_country_id )->get();
+        $permanentCities = City::where('country_id', $staff->permanent_country_id )->get();
+        return view('admin.people.support-staff.edit', compact('countries','localCities', 'permanentCities','staff', 'users', 'relatedUser'));
     }
 
     public function update(Request $request)
