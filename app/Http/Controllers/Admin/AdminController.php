@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Service;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Models\City;
@@ -34,13 +35,15 @@ class AdminController extends Controller
 
     public function showHome()
     {
+        $stock     =  \App\Service\HttpRequest::get('http://stock.seersol.com/vsat/v1/api/stock_value');
+        $stock_value = $stock['stock_value'];
         $user      = Auth::user()->id;
         $cities    = City::Isactive()->get();
         $regions   = Region::Isactive()->get();
         $countries = Country::Isactive()->get();
         $tickets   = Ticket::all();
         $sites     = Site::where('added_by', $user)->get();
-        return view('admin.dashboard', compact('cities', 'tickets', 'regions', 'countries', 'sites'));
+        return view('admin.dashboard', compact('cities', 'tickets', 'stock_value','regions', 'countries', 'sites'));
     }
 
 }

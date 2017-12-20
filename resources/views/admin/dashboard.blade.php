@@ -60,7 +60,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="info-box brown-bg">
                     <i class="fa fa-dollar"></i>
-                    <div class="count">850K</div>
+                    <div class="count">{{ explode('.', @$stock_value)[0] }}</div>
                     <div class="title">Stock Value</div>
                 </div>
                 <!--/.info-box-->
@@ -202,7 +202,7 @@
                         <i>Stock value</i>
                         <ul>
                             <li>
-                                <strong>50K</strong>
+                                <strong>{{ explode('.', @$stock_value)[0] }}</strong>
                                 <span>$</span>
                             </li>
                             <li>
