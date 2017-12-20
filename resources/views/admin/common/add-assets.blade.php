@@ -20,7 +20,7 @@
                 data: {options: optionValues.toString()},
                 dataType: "json",
                 success: function (data) {
-                    if(data.aaData != ""){
+
                     var  asset = '<div class="asset-div"><label class="col-lg-2 control-label labelrem" style="clear:both;">Add a Part</label>' +
                         '<div class="col-sm-4 divselect"><select required name="related_assets[]" class="form-control assets m-bot15">' +
                         '<option selected hidden>Select Asset</option>'
@@ -30,9 +30,6 @@
                         '<span class="col-sm-8"><input name="related_assets_qty[]" type="number" class="form-control"></span>' +
                         '<a class="btn btn-danger removeasset" href="javascript:void(0)"><i class="fa fa-minus-square"></i></a></div></div>';
                     wrapper.append(asset);
-                    }else{
-                        toastr.success("You Have Selected All Available Assets!.", "Info");
-                    }
                 }
             });
         });

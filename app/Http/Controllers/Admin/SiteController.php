@@ -26,10 +26,10 @@ class SiteController extends Controller
     {
         $site_id = Site::getMaxSiteId();
         $branches = Branch::all();
-        $assets = Asset::all();
+        //$assets = Asset::all();
         $selected_branches = [];
         $countries = Country::IsActive()->get();
-
+        $assets     =   \App\Service\HttpRequest::get('http://stock.seersol.com/vsat/v1/api');
         return view('admin.site.create', compact('assets','countries','site_id' ,'branches' ,'selected_branches'));
     }
 
@@ -190,8 +190,9 @@ class SiteController extends Controller
 
         $input = $request->all();
         $data  = '';
-        $options =  (!empty($input['options']))? explode(',', $input['options']) : [];
-        $assets = Asset::whereNotIn('asset_id', $options)->pluck('asset_name','asset_id');
+        $assets     =   \App\Service\HttpRequest::get('http://stock.seersol.com/vsat/v1/api');
+        //$options =  (!empty($input['options']))? explode(',', $input['options']) : [];
+        //$assets = Asset::whereNotIn('asset_id', $options)->pluck('asset_name','asset_id');
         $data = view('admin.site.partials.assets-options', compact('assets'))->render();
         return response()->json(['aaData'=>$data]);
     }

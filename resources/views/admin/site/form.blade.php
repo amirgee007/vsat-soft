@@ -494,7 +494,7 @@
                                 <select class="form-control m-bot15 assets" name="related_assets[]" >
                                     <option value="" hidden selected>Select Asset</option>
                                     @foreach($assets as $asset)
-                                        <option value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                                        <option value="{{$asset['id']}}">{{$asset['name']}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -70,7 +70,7 @@
             </li>
             @endpermission
 
-
+            {{--
             @permission('asset')
             <li class="{{ ( Request::is('asset/*') || Request::is('asset') ) ? 'active' : ''}}">
                 <a class="" href="{{route('asset.index')}}">
@@ -79,11 +79,10 @@
                 </a>
             </li>
             @endpermission
-
+            --}}
             @permission('ticket')
-            <li class="{{( Request::is('ticket/*') || Request::is('ticket') ) ? 'active' : ''}}">
-                <a
-                        href="{{route('ticket.index')}}">
+            <li class="">
+                <a  href="http://support.seersol.com">
                     <i class="icon_tags"></i>
                     <span>Ticketing</span>
                 </a>
@@ -99,24 +98,24 @@
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="#">Stock</a></li>
+                    <li><a class="" href="http://stock.seersol.com">Stock</a></li>
                     <li><a class="" href="{{route('equipments.index')}}">Tools & Equipments</a></li>
                 </ul>
             </li>
             @endpermission
 
             @permission('survey')
-            <li class="sub-menu {{Request::is('survey/*') ? 'active' : ''}}">
-                <a href="javascript:;" class="">
+            <li class="sub-menu">
+                <a href="http://survey.seersol.com" class="">
                     <i class="fa fa-file-text-o"></i>
                     <span>Survey</span>
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
-                <ul class="sub">
+                {{-- <ul class="sub">
                     <li class="{{ Request::segment(2)=='add' ? 'active' : '' }}"><a class="" href="{{ route('survey.create') }}">Add Survey</a></li>
                     <li class="{{ Request::segment(2)=='site' ? 'active' : '' }}"><a class="" href="{{ route('survey.site.index') }}">Site Survey</a></li>
                     <li class="{{ Request::segment(2)=='performance' ? 'active' : '' }}"><a class="" href="{{ route('survey.performance.index') }}">Performance Survey</a></li>
-                </ul>
+                </ul> --}}
             </li>
             @endpermission
 
