@@ -82,7 +82,7 @@
             --}}
             @permission('ticket')
             <li class="">
-                <a  href="http://support.seersol.com">
+                <a  href="http://support.seersol.com" target="_blank">
                     <i class="icon_tags"></i>
                     <span>Ticketing</span>
                 </a>
@@ -98,7 +98,7 @@
                     <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 <ul class="sub">
-                    <li><a class="" href="http://stock.seersol.com">Stock</a></li>
+                    <li><a class="" href="http://stock.seersol.com" target="_blank">Stock</a></li>
                     <li><a class="" href="{{route('equipments.index')}}">Tools & Equipments</a></li>
                 </ul>
             </li>
@@ -106,10 +106,9 @@
 
             @permission('survey')
             <li class="sub-menu">
-                <a href="http://survey.seersol.com" class="">
+                <a href="http://survey.seersol.com" class="" target="_blank">
                     <i class="fa fa-file-text-o"></i>
                     <span>Survey</span>
-                    <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
                 {{-- <ul class="sub">
                     <li class="{{ Request::segment(2)=='add' ? 'active' : '' }}"><a class="" href="{{ route('survey.create') }}">Add Survey</a></li>
