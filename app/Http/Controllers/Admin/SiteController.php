@@ -95,7 +95,7 @@ class SiteController extends Controller
         $selected_branches = $site->relatedBranches();
         $countries = Country::IsActive()->get();
         $cities = City::where('country_id', $site->country_id )->get();
-        $assets = Asset::all();
+        $assets     =   \App\Service\HttpRequest::get('http://stock.seersol.com/vsat/v1/api');
         $relateAssets = $site->assets;
         return view('admin.site.edit' ,compact('assets', 'relateAssets','countries', 'cities','site' ,'branches' ,'selected_branches'));
     }

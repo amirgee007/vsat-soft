@@ -457,7 +457,7 @@
                                         <select class="form-control m-bot15 assets" name="related_assets[{{$loop->iteration}}]">
                                             <option value="">Select Asset</option>
                                             @foreach($assets as $asset)
-                                                <option @if($asset->asset_id==$ass->asset_id) selected @endif value="{{$asset->asset_id}}">{{$asset->asset_name}}</option>
+                                                <option @if($asset['id']==$ass->asset_id) selected @endif value="{{$asset['id']}}">{{$asset['name']}}</option>
                                             @endforeach
                                         </select>
                                     </div>
